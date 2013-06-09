@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".FrgChartTwo"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/frg_chart_two">
+
+     <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"    
+            android:gravity="bottom|center_horizontal"
+            android:text="Monthly payment breakdown">     
+     </TextView>
+
+     <LinearLayout
+        android:id="@+id/chart_one_histogram"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"        
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_margin="0dp"        
+        android:background="#FFFFFFFF">
+     </LinearLayout> 
+</LinearLayout>

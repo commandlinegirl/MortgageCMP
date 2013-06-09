@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".FrgChartOne"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/frg_chart_one">
+
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="If you overpaid 100 USD monthly, you would get xxx in the end.">     
+     </TextView>
+    
+
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MortgageCMP</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- Input form -->
+    <string name="mortgage_name_input">Name</string>
+    <string name="mortgage_name_text">Mortgage 1</string>
+    <string name="mortgage_purchase_price_input">Purchase price</string>
+    <string name="mortgage_purchase_price_text">200000</string>
+    <string name="mortgage_downpayment_input">Down payment</string>
+    <string name="mortgage_downpayment_text">0</string>
+    <string name="mortgage_interest_rate_input">Interest rate</string>
+    <string name="mortgage_interest_rate_text">5</string>
+    <string name="mortgage_term_input">Mortgage term</string>
+    <string name="mortgage_term_years_text">30</string>
+    <string name="mortgage_term_years_abbr">yrs</string>    
+    <string name="mortgage_term_months_text">0</string> 
+    <string name="mortgage_term_months_abbr">mts</string> 
+    <string name="mortgage_property_insurance_input">Home insurance</string>
+    <string name="mortgage_property_insurance_text">0</string>
+    <string name="mortgage_property_tax_input">Property tax</string>
+    <string name="mortgage_property_tax_text">0</string>
+    <string name="mortgage_pmi_input">PMI</string>
+    <string name="mortgage_pmi_text">0</string>
+    <string name="mortgage_fees_input">Closing fees</string>
+    <string name="mortgage_fees_text">0</string>
+    <string name="mortgage_overpayment_input">Extra payment</string>
+    <string name="mortgage_overpayment_text">0</string>
+    <string name="radio_yearly">yearly</string>
+    <string name="radio_monthly">monthly</string>
+    <string name="advanced_input_invisible">+ Tax, fees, insurance (optional)</string>
+    <string name="advanced_input_visible">- Tax, fees, insurance (optional)</string>
+    <string name="advanced_extra_payments_input_invisible">+ Extra payments (optional)</string>
+    <string name="advanced_extra_payments_input_visible">- Extra payments (optional)</string>
+    
+    <!-- Summary -->
+    
+    <string name="s_mortgage_name_title">Name</string>
+    <string name="s_mortgage_amount_title">Loan amount</string>
+    <string name="s_mortgage_total_payment_title">Total payment</string>
+    <string name="s_mortgage_total_interests_title">Total interest</string>
+    <string name="s_mortgage_total_insurance_title">Total insurance</string>
+    <string name="s_mortgage_total_pmi_title">Total pmi</string>
+    <string name="s_mortgage_total_property_tax_title">Total property tax</string>
+    <string name="s_mortgage_monthly_payment_title">Monthly payment</string>
+    <string name="s_mortgage_monthly_insurance_title">Monthly insurance</string>
+    <string name="s_mortgage_monthly_pmi_title">Monthly PMI</string>
+    <string name="s_mortgage_monthly_tax_title">Monthly tax</string>
+
+    <string name="s_mortgage_term_title">Monthly tax</string>
+    <string name="s_mortgage_interest_title">Monthly tax</string>
+    <string name="s_mortgage_fees_title">Fees</string>
+    <string name="s_mortgage_term_title">Term</string>
+    <string name="s_mortgage_extra_payments_title">Extra payment</string>
+
+    <!-- General -->
+  
+    <string name="calculate_mortgage">ADD MORTGAGE</string>
+    <string name="reset">Reset</string>
+    <string name="percent">%</string>
+    <string name="summary_title">Summary</string>
+    <string name="chart_title">Chart</string>
+    <string name="list_title">List</string>
+    <string name="title_activity_results_multi">Comparison</string>    
+    <string name="title_activity_mortgage_list">Mortgage List</string>
+    <string name="title_activity_results_one">Results</string>
+    <string name="save_mortgage">Save to list</string>
+    <string name="compare">Compare</string>
+    <string name="menu_list">List</string>
+    <string name="menu_add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="principal">Principal</string>
+    <string name="interest">Interest</string>
+    <string name="extra_costs">Extra costs</string>
+    <string name="mortgage_to_modify">mortgage_to_modify</string>
+    <string name="mortgage_to_clone">mortgage_to_clone</string>
+    
+</resources>

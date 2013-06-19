@@ -46,7 +46,8 @@ public class Mortgage  {
     private String name;
     private int id;
     
-    private BigDecimal overpayment;
+    private BigDecimal extra_payment;
+    private int extra_payment_frequency;
     
     private HistoryMortgage history;
     
@@ -59,17 +60,18 @@ public class Mortgage  {
     		BigDecimal _property_insurance,
     		BigDecimal _property_tax,
     		BigDecimal _pmi,
-    		BigDecimal overpayment) {
+    		BigDecimal extra_payment,
+    		int extra_payment_frequency) {
     	name = _name;
     	purchase_price = _purchase_price;
     	downpayment = Money.scale(_downpayment);
     	loan_amount = Money.scale(_purchase_price.subtract(_downpayment));
     	outstanding_loan = loan_amount; //TODO check if not < 0!
-    	this.overpayment = overpayment;
-
-    	init_interest_rate = _interest_rate;  
+    	this.extra_payment = extra_payment;
+        this.extra_payment_frequency = extra_payment_frequency;
+    	init_interest_rate = _interest_rate;
         interest_rate_decimal_monthly = _interest_rate.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
-    	
+
     	property_insurance = _property_insurance;
     	property_insurance_decimal = _property_insurance.divide(new BigDecimal(100), Money.DECIMALS, Money.ROUNDING_MODE);
     	property_insurance_decimal_monthly = property_insurance_decimal.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
@@ -80,26 +82,25 @@ public class Mortgage  {
     	property_tax_decimal = _property_tax.divide(new BigDecimal(100), Money.DECIMALS, Money.ROUNDING_MODE);
     	property_tax_decimal_monthly = property_tax_decimal.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
     	monthly_tax_amount = Money.getPercentage(purchase_price, property_tax_decimal_monthly);
-    	
+
     	pmi = _pmi;
     	pmi_decimal_monthly = _pmi.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
     	monthly_pmi_amount = Money.getPercentage(loan_amount,  pmi_decimal_monthly);
-    	
+
     	term_years = _term_years;
     	term_months = _term_months; 
     	total_term_months = _term_years * 12 + _term_months; 
 
     	additional_cost_without_pmi = monthly_insurance_amount.add(monthly_tax_amount);
     	additional_cost_with_pmi = monthly_insurance_amount.add(monthly_tax_amount).add(monthly_pmi_amount);
-    	    	
-    	base_monthly_payment = calculateMonthlyPayment();
+
+    	calculateMonthlyPayment();
     	monthly_payment = base_monthly_payment;
-    	
-    	
+
     	history = new HistoryMortgage(this, total_term_months);
     }
     
-    private BigDecimal calculateMonthlyPayment() {
+    private void calculateMonthlyPayment() {
     	BigDecimal factor = (interest_rate_decimal_monthly.add(Money.ONE)).pow(total_term_months);
     	BigDecimal factor_minus_one = factor.subtract(Money.ONE);
     	try {
@@ -108,8 +109,8 @@ public class Mortgage  {
     		iae.printStackTrace();
     	}
     	   	
-    	return Money.scale(interest_rate_decimal_monthly.multiply(
-    			loan_amount.multiply(factor.divide(factor_minus_one, Money.DECIMALS, Money.ROUNDING_MODE))).add(overpayment));
+    	base_monthly_payment = Money.scale(interest_rate_decimal_monthly.multiply(
+    			loan_amount.multiply(factor.divide(factor_minus_one, Money.DECIMALS, Money.ROUNDING_MODE))));
     }
     
     public void recalculate(int index, int year, int month) {    	
@@ -133,7 +134,10 @@ public class Mortgage  {
             	//Log.d("monthly_payment without pmi", monthly_payment.toString());            	
             }
 
-            // 
+            if (month_counter % extra_payment_frequency == 0) {
+            	base_monthly_payment = base_monthly_payment.add(extra_payment);
+            }
+            //
             if (outstanding_loan.compareTo(monthly_payment) == -1) {
                 principal_paid = outstanding_loan.add(interests_paid).subtract(interests_paid);
                 monthly_payment = outstanding_loan.add(interests_paid).add(additional_cost);

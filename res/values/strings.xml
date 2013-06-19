@@ -52,7 +52,8 @@
     <string name="s_mortgage_term_title">Monthly tax</string>
     <string name="s_mortgage_interest_title">Monthly tax</string>
     <string name="s_mortgage_fees_title">Fees</string>
-    <string name="s_mortgage_term_title">Term</string>
+    <string name="s_mortgage_term_title"># of payments</string>
+    <string name="s_mortgage_downpayment_title">Down payment</string>
     <string name="s_mortgage_extra_payments_title">Extra payment</string>
 
     <!-- General -->

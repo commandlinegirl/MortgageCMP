@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.codelemma.mortgagecmp.accounting.HistogramVisitor;
-import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
-import com.codelemma.mortgagecmp.accounting.Mortgage;
 
 public class FrgOverpayment extends SherlockFragment {
 

@@ -2,6 +2,357 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    tools:context=".FrgSummaryMulti">
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <!-- Overview -->
+
+    <TextView
+        android:text="Overview"
+        android:layout_width="wrap_content"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+        
+      <HorizontalScrollView
+        android:id="@+id/s_multi_summary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbarSize="15dp"
+        android:scrollbars="horizontal"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:fadeScrollbars="false">
+
+         <LinearLayout 
+        android:orientation="vertical"      
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">      
+
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_name"                                         
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"        
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFC9A798">    
+
+    <TextView
+        android:text="@string/s_mortgage_name_title"
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_loan_amount"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+    
+      <TextView
+        android:text="@string/s_mortgage_amount_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_term"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFE9E0DB">
+
+      <TextView
+        android:text="@string/s_mortgage_term_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+        android:id="@+id/smulti_mortgage_interest"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+    
+      <TextView
+        android:text="@string/mortgage_interest_rate_input"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>        
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_downpayment"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFE9E0DB">
+      
+      <TextView
+        android:text="@string/mortgage_downpayment_input"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+     </LinearLayout>     
+          
+     </HorizontalScrollView>   
+    </LinearLayout>
+
+    <!-- Totals (cumulative payments) -->
+
+    <TextView
+        android:text="Total (cumulative) payments"
+        android:layout_width="wrap_content"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+        
+      <HorizontalScrollView
+        android:id="@+id/s_multi_summary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbarSize="15dp"
+        android:scrollbars="horizontal"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:fadeScrollbars="false">
+
+      <LinearLayout 
+        android:orientation="vertical"      
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">   
+    
+      <LinearLayout
+        android:id="@+id/smulti_mortgage_total_payment"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+    
+      <TextView
+        android:text="@string/s_mortgage_total_payment_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+      </LinearLayout>
+    
+      <LinearLayout
+        android:id="@+id/smulti_mortgage_total_interests"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFE9E0DB">
+      
+      <TextView
+        android:text="@string/s_mortgage_total_interests_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/smulti_mortgage_total_insurance"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+    
+      <TextView
+        android:text="@string/s_mortgage_total_insurance_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+      </LinearLayout>
+    
+      <LinearLayout
+        android:id="@+id/smulti_mortgage_total_pmi"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFE9E0DB">
+      
+      <TextView
+        android:text="@string/s_mortgage_total_pmi_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+      </LinearLayout>
+    
+      <LinearLayout
+        android:id="@+id/smulti_mortgage_tax"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+    
+      <TextView
+        android:text="@string/s_mortgage_total_property_tax_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+      </LinearLayout>
+
+      </LinearLayout>
+      </HorizontalScrollView>
+    
+    </LinearLayout>
+    
+    
+    <TextView
+        android:text="Overview"
+        android:layout_width="wrap_content"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+        
+      <HorizontalScrollView
+        android:id="@+id/s_multi_summary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbarSize="15dp"
+        android:scrollbars="horizontal"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:fadeScrollbars="false">
+
+         <LinearLayout 
+        android:orientation="vertical"      
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">      
+    
+    
+    <!-- start -->
+    
+        <LinearLayout
+        android:id="@+id/smulti_mortgage_monthly_payment"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+      
+      <TextView
+        android:text="@string/s_mortgage_monthly_payment_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+              
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_monthly_insurance"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+      
+      <TextView
+        android:text="@string/s_mortgage_monthly_insurance_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_monthly_pmi"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFE9E0DB">
+
+      <TextView
+        android:text="@string/s_mortgage_monthly_pmi_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/smulti_mortgage_monthly_tax"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:background="#FFF9F6F4">
+
+      <TextView
+        android:text="@string/s_mortgage_monthly_tax_title"               
+        android:layout_width="100dp"
+        android:textSize="11sp"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    
+    
+    <!-- end -->
+    
+          </LinearLayout>
+      </HorizontalScrollView>
+    
+    </LinearLayout>
+    
+    </LinearLayout>
+</ScrollView>
+
+
+
+<!-- old -->
+
+<!-- 
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".FrgSummaryOne"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -137,7 +488,7 @@
     </LinearLayout>
     
     
-    <!-- s -->
+   
     
     <LinearLayout
         android:id="@+id/smulti_mortgage_total_insurance"
@@ -187,7 +538,7 @@
     </LinearLayout>
     
 
-    <!-- e -->
+  
     
     <LinearLayout
         android:id="@+id/smulti_mortgage_monthly_payment"
@@ -254,3 +605,4 @@
   </LinearLayout>  
   </HorizontalScrollView>
 </ScrollView>
+ -->

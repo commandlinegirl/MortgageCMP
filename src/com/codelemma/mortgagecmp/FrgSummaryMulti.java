@@ -63,19 +63,21 @@ public class FrgSummaryMulti extends SherlockFragment {
     		
     		addTextViewToLayout(R.id.smulti_mortgage_name, mortgage.getName(), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_loan_amount, formatter.formatNumber(mortgage.getLoanAmount()), lp, color);
-    		addTextViewToLayout(R.id.smulti_mortgage_term, String.valueOf(mortgage.getTermMonths()), lp, color);
+    		addTextViewToLayout(R.id.smulti_mortgage_term, String.valueOf(mortgage.getTotalTermMonths()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_interest, formatter.formatNumber(mortgage.getInterestRate()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_downpayment, formatter.formatNumber(mortgage.getDownpayment()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_total_payment, formatter.formatNumber(mortgage.getTotalPayment()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_total_interests, formatter.formatNumber(mortgage.getTotalInterestPaid()), lp, color);
+    		addTextViewToLayout(R.id.smulti_mortgage_total_insurance, formatter.formatNumber(mortgage.getTotalInsurance()), lp, color);
+    		addTextViewToLayout(R.id.smulti_mortgage_total_pmi, formatter.formatNumber(mortgage.getTotalPMI()), lp, color);
+    		addTextViewToLayout(R.id.smulti_mortgage_tax, formatter.formatNumber(mortgage.getTotalPropertyTax()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_monthly_payment, formatter.formatNumber(mortgage.getBaseMonthlyPayment()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_monthly_insurance, formatter.formatNumber(mortgage.getPropertyInsuranceAmount()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_monthly_pmi, formatter.formatNumber(mortgage.getPMIAmount()), lp, color);
     		addTextViewToLayout(R.id.smulti_mortgage_monthly_tax, formatter.formatNumber(mortgage.getPropertyTaxAmount()), lp, color);
-
     		if (size == 2) {
     			if (iteration == 1) {
-    			    diff[0] = mortgage.getTotalPayment();
+    			    diff[0] =  mortgage.getTotalPayment();
     			    diff[1] = mortgage.getTotalInterestPaid();
     			    diff[2] = mortgage.getBaseMonthlyPayment();
     			    diff[3] = mortgage.getPropertyInsuranceAmount();

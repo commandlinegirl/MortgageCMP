@@ -24,17 +24,19 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ResultsOne extends SherlockFragmentActivity  
-                        implements FrgInput.OnDataInputListener {
+                        implements FrgInputOne.OnDataInputListener {
 
 	private MortgageCMP appState;
 	static final int NUM_ITEMS = 6;
     HashMap<String,String> input_values = new HashMap<String,String>();
     private boolean showModifyCloneButtons = false;
-
+    private int extraPaymentFrequency = 1;
+    
     MyAdapter mAdapter;
     ViewPager mPager;
     
@@ -92,7 +94,7 @@ public class ResultsOne extends SherlockFragmentActivity
         @Override
         public Fragment getItem(int position) {
         	if (position == 0) {
-                return new FrgInput();
+                return new FrgInputOne();
         	} else if (position == 1) {
                 return new FrgSummaryOne();
         	} else if (position == 2) {
@@ -104,7 +106,7 @@ public class ResultsOne extends SherlockFragmentActivity
         	} else if (position == 5) {
         		return new FrgTableOne();   		
         	} else {
-                return new FrgInput();       		
+                return new FrgInputOne();       		
         	}
         }
 
@@ -196,7 +198,8 @@ public class ResultsOne extends SherlockFragmentActivity
     	BigDecimal property_insurance = new BigDecimal(data.get("mortgage_property_insurance"));
     	BigDecimal property_tax = new BigDecimal(data.get("mortgage_property_tax"));
     	BigDecimal pmi = new BigDecimal(data.get("mortgage_pmi"));
-    	BigDecimal overpayment = new BigDecimal(data.get("mortgage_overpayment"));
+    	BigDecimal extra_payment = new BigDecimal(data.get("mortgage_extra_payment"));
+    	int extra_payment_frequency = Integer.parseInt(data.get("mortgage_extra_payment_frequency"));
 
 		Mortgage mortgage = new Mortgage (
 				 name, 
@@ -208,7 +211,8 @@ public class ResultsOne extends SherlockFragmentActivity
 	    		 property_insurance,
 	    		 property_tax,
 	    		 pmi,
-	    		 overpayment);
+	    		 extra_payment,
+	    		 extra_payment_frequency);
 		
 		recalculate(mortgage);
 		appState.getAccount().addMortgage(mortgage);
@@ -285,17 +289,18 @@ public class ResultsOne extends SherlockFragmentActivity
 	    }		
 	    input.put("mortgage_pmi", pmiData);
         
-	    EditText overpayment = (EditText) findViewById(R.id.mortgage_overpayment);
-	    String overpaymentData = overpayment.getText().toString();
-	    if (overpaymentData.trim().length() == 0) { // fill default if not provided
-	    	overpaymentData = "0";
-	    }		
-	    input.put("mortgage_overpayment", overpaymentData);
+	    EditText extra_payment = (EditText) findViewById(R.id.mortgage_overpayment);
+	    String extraPaymentData = extra_payment.getText().toString();
+	    if (extraPaymentData.trim().length() == 0) { // fill default if not provided
+	    	extraPaymentData = "0";
+	    }
+	    input.put("mortgage_extra_payment", extraPaymentData);
 
+	    input.put("mortgage_extra_payment_frequency", String.valueOf(extraPaymentFrequency));
+	    
 	    input.put("replace_submit_buttons", "yes");
-	    Fragment fragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.frg_input);
-	    
-	    
+	    //Fragment fragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.frg_input);
+
 	    Mortgage mortgage = addMortgageToAccount(input);
 	    
 	    mPager.setAdapter(mAdapter);
@@ -306,9 +311,9 @@ public class ResultsOne extends SherlockFragmentActivity
 	public void recalculate(Mortgage mortgage) {   
         int month = appState.getSimulationStartMonth();
         int year = appState.getSimulationStartYear();	        	        
-             
+
     	mortgage.initialize();
-        
+
         int i = 0;
         for (i = 0; i < mortgage.getTotalTermMonths(); i++) {
         	mortgage.recalculate(i, year, month); 
@@ -320,12 +325,12 @@ public class ResultsOne extends SherlockFragmentActivity
             }
         }
 	}
-	
+
 	@Override
 	public boolean showModifyCloneButtons() {
 		return showModifyCloneButtons;
 	}
-	
+
 	@Override
 	public void replaceButtons(Mortgage mortgage) {
 
@@ -335,10 +340,9 @@ public class ResultsOne extends SherlockFragmentActivity
 				                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
 		params.weight = 0.5f;		
 		
-        int px = Utils.px(this, 5); 			
-		
+        int px = Utils.px(this, 5);
         buttons.removeAllViews();
-        
+
         Button clone = new Button(this);
         clone.setText("CLONE");
         params.setMargins(px, 0, 0, 0);            
@@ -360,7 +364,7 @@ public class ResultsOne extends SherlockFragmentActivity
         
         buttons.refreshDrawableState();
 	}
-	
+
 	public void toggleVisibility(View view) {
 		LinearLayout v = (LinearLayout) findViewById(R.id.advanced_input);
 	    TextView tv = (TextView) view.findViewById(R.id.advanced_input_text);
@@ -372,7 +376,7 @@ public class ResultsOne extends SherlockFragmentActivity
 		    tv.setText(R.string.advanced_input_invisible);
 		}
 	}
-	
+
 	public void toggleVisibilityExtraPayments(View view) {
 		LinearLayout v = (LinearLayout) findViewById(R.id.advanced_extra_payments_input);
 	    TextView tv = (TextView) view.findViewById(R.id.advanced_extra_payments_input_text);
@@ -384,5 +388,41 @@ public class ResultsOne extends SherlockFragmentActivity
 		    tv.setText(R.string.advanced_extra_payments_input_invisible);
 		}
 	}
+
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.radioMonthly:
+	            if (checked) {
+	                Toast.makeText(this, String.valueOf(R.id.radioMonthly), Toast.LENGTH_SHORT).show();
+	                extraPaymentFrequency = 1;
+	            }
+	            break;
+	        case R.id.radioYearly:
+	            if (checked) {
+	            	Toast.makeText(this, String.valueOf(R.id.radioYearly), Toast.LENGTH_SHORT).show();
+	                extraPaymentFrequency = 12;
+	            }
+	            break;
+	    }
+	}
 	
+	public void setRadioButtonClicked(int id) {
+	    // Is the button now checked?
+
+	    // Check which radio button was clicked
+	    switch(id) {
+	        case 1:
+	            RadioButton rbm = (RadioButton) findViewById(R.id.radioMonthly);
+	            rbm.setChecked(true);
+	            break;
+	        case 12:
+	        	RadioButton rby = (RadioButton) findViewById(R.id.radioYearly);
+	            rby.setChecked(true);
+	            break;
+	    }
+	}
 }

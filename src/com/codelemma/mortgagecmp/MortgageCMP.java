@@ -1,8 +1,5 @@
 package com.codelemma.mortgagecmp;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import com.codelemma.mortgagecmp.accounting.Account;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 
@@ -17,7 +14,6 @@ public class MortgageCMP extends Application {
     private static MortgageCMP appInstance;
 	private boolean needToRecalculate = true;
 	private Mortgage currentMortgage;
-	private ArrayList<Mortgage> comparisonList = new ArrayList<Mortgage>();
     
     @Override
     public void onCreate() {        
@@ -55,10 +51,8 @@ public class MortgageCMP extends Application {
 
 	public Account getAccount(){
 	    return account;
-	}		
+	}
 
-
-	
     public Mortgage getCurrentMortgage() {
     	return currentMortgage;
     }

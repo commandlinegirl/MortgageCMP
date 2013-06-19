@@ -1,10 +1,13 @@
 package com.codelemma.mortgagecmp;
 
+import java.math.BigDecimal;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -31,9 +34,23 @@ public class FrgSummaryOne extends SherlockFragment {
 			TextView tv = (TextView) getActivity().findViewById(R.id.s_mortgage_name);
 	    	tv.setText(mortg.getName());
 
+	    	
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_amount);
 	    	tv.setText(formatter.formatNumber(mortg.getInitAmount()));
 	    	
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_term);
+			if (tv == null) {
+				Log.d("tv null", "a");
+			} 
+			Log.d("months", String.valueOf(mortg.getTotalTermMonths()));
+ 	    	tv.setText(String.valueOf(mortg.getTotalTermMonths()));
+
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_interest_rate);
+	    	tv.setText(formatter.formatNumber(mortg.getInterestRate())+"%");
+
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_downpayment);
+	    	tv.setText(formatter.formatNumber(mortg.getDownpayment()));
+
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_payment);
 	    	tv.setText(formatter.formatNumber(mortg.getTotalPayment()));
 
@@ -41,25 +58,49 @@ public class FrgSummaryOne extends SherlockFragment {
 	    	tv.setText(formatter.formatNumber(mortg.getTotalInterestPaid()));
 
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_insurance);
-	    	tv.setText(formatter.formatNumber(mortg.getTotalInsurance()));
+	    	if (mortg.getTotalInsurance().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getTotalInsurance()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_pmi);
-	    	tv.setText(formatter.formatNumber(mortg.getTotalPMI()));
+	    	if (mortg.getTotalPMI().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getTotalPMI()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 	    	
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_property_tax);
-	    	tv.setText(formatter.formatNumber(mortg.getTotalPropertyTax()));
+	    	if (mortg.getTotalPropertyTax().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getTotalPropertyTax()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 	    	
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_payment);
 	    	tv.setText(formatter.formatNumber(mortg.getBaseMonthlyPayment()));
 
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_insurance);
-	    	tv.setText(formatter.formatNumber(mortg.getPropertyInsuranceAmount()));
+	    	if (mortg.getPropertyInsuranceAmount().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getPropertyInsuranceAmount()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_pmi);
-	    	tv.setText(formatter.formatNumber(mortg.getPMIAmount()));
+	    	if (mortg.getPMIAmount().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getPMIAmount()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 
 	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_tax);
-	    	tv.setText(formatter.formatNumber(mortg.getPropertyTaxAmount()));
+	    	if (mortg.getPropertyTaxAmount().compareTo(BigDecimal.ZERO) == 1) {
+	    	    tv.setText(formatter.formatNumber(mortg.getPropertyTaxAmount()));
+	    	} else {
+	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
+	    	}
 		}
     }
 }

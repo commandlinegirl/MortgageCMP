@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Account;
@@ -31,11 +32,10 @@ public class FrgChartMultiCumulative extends SherlockFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState); 
     	MortgageCMP appState = MortgageCMP.getInstance();
-    	Account account = appState.getAccount();
     	
     	/* Check which mortgage has the longest loan term;
     	 * build date list for this term */
-    	Mortgage mortgage = account.getLongestMortgage();
+    	Mortgage mortgage = appState.getAccount().getLongestMortgage();
     	
     	if (mortgage != null) {
     	    HistoryMortgage historyMortgage = mortgage.getHistory();
@@ -44,9 +44,14 @@ public class FrgChartMultiCumulative extends SherlockFragment {
     			appState.getSimulationStartMonth());
         
             PlotVisitor plotVisitor = new Plotter(getSherlockActivity(), dates);
-            account.plotComparisonOutstandingPrincipal(plotVisitor);
-            account.plotComparisonTotalInterest(plotVisitor);
+            appState.getAccount().plotComparisonOutstandingPrincipal(plotVisitor);
+            appState.getAccount().plotComparisonTotalInterest(plotVisitor);
 
-    	} //TODO: else???
+    	} 
+    	
+    	if (appState.getAccount().getMortgagesToCompare().size() == 0) {
+    		LinearLayout ll = (LinearLayout) getActivity().findViewById(R.id.frg_chart_multi_cumulative);
+    		ll.removeAllViews();
+    	}
     }
 }

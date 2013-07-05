@@ -12,7 +12,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"        
         android:gravity="bottom|center_horizontal"
-        android:text="Time to pay loan and interest cumulation">     
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#FFCCCCCC"
+        android:text="@string/time_to_pay_loan_chart_title">     
      </TextView>
     
      <LinearLayout

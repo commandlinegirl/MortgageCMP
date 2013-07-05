@@ -21,15 +21,17 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
         <activity
             android:name="com.codelemma.mortgagecmp.ResultsMulti"
-            android:label="@string/title_activity_results_multi">
+            android:label="@string/title_activity_results_multi"
+            android:parentActivityName="com.codelemma.mortgagecmp.ResultsOne">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.codelemma.mortgagecmp.ResultsOne" />
         </activity>
     </application>
-
 </manifest>

@@ -5,6 +5,8 @@
     <string name="action_settings">Settings</string>
     
     <!-- Input form -->
+    
+    <string name="mortgage_type_input">Type</string>    
     <string name="mortgage_name_input">Name</string>
     <string name="mortgage_name_text">Mortgage 1</string>
     <string name="mortgage_purchase_price_input">Purchase price</string>
@@ -19,15 +21,15 @@
     <string name="mortgage_term_months_text">0</string> 
     <string name="mortgage_term_months_abbr">mts</string> 
     <string name="mortgage_property_insurance_input">Home insurance</string>
-    <string name="mortgage_property_insurance_text">0</string>
+    <string name="mortgage_property_insurance_text">120</string>
     <string name="mortgage_property_tax_input">Property tax</string>
-    <string name="mortgage_property_tax_text">0</string>
+    <string name="mortgage_property_tax_text">240</string>
     <string name="mortgage_pmi_input">PMI</string>
-    <string name="mortgage_pmi_text">0</string>
-    <string name="mortgage_fees_input">Closing fees</string>
-    <string name="mortgage_fees_text">0</string>
-    <string name="mortgage_overpayment_input">Extra payment</string>
-    <string name="mortgage_overpayment_text">0</string>
+    <string name="mortgage_pmi_text">0.5</string>
+    <string name="mortgage_closing_fees_input">Closing fees</string>
+    <string name="mortgage_closing_fees_text">0</string>
+    <string name="mortgage_extra_payment_input">Extra payment</string>
+    <string name="mortgage_extra_payment_text">100</string>
     <string name="radio_yearly">yearly</string>
     <string name="radio_monthly">monthly</string>
     <string name="advanced_input_invisible">+ Tax, fees, insurance (optional)</string>
@@ -39,23 +41,36 @@
     
     <string name="s_mortgage_name_title">Name</string>
     <string name="s_mortgage_amount_title">Loan amount</string>
-    <string name="s_mortgage_total_payment_title">Total payment</string>
-    <string name="s_mortgage_total_interests_title">Total interest</string>
+    <string name="s_mortgage_total_payment_title">Total</string>
+    <string name="s_mortgage_total_interests_title">Total\ninterest</string>
+    <string name="s_mortgage_total_principal_title">Total\nprincipal</string>
     <string name="s_mortgage_total_insurance_title">Total insurance</string>
     <string name="s_mortgage_total_pmi_title">Total pmi</string>
     <string name="s_mortgage_total_property_tax_title">Total property tax</string>
-    <string name="s_mortgage_monthly_payment_title">Monthly payment</string>
-    <string name="s_mortgage_monthly_insurance_title">Monthly insurance</string>
-    <string name="s_mortgage_monthly_pmi_title">Monthly PMI</string>
-    <string name="s_mortgage_monthly_tax_title">Monthly tax</string>
+    <string name="s_mortgage_monthly_payment_title">Principal + interest</string>
+    <string name="s_mortgage_tax_plus_insurance_title">Tax + insurance</string>
+    <string name="s_mortgage_monthly_insurance_title">Insurance</string>
+    <string name="s_mortgage_monthly_tax_title">Tax</string>
+    <string name="s_mortgage_monthly_pmi_title">PMI until %s</string>
 
     <string name="s_mortgage_term_title">Monthly tax</string>
     <string name="s_mortgage_interest_title">Monthly tax</string>
-    <string name="s_mortgage_fees_title">Fees</string>
+    <string name="s_mortgage_closing_fees_title">Closing fees</string>
+    <string name="s_mortgage_tax_fees_ins_title">Tax, fees, ins.</string>
+    <string name="s_mortgage_tax_fees_insurance_pmi_title">Tax, fees,\ninsurance</string>
     <string name="s_mortgage_term_title"># of payments</string>
+    <string name="s_mortgage_type_title">Mortgage type</string>
+    <string name="s_mortgage_last_payment_date_title">Last payment</string>
     <string name="s_mortgage_downpayment_title">Down payment</string>
     <string name="s_mortgage_extra_payments_title">Extra payment</string>
-
+    <string name="s_mortgage_extra_payment_break_title">Extra\npayment</string>
+    <string name="s_mortgage_monthly_payment_total_title">Total payment</string>
+    <string name="s_mortgage_monthly_payment_total_wo_PMI_title">Total w/o PMI</string>
+    <string name="s_mortgage_monthly_payment_total_with_PMI_title">Total with PMI</string>
+    <string name="s_mortgage_last_payment">Last payment</string>    
+    
+    <string name="total">Total</string>
+    
     <!-- General -->
   
     <string name="calculate_mortgage">ADD MORTGAGE</string>
@@ -77,5 +92,9 @@
     <string name="extra_costs">Extra costs</string>
     <string name="mortgage_to_modify">mortgage_to_modify</string>
     <string name="mortgage_to_clone">mortgage_to_clone</string>
-    
+    <string name="time_to_pay_loan_chart_title">Time to pay loan and interest cumulation</string>
+    <string name="monthly_payment_title">Monthly payments</string>
+    <string name="principal_payment_title">Principal payment</string>
+    <string name="interest_payment_title">Interest payment</string>
+
 </resources>

@@ -8,6 +8,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import android.graphics.Color;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.codelemma.mortgagecmp.accounting.Money;
@@ -26,6 +27,8 @@ public class PieChartMaker implements PieChartVisitor {
 		final GraphicalView grfv = ChartFactory.getPieChartView(frgActivity, getSeries(values, titles), getRenderer(colors));
         LinearLayout rl = (LinearLayout) frgActivity.findViewById(R.id.chart_one_piechart);
         rl.addView(grfv);
+        
+        setLegendColors(colors);
 	}
 
 	private DefaultRenderer getRenderer(int[] colors) {
@@ -61,12 +64,14 @@ public class PieChartMaker implements PieChartVisitor {
 		double[] values = new double[]{
 				mortgage.getLoanAmount().setScale(2, Money.ROUNDING_MODE).doubleValue(), 
 				mortgage.getTotalInterestPaid().setScale(2, Money.ROUNDING_MODE).doubleValue(), 
-				mortgage.getTotalAdditionalCost().setScale(2, Money.ROUNDING_MODE).doubleValue()};
+				mortgage.getTotalTaxInsurancePMIClosingFees().setScale(2, Money.ROUNDING_MODE).doubleValue(),
+		        mortgage.getTotalExtraPayment().setScale(2, Money.ROUNDING_MODE).doubleValue()};
 		
 		String[] titles = new String[] {
 				"Principal",
 				"Interest",
-				"Extra costs"
+				"Tax, fees, ins.",
+				"Extra payments"
 		};
 		
 		/*
@@ -76,8 +81,19 @@ public class PieChartMaker implements PieChartVisitor {
 				frgActivity.getResources().getResourceName(R.string.extra_costs)};
 		*/
 		
-		int[] colors = {Color.parseColor("#ff0099ff"), Color.parseColor("#ffFF0080"), Color.parseColor("#FF5BC236")}; 
-	
+		int[] colors = {Color.parseColor("#ffBEF243"), Color.parseColor("#FF06A2CB"), Color.parseColor("#ffE95D22"), Color.parseColor("#CA278C")}; 
         drawPieChart(values, titles, colors);	
 	}
+ 	
+    private void setLegendColors(int[] colors) {
+    	TextView tv = (TextView) frgActivity.findViewById(R.id.principal_pie_legend);
+    	tv.setBackgroundColor(colors[0]);
+    	tv = (TextView) frgActivity.findViewById(R.id.interest_pie_legend);
+    	tv.setBackgroundColor(colors[1]);
+    	tv = (TextView) frgActivity.findViewById(R.id.fees_pie_legend);
+    	tv.setBackgroundColor(colors[2]);
+    	tv = (TextView) frgActivity.findViewById(R.id.extra_payment_pie_legend);
+    	tv.setBackgroundColor(colors[3]);
+    }
+	
 }

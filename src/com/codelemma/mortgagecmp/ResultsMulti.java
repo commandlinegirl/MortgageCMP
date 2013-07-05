@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -38,13 +39,7 @@ public class ResultsMulti extends SherlockFragmentActivity
 		mAdapter = new MyAdapter(getSupportFragmentManager());
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
-
-        
-        //int[] items = (int[]) getIntent().getIntArrayExtra("items_to_compare");
-        //account.setMortgagesToCompare(items);
-        //for (int i = 0; i < items.length; i++) {
-        //	Log.d("i: "+i, account.getMortgageById(items[i]).getName());
-        //}
+    	appState.getAccount().clearComparisonList();
 	}
 
     public static class MyAdapter extends FragmentPagerAdapter {
@@ -62,13 +57,13 @@ public class ResultsMulti extends SherlockFragmentActivity
         	if (position == 0) {
         		return new FrgInputMulti();
         	} else if (position == 1) {
-                return new FrgSummaryMulti();
+                return new FrgSummaryMulti();        		
         	} else if (position == 2) {
-        		return new FrgChartMultiMonthly();
+        		return new FrgLoanBreakdownMulti();
         	} else if (position == 3) {
-        		return new FrgChartMultiCumulative();        		
+        		return new FrgChartMultiMonthly();
         	} else if (position == 4) {
-        		return new FrgTableMulti();
+        		return new FrgChartMultiCumulative();        		
         	} else {
                 return new FrgInputMulti();       		
         	}
@@ -82,11 +77,11 @@ public class ResultsMulti extends SherlockFragmentActivity
             case 1:
                 return "SUMMARY";
             case 2:
-                return "MONTHLY";
+                return "LOAN BREAKDOWN";
             case 3:
-                return "CUMULATIVE";                
+                return "MONTHLY";
             case 4:
-                return "AMORTIZATION";
+                return "CUMULATIVE";
             }
             return "";
         }
@@ -101,8 +96,12 @@ public class ResultsMulti extends SherlockFragmentActivity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;		
 	    case R.id.menu_add:
 	    	Intent intent = new Intent(this, ResultsOne.class);
+	    	appState.setCurrentMortgage(null);
 	    	startActivity(intent);
 		    return true;
 		}
@@ -133,6 +132,16 @@ public class ResultsMulti extends SherlockFragmentActivity
                }
             })
             .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+            	   dialog.cancel();
+               }
+           })
+          .show();
+		} else if (items_len > 10) {
+			new AlertDialog.Builder(ResultsMulti.this)
+            .setTitle("Too many items")
+            .setMessage("Max number of mortgages to compare is 10. Please, uncheck some of the items.")                
+            .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
             	   dialog.cancel();
                }
@@ -172,6 +181,5 @@ public class ResultsMulti extends SherlockFragmentActivity
 			}
 		}
 		items_to_compare = temp;
-		Log.d("items_to_compare (REMOVE)", String.valueOf(items_to_compare));
 	}
 }

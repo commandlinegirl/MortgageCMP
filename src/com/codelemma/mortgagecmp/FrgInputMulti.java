@@ -19,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class FrgInputMulti extends SherlockFragment {
@@ -31,17 +32,23 @@ public class FrgInputMulti extends SherlockFragment {
 	    public void onClick(View v) {
     		Mortgage m = (Mortgage) v.getTag();
         	Intent intent = new Intent(getSherlockActivity(), ResultsOne.class);
+            //intent.putExtra("mortgage_type", m.getType());                	
             intent.putExtra("mortgage_name", m.getName());        
             intent.putExtra("mortgage_purchase_price", m.getPurchasePrice().toString());   
             intent.putExtra("mortgage_downpayment", m.getDownpayment().toString());   
             intent.putExtra("mortgage_interest_rate", m.getInterestRate().toString());   
             intent.putExtra("mortgage_term_years", String.valueOf(m.getTermYears()));   
             intent.putExtra("mortgage_term_months", String.valueOf(m.getTermMonths()));   
-            intent.putExtra("mortgage_property_insurance", m.getPropertyInsurance().toString());   
-            intent.putExtra("mortgage_property_tax", m.getPropertyTax().toString());   
-            intent.putExtra("mortgage_pmi", m.getPMI().toString()); 
+            intent.putExtra("mortgage_property_insurance", m.getYearlyPropertyInsurance().toString());   
+            intent.putExtra("mortgage_property_tax", m.getYearlyPropertyTax().toString());
+            intent.putExtra("mortgage_pmi", m.getPMI().toString());
+            intent.putExtra("mortgage_closing_fees", m.getClosingFees().toString());
+            intent.putExtra("mortgage_extra_payment", m.getExtraPayment().toString());
+            intent.putExtra("mortgage_extra_payment_frequency", m.getExtraPaymentFrequency());
             intent.putExtra("edited_mortgage_id", m.getId());
             intent.putExtra("edit_mortgage", true);
+
+            appState.setCurrentMortgage(m);
     		startActivity(intent);
 	    }
     };
@@ -73,7 +80,12 @@ public class FrgInputMulti extends SherlockFragment {
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
             	   appState.getAccount().removeMortgage(mortgage); 
-            	   //history.removeHistoryMortgage(mortgage.getHistory());
+            	   appState.getAccount().clearComparisonList();
+            	   
+            	   // remove views from currently active Summary Fragment
+           		   ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
+        		   ll.removeAllViews();
+        		   
                    Toast.makeText(getSherlockActivity(), "Mortgage deleted.", Toast.LENGTH_SHORT).show();
                    LinearLayout subLayout = (LinearLayout) getSherlockActivity().findViewById(1000+mortgage.getId());
                    subLayout.setVisibility(View.GONE);

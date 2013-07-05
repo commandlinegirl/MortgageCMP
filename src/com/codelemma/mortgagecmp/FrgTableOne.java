@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
@@ -33,6 +34,9 @@ public class FrgTableOne extends SherlockFragment {
         			appState.getSimulationStartMonth());
         	TableVisitor tableMaker = new TableMaker(getSherlockActivity(), dates);
         	historyMortgage.makeTable(tableMaker);
-    	}
+		} else {
+			LinearLayout ll = (LinearLayout) getActivity().findViewById(R.id.frg_table_one);
+	    	ll.removeAllViews();
+		}
     }
 }

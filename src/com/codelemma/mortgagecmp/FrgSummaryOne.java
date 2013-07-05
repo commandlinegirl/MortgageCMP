@@ -1,13 +1,11 @@
 package com.codelemma.mortgagecmp;
 
-import java.math.BigDecimal;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -22,7 +20,7 @@ public class FrgSummaryOne extends SherlockFragment {
     	Log.d("FrgSummaryOne.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_summary_one, container, false);
     }
-    
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
@@ -34,73 +32,34 @@ public class FrgSummaryOne extends SherlockFragment {
 			TextView tv = (TextView) getActivity().findViewById(R.id.s_mortgage_name);
 	    	tv.setText(mortg.getName());
 
-	    	
-			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_amount);
-	    	tv.setText(formatter.formatNumber(mortg.getInitAmount()));
-	    	
-			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_term);
-			if (tv == null) {
-				Log.d("tv null", "a");
-			} 
-			Log.d("months", String.valueOf(mortg.getTotalTermMonths()));
- 	    	tv.setText(String.valueOf(mortg.getTotalTermMonths()));
-
-			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_interest_rate);
-	    	tv.setText(formatter.formatNumber(mortg.getInterestRate())+"%");
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_purchase_price);
+	    	tv.setText(formatter.formatNumber(mortg.getPurchasePrice()));
 
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_downpayment);
 	    	tv.setText(formatter.formatNumber(mortg.getDownpayment()));
 
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_payment);
-	    	tv.setText(formatter.formatNumber(mortg.getTotalPayment()));
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_amount);
+	    	tv.setText(formatter.formatNumber(mortg.getLoanAmount()));
 
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_interests);
-	    	tv.setText(formatter.formatNumber(mortg.getTotalInterestPaid()));
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_term);
+ 	    	tv.setText(String.valueOf(mortg.getNumberOfPayments()));
 
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_insurance);
-	    	if (mortg.getTotalInsurance().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getTotalInsurance()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_interest_rate);
+	    	tv.setText(formatter.formatNumber(mortg.getInterestRate())+"%");
 
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_pmi);
-	    	if (mortg.getTotalPMI().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getTotalPMI()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
+	    	String[] dates = mortg.getHistory().getDates(
+	    			appState.getSimulationStartYear(), 
+	    			appState.getSimulationStartMonth()); 
 	    	
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_property_tax);
-	    	if (mortg.getTotalPropertyTax().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getTotalPropertyTax()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
-	    	
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_payment);
-	    	tv.setText(formatter.formatNumber(mortg.getBaseMonthlyPayment()));
-
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_insurance);
-	    	if (mortg.getPropertyInsuranceAmount().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getPropertyInsuranceAmount()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
-
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_pmi);
-	    	if (mortg.getPMIAmount().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getPMIAmount()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
-
-	    	tv = (TextView) getActivity().findViewById(R.id.s_mortgage_monthly_tax);
-	    	if (mortg.getPropertyTaxAmount().compareTo(BigDecimal.ZERO) == 1) {
-	    	    tv.setText(formatter.formatNumber(mortg.getPropertyTaxAmount()));
-	    	} else {
-	    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-	    	}
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_last_payment_date);
+			if (mortg.getNumberOfPayments() > 0) {
+				tv.setText(dates[mortg.getNumberOfPayments()-1]);
+			} else {
+				tv.setText("-");
+			}
+		} else {
+	    	ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_one);
+	    	ll.removeAllViews();
 		}
     }
 }

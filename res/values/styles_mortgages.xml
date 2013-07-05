@@ -87,4 +87,12 @@
         <item name="android:scrollbarThumbHorizontal">@drawable/scroller_thumb</item>
     </style>
     
+    <style name="header_title">  
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFCCCCCC</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+    
 </resources>

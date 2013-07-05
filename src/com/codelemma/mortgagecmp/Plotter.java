@@ -1,7 +1,7 @@
 package com.codelemma.mortgagecmp;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -21,7 +21,6 @@ import com.codelemma.mortgagecmp.accounting.Money;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.PlotVisitor;
 
-
 public class Plotter implements PlotVisitor {
 
 	private SherlockFragmentActivity frgActivity;
@@ -29,25 +28,28 @@ public class Plotter implements PlotVisitor {
     private String[] colors = {"#FFFF9900", "#ff6600CC", "#ff5BC236", "#ff8C489F", 
     		                   "#ff9CAA9C", "#ffffff00", "#ff66CCFF",  "#ffcccccc"};    
     private String[] dates;
-    
+
 	public Plotter(SherlockFragmentActivity sherlockFragmentActivity, String[] dates) {
 		this.frgActivity = sherlockFragmentActivity;
 		this.dates = dates;
 	}
 
-	private void plot(HashMap<String,BigDecimal[]> lists, String title, int numberOfMonths, LinearLayout chart_layout) {		
+	private void plot(ArrayList<BigDecimal[]> value_lists, 
+			ArrayList<String> titles,
+			int numberOfMonths, 
+			LinearLayout chart_layout) {		
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();		  
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
-			
+
         currentColor = 0; 
-		
+
 	    double maxY = 0;
 	    double minY = 0;
-	           
-	    boolean first = true;	    
-		for (HashMap.Entry<String,BigDecimal[]> entry: lists.entrySet()) {
-			String name = entry.getKey();
-			BigDecimal[] values = entry.getValue();
+
+	    boolean first = true;
+	    int j = 0;
+		for (BigDecimal[] values: value_lists) {
+			String name = titles.get(j);
         					
             TimeSeries series = getSeries(values, 
                     numberOfMonths, 
@@ -65,6 +67,7 @@ public class Plotter implements PlotVisitor {
             XYSeriesRenderer renderer = getSeriesRenderer();
             mRenderer.addSeriesRenderer(renderer);
             incrementCurrentColor();
+            j++;
         }   				    
 		/* Here set left and right margin for the chart based on max and min values from each series */
 
@@ -99,9 +102,9 @@ public class Plotter implements PlotVisitor {
     	}
 	    mRenderer.setMargins(new int[] {Utils.px(frgActivity, 8), 
 			leftMargin, 
-			Utils.px(frgActivity, bottomMargin), 
+			Utils.px(frgActivity, bottomMargin),
 			rightMargin}); // top, left, bottom, right
-        
+
         /* If there is no condition set, negative values will be above positive on the chart
          * (min value will be set to 0, max value will be set to negative number */
         if (maxY > 0) {
@@ -109,7 +112,7 @@ public class Plotter implements PlotVisitor {
     	    mRenderer.setYAxisMax(maxY + maxY/5);
         }
         
-    	customizeMultipleSeriesRenderer(mRenderer, title);
+    	customizeMultipleSeriesRenderer(mRenderer);
     	
 		GraphicalView mChartView = ChartFactory.getLineChartView(frgActivity, dataset, mRenderer);	    	  		    	
         chart_layout.removeAllViews();
@@ -117,7 +120,7 @@ public class Plotter implements PlotVisitor {
         chart_layout.addView(mChartView); 
     }
 	
-	private void customizeMultipleSeriesRenderer(XYMultipleSeriesRenderer mRenderer, String title) {
+	private void customizeMultipleSeriesRenderer(XYMultipleSeriesRenderer mRenderer) {
     	mRenderer.setAxesColor(Color.WHITE);
         mRenderer.setAxisTitleTextSize(Utils.px(frgActivity, 10));    	
     	mRenderer.setMarginsColor(Color.argb(0xFF, 0xFF, 0xFF, 0xFF));    	
@@ -170,48 +173,59 @@ public class Plotter implements PlotVisitor {
 
 	@Override
 	public void plotMortgage(HistoryMortgage historyMortgage) {         		        
-		HashMap<String,BigDecimal[]> values = new HashMap<String,BigDecimal[]>(1); //TODO: here should be 1???
-		values.put("Total Interest", historyMortgage.getTotalInterestsHistory());
-		values.put("Outstanding loan", historyMortgage.getRemainingAmountHistory());
+		ArrayList<BigDecimal[]> value_lists = new ArrayList<BigDecimal[]>();
+		ArrayList<String> titles = new ArrayList<String>();
+		titles.add("Total Interest");
+		value_lists.add(historyMortgage.getTotalInterestsHistory());
+		titles.add("Outstanding loan");
+		value_lists.add(historyMortgage.getRemainingAmountHistory());
 		int size = historyMortgage.getSimLength();
-        plot(values, 
-        		"Mortgage", 
+		plot(value_lists, 
+				titles,
         		size, 
         		(LinearLayout) frgActivity.findViewById(R.id.pred_chart)); 	
 	}	
 
 	@Override
 	public void plotComparisonRates(Account account) {         		        
-		HashMap<String,BigDecimal[]> values = new HashMap<String,BigDecimal[]>(1); //TODO: here should be 1???	
+		ArrayList<BigDecimal[]> value_lists = new ArrayList<BigDecimal[]>();
+		ArrayList<String> titles = new ArrayList<String>();
 		for (Mortgage mortgage : account.getMortgagesToCompare()) {
-		    values.put(mortgage.getName(), mortgage.getHistory().getMonthlyPaymentHistory());		            
+		    value_lists.add(mortgage.getHistory().getMonthlyPaymentHistory());
+		    titles.add(mortgage.getName());	            
 		}
-		plot(values, 
-				"Mortgage",
+		plot(value_lists, 
+				titles,
 				account.getLongestLoanTerm(), 
         		(LinearLayout) frgActivity.findViewById(R.id.chart_rates)); 
 	}
 
 	@Override
 	public void plotComparisonOutstandingPrincipal(Account account) {
-		HashMap<String,BigDecimal[]> values = new HashMap<String,BigDecimal[]>(1); //TODO: here should be 1???	
+
+		ArrayList<BigDecimal[]> value_lists = new ArrayList<BigDecimal[]>();
+		ArrayList<String> titles = new ArrayList<String>();
+		
 		for (Mortgage mortgage : account.getMortgagesToCompare()) {
-		    values.put(mortgage.getName(), mortgage.getHistory().getRemainingAmountHistory());		            
+		    value_lists.add(mortgage.getHistory().getRemainingAmountHistory());
+		    titles.add(mortgage.getName());
 		}
-		plot(values, 
-				"Mortgage",
+		plot(value_lists, 
+				titles,
 				account.getLongestLoanTerm(), 
         		(LinearLayout) frgActivity.findViewById(R.id.chart_outstanding_loan_principal)); 
 	}
 	
 	@Override
 	public void plotComparisonTotalInterest(Account account) {
-		HashMap<String,BigDecimal[]> values = new HashMap<String,BigDecimal[]>(1); //TODO: here should be 1???	
+		ArrayList<BigDecimal[]> value_lists = new ArrayList<BigDecimal[]>();
+		ArrayList<String> titles = new ArrayList<String>();
 		for (Mortgage mortgage : account.getMortgagesToCompare()) {
-		    values.put(mortgage.getName(), mortgage.getHistory().getTotalInterestsHistory());		            
+		    value_lists.add(mortgage.getHistory().getTotalInterestsHistory());
+		    titles.add(mortgage.getName());
 		}
-		plot(values, 
-				"Mortgage",
+		plot(value_lists, 
+				titles, 
 				account.getLongestLoanTerm(), 
         		(LinearLayout) frgActivity.findViewById(R.id.chart_outstanding_loan_interest)); 
 	}

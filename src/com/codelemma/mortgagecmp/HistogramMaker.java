@@ -16,6 +16,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.codelemma.mortgagecmp.accounting.Account;
 import com.codelemma.mortgagecmp.accounting.HistogramVisitor;
 import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
 import com.codelemma.mortgagecmp.accounting.Money;
@@ -45,24 +46,28 @@ public class HistogramMaker implements HistogramVisitor {
         int numOfLabels = Math.round(chartSize / 20);
         int step = Math.max(1, principalHistory.length / numOfLabels);
 				
+        
+    	for (BigDecimal i : principalHistory) {
+    		Log.d("=4-4-4--4-4-4- item", i.toString());
+    	}
+        
         // Build renderer with three series renderers
         XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, principalHistory.length, maxValue, step);
         SimpleSeriesRenderer rendererExtraCost = getSeriesRenderer(colors[0]);
         SimpleSeriesRenderer rendererPrincipal = getSeriesRenderer(colors[1]);
         SimpleSeriesRenderer rendererInterest = getSeriesRenderer(colors[2]);
         mRenderer.addSeriesRenderer(rendererExtraCost);
-        mRenderer.addSeriesRenderer(rendererPrincipal);
         mRenderer.addSeriesRenderer(rendererInterest);
-
+        mRenderer.addSeriesRenderer(rendererPrincipal);
         
         // Build dataset with three series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        XYSeries seriesExtraCost = getSeries(extraCostHistory, "Extra costs", step);
-        XYSeries seriesPrincipal = getSeries(principalHistory, "Principal", step);
+        XYSeries seriesExtraCost = getSeries(extraCostHistory, "Tax, fees, insurance", step);
         XYSeries seriesInterest = getSeries(interestHistory, "Interest", step);
+        XYSeries seriesPrincipal = getSeries(principalHistory, "Principal", step);
         dataset.addSeries(seriesExtraCost);
-        dataset.addSeries(seriesPrincipal);
         dataset.addSeries(seriesInterest);
+        dataset.addSeries(seriesPrincipal);
 
         final GraphicalView grfv = ChartFactory.getBarChartView(frgActivity, 
         		dataset, 
@@ -91,7 +96,7 @@ public class HistogramMaker implements HistogramVisitor {
         mRenderer.setGridColor(0x66CCCCCC);                       
         mRenderer.setLabelsColor(Color.DKGRAY);
         mRenderer.setXLabels(0);       
-        mRenderer.setYLabels(5);        
+        mRenderer.setYLabels(7);        
         mRenderer.setXLabelsAlign(Align.CENTER);
         mRenderer.setYLabelsAlign(Align.RIGHT, 0);
         mRenderer.setXLabelsColor(Color.BLACK);
@@ -100,31 +105,17 @@ public class HistogramMaker implements HistogramVisitor {
     	mRenderer.setLabelsTextSize(Utils.px(frgActivity, 8));         	
     	mRenderer.setShowLegend(true);
     	mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
+    			    	
+		for (int i = 0; i < length; i += step) { //TODO: check if size == values.size()
+            String date = dates[i];
+            String label = (i % 5 == 0) ? date.replaceFirst(" ", "\n") : "";
+	            mRenderer.addXTextLabel(i, label);
+        }
     	
-    	int rightMargin = Utils.px(frgActivity, 22);
-	    int leftMargin = Utils.px(frgActivity, 17);
-		leftMargin += Utils.px(frgActivity, 4) * String.valueOf(maxValue).length();
-		
-		int bottomMargin = 0;
-    	if (length <= 60) {
-            for (int i = 0; i < length; i += step) { //TODO: check if size == values.size()
-                String date = dates[i];
-                String label = (i % 5 == 0) ? date.replaceFirst(" ", "\n") : "";
-  	            mRenderer.addXTextLabel(i, label);
-            }
-            bottomMargin = 25;
-    	} else {
-            for (int i = 0; i < length; i += step) { //TODO: check if size == values.size()
-                String date = dates[i];
-    		    String label = (i % 5 == 0) ? date.substring(4) : "";
-    		    mRenderer.addXTextLabel(i, label);
-            }
-            bottomMargin = 10;
-    	}
 	    mRenderer.setMargins(new int[] {Utils.px(frgActivity, 8), 
-			leftMargin, 
-			Utils.px(frgActivity, bottomMargin), 
-			rightMargin}); // top, left, bottom, right
+	        Utils.px(frgActivity, 8) + Utils.px(frgActivity, 4) * String.valueOf(maxValue).length(), 
+			Utils.px(frgActivity, 25), 
+			Utils.px(frgActivity, 22)}); // top, left, bottom, right
         return mRenderer;
     }
     
@@ -149,20 +140,22 @@ public class HistogramMaker implements HistogramVisitor {
     }
 	
 	@Override
-	public void histogramMortgage(Mortgage mortgage) {      		        
+	public void histogramMortgage(Mortgage mortgage) {
 
 		HistoryMortgage history = mortgage.getHistory();
 		BigDecimal[] principalHistory = history.getPrincipalPaidHistory();
 		BigDecimal[] interestHistory = history.getInterestsPaidHistory();
 		BigDecimal[] extraCostHistory = history.getAdditionalCostHistory();
 
-		BigDecimal[] principalHistoryAdjusted = new BigDecimal[principalHistory.length];
-		BigDecimal[] extraCostHistoryAdjusted = new BigDecimal[principalHistory.length];
+	
+		
+		BigDecimal[] interestHistoryAdjusted = new BigDecimal[interestHistory.length];
+		BigDecimal[] extraCostHistoryAdjusted = new BigDecimal[extraCostHistory.length];
 		double maxValue = mortgage.getTotalPayment().setScale(0, Money.ROUNDING_MODE).doubleValue();
 		
 		for (int i = 0; i < principalHistory.length; i++) {
-			principalHistoryAdjusted[i] = principalHistory[i].add(interestHistory[i]);
-			extraCostHistoryAdjusted[i] = principalHistory[i].add(interestHistory[i]).add(extraCostHistory[i]);
+			interestHistoryAdjusted[i] = principalHistory[i].add(interestHistory[i]);
+			extraCostHistoryAdjusted[i] = interestHistoryAdjusted[i].add(extraCostHistory[i]);
 		}
 
 		String[] titles = new String[] {
@@ -170,13 +163,20 @@ public class HistogramMaker implements HistogramVisitor {
 				frgActivity.getResources().getResourceName(R.string.interest),
 				frgActivity.getResources().getResourceName(R.string.extra_costs)};
 		
-		String[] colors = {"#FF5BC236", "#ff0099ff", "#ffFF0080"}; 
+		String[] colors = {"#ffE95D22", "#FF06A2CB", "#ffBEF243" }; 
+
 		
-		histogram(principalHistoryAdjusted,
-				interestHistory,
+		histogram(principalHistory,
+				interestHistoryAdjusted,
 				extraCostHistoryAdjusted,
 				maxValue,
 				titles,
 				colors); 
     }
+
+	@Override
+	public void plotLoanBreakdownComparison(Account account) {
+		
+		
+	}
 }

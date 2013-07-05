@@ -101,7 +101,8 @@ public class Account {
 		visitor.plotComparisonRates(this);
 	}
 	
-	public void makeTable(TableVisitor visitor) {
-
+	public void histogramLoanBreakdownMulti(HistogramVisitor visitor) {
+		visitor.plotLoanBreakdownComparison(this);
 	}
+	
 }

@@ -1,0 +1,390 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".FrgLoanBreakdownOne"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/frg_loanbreakdown_one">
+
+     <LinearLayout
+        android:id="@+id/chart_one_piechart"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"        
+        android:layout_height="0dp"
+        android:layout_margin="0dp"   
+        android:background="#FFFFFFFF">
+     </LinearLayout>
+
+     <LinearLayout         
+        android:id="@+id/summary_text"
+        android:layout_width="fill_parent"       
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+        
+        <LinearLayout
+            android:id="@+id/principal_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:orientation="horizontal">
+            
+            <TextView
+              android:id="@+id/principal_pie_legend"
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:background="#FFf8aabb"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/principal_breakdown_name"
+              android:text="@string/principal"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/principal_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/principal_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout> 
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"/>
+                            
+        <LinearLayout
+            android:id="@+id/interest_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:orientation="horizontal">
+            
+            <TextView
+              android:id="@+id/interest_pie_legend"
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:background="#FFf8aabb"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/interest_breakdown_name"
+              android:text="@string/interest"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/interest_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/interest_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>         
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"/>        
+        
+        <LinearLayout
+            android:id="@+id/fees_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:orientation="horizontal">
+            
+            <TextView
+              android:id="@+id/fees_pie_legend"
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:background="#FFf8aabb"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_breakdown_name"
+              android:text="@string/s_mortgage_tax_fees_ins_title"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>                
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"/>        
+            
+        
+        <LinearLayout
+            android:id="@+id/fees_home_insurance_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_home_insurance_breakdown_name"
+              android:text="@string/mortgage_property_insurance_input"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:paddingLeft="5dp"
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_home_insurance_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_home_insurance_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>   
+        
+        <LinearLayout
+            android:id="@+id/fees_tax_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_tax_breakdown_name"
+              android:text="@string/mortgage_property_tax_input"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:paddingLeft="5dp"
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_tax_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_tax_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>           
+        
+        
+        <LinearLayout
+            android:id="@+id/fees_pmi_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_pmi_breakdown_name"
+              android:text="@string/mortgage_pmi_input"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:paddingLeft="5dp"
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_pmi_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_pmi_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>   
+        
+        <LinearLayout
+            android:id="@+id/fees_closing_fees_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_closing_fees_breakdown_name"
+              android:text="@string/s_mortgage_closing_fees_title"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:paddingLeft="5dp"
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_closing_fees_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/fees_closing_fees_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>           
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"/>     
+        
+        
+        <LinearLayout
+            android:id="@+id/extra_payment_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:id="@+id/extra_payment_pie_legend"
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:background="#FFf8aabb"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/extra_payment_breakdown_name"
+              android:text="@string/s_mortgage_extra_payments_title"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/extra_payment_breakdown_amount"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/extra_payment_breakdown_percentage"
+              android:layout_width="0dp"
+              android:layout_weight="2"       
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>     
+             
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"/>        
+        
+        <LinearLayout
+            android:id="@+id/total_breakdown"
+            android:layout_width="fill_parent"       
+            android:layout_height="wrap_content"
+            android:padding="3dp"            
+            android:orientation="horizontal">
+            
+            <TextView
+              android:layout_width="10dp"
+              android:layout_height="10dp"
+              android:layout_marginRight="3dp"
+              android:layout_gravity="center_vertical">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/total_breakdown_name"
+              android:text="@string/total"
+              android:textStyle="bold"
+              android:layout_width="0dp"
+              android:layout_weight="4"
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/total_breakdown_amount"
+              android:textStyle="bold"
+              android:layout_width="0dp"
+              android:layout_weight="3"       
+              android:layout_height="wrap_content">
+            </TextView>
+            <TextView
+              android:id="@+id/total_breakdown_percentage"
+              android:text="100%"
+              android:textStyle="bold"
+              android:layout_width="0dp"
+              android:layout_weight="2"
+              android:gravity="right"    
+              android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>     
+
+     </LinearLayout>
+</LinearLayout>

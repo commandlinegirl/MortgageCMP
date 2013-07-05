@@ -1,5 +1,6 @@
 package com.codelemma.mortgagecmp;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import android.app.Activity;
@@ -9,23 +10,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioGroup;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
 
-public class FrgInputOne extends SherlockFragment {
+public class FrgInputOne extends SherlockFragment implements OnItemSelectedListener {
 
-    OnDataInputListener mCallback;
-    MortgageCMP appState;
+	private static final String FIXED_RATE_VARIABLE_PRINCIPAL = "frvp";
+	private static final String FIXED_RATE_FIXED_PRINCIPAL = "frfp";
+	
+	private OnDataInputListener mCallback;
+    private MortgageCMP appState;
+    private String[] mortgage_type_items = {FIXED_RATE_VARIABLE_PRINCIPAL, FIXED_RATE_FIXED_PRINCIPAL};
 
     public interface OnDataInputListener {
         public void onDataInput(String key, String value);
-        public Mortgage addMortgageToAccount(HashMap<String,String> data);   
+        public void addMortgageToAccount(HashMap<String,String> data) throws MortgageFactoryException;   
         public void replaceButtons(Mortgage mortgage);
         public boolean showModifyCloneButtons();
+        public void toggleVisibilityFees(View view);
+        public void toggleVisibilityExtraPayment(View view);
+        public void setMortgageType(String type);
     }
 
     @Override
@@ -47,30 +60,67 @@ public class FrgInputOne extends SherlockFragment {
 		Log.d("FrgInput.onCreate()", "called");
 	}
 	
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		mCallback.setMortgageType(mortgage_type_items[pos]);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		parent.setSelection(0);
+	}
+	
     @Override
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
     	Log.d("FrgInput.onCreateView()", "called");
-        return inflater.inflate(R.layout.frg_input, container, false);
+        return inflater.inflate(R.layout.frg_input_one, container, false);
     }
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-    	
+	    Log.d("FrgInput.onActivityCreated()", "called");
+
     	appState = MortgageCMP.getInstance();
+    	Mortgage mortgage = appState.getCurrentMortgage();
+
+    	if (mortgage != null) {
+    		// set modify and clone buttons
+    		mCallback.replaceButtons(mortgage);
+    		
+    		// toggle visibility of optional input
+    		//if (mortgage.getYearlyPropertyTax()
+    		//		.add(mortgage.getYearlyPropertyInsurance())
+    		//		.add(mortgage.getPMI())
+    		//		.add(mortgage.getClosingFees()).compareTo(BigDecimal.ZERO) > 0) {
+    		//    mCallback.toggleVisibilityFees(null);
+            //}
+
+    		//if (mortgage.getExtraPayment().compareTo(BigDecimal.ZERO) > 0) {
+    		//    mCallback.toggleVisibilityExtraPayment(null);
+            //}
+    	}
+
+	    Spinner spinner = (Spinner) getActivity().findViewById(R.id.mortgage_type);
+	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+	         R.array.mortgage_types_spinner, android.R.layout.simple_spinner_item);
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    spinner.setAdapter(adapter);
+	    spinner.setSelection(0);
+	    spinner.setOnItemSelectedListener(this);
     	
 	    Intent intent = getSherlockActivity().getIntent();
 		Log.d("intent", String.valueOf(intent));
+		if (savedInstanceState != null) {
+            Log.d("key", String.valueOf(savedInstanceState.getBoolean("clone_modify_buttons")));
+		}
 		Log.d("savedInstanceState", String.valueOf(savedInstanceState));
 
-	    Log.d("FrgInput.onActivityCreated()", "called");
-		//if (appState.getCurrentMortgage() != null) {
-		//	mCallback.replaceButtons(appState.getCurrentMortgage());
-		//    Log.d("FrgInput.mCallback.showModifyCloneButtons()", "called");
-		//}
-	    
+		int mortgage_type_index = intent.getIntExtra("mortgage_type", 0);
+		spinner.setSelection(mortgage_type_index);
+		
 		EditText name = (EditText) getView().findViewById(R.id.mortgage_name);
 		String mortgage_name = intent.getStringExtra("mortgage_name");
 		if (mortgage_name != null) {
@@ -95,7 +145,7 @@ public class FrgInputOne extends SherlockFragment {
 		if (mortgage_interest_rate != null) {
 		    interest.setText(mortgage_interest_rate, TextView.BufferType.EDITABLE);
 		}
-		
+
 		EditText termy = (EditText) getSherlockActivity().findViewById(R.id.mortgage_term_years);
 		String mortgage_term_years = intent.getStringExtra("mortgage_term_years");
 		if (mortgage_term_years != null) {
@@ -126,24 +176,64 @@ public class FrgInputOne extends SherlockFragment {
 		    pmi.setText(mortgage_pmi, TextView.BufferType.EDITABLE);
 		}
 
-		EditText overpayment = (EditText) getSherlockActivity().findViewById(R.id.mortgage_overpayment);
-		String mortgage_overpayment = intent.getStringExtra("mortgage_overpayment");
-		if (mortgage_overpayment != null) {
-			overpayment.setText(mortgage_overpayment, TextView.BufferType.EDITABLE);
+		EditText fees = (EditText) getSherlockActivity().findViewById(R.id.mortgage_closing_fees);
+		String closing_fees = intent.getStringExtra("mortgage_closing_fees");
+		if (mortgage_pmi != null) {
+		    fees.setText(closing_fees, TextView.BufferType.EDITABLE);
+		}
+		
+		EditText extra_payment = (EditText) getSherlockActivity().findViewById(R.id.mortgage_extra_payment);
+		String mortgage_extra_payment = intent.getStringExtra("mortgage_extra_payment");
+		if (mortgage_extra_payment != null) {
+			extra_payment.setText(mortgage_extra_payment, TextView.BufferType.EDITABLE);
 		}
 
-		RadioGroup radioExtraPaymentFrequencyGroup = (RadioGroup) 
-				getActivity().findViewById(R.id.radioExtraPaymentFrequency);
-		int extra_payment_frequency = intent.getIntExtra("mortgage_extra_payment_frequency", 1);
+		int extra_payment_frequency = intent.getIntExtra("mortgage_extra_payment_frequency", 12);
 		
-	    // find the radiobutton by returned id
-	    //RadioButton radioExtraPaymentFrequencyButton = (RadioButton) 
-	    //		getActivity().findViewById(radioExtraPaymentFrequencyGroup.getCheckedRadioButtonId());
-
-	    //Toast.makeText(getActivity(),
-		//    radioExtraPaymentFrequencyButton.getText(), Toast.LENGTH_SHORT).show();
+		Log.d("extra_payment_frequency", String.valueOf(extra_payment_frequency));
+		
+		if (extra_payment_frequency == 1) {
+			RadioButton rb = (RadioButton) getActivity().findViewById(R.id.radioMonthly);
+			rb.setChecked(true);
+		}
+		
+		if (extra_payment_frequency == 12) {
+			RadioButton rb = (RadioButton) getActivity().findViewById(R.id.radioYearly);
+			rb.setChecked(true);
+		}
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+      super.onSaveInstanceState(savedInstanceState);
+      savedInstanceState.putBoolean("clone_modify_buttons", true);
+      savedInstanceState.putDouble("myDouble", 1.9);      
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	Log.d("FrgInput.onPause", "called");
+    }
+    
+    @Override
+    public void onStart() {
+    	super.onStart();
+    	Log.d("FrgInput.onStart", "called");
+    }
+
+    @Override
+    public void onStop() {
+    	super.onStop();
+    	Log.d("FrgInput.onStop", "called");
+    }
+    
+    @Override
+    public void onDestroy() {
+    	super.onDestroy();
+    	Log.d("FrgInput.onDestroy", "called");
+    }
+    
 	public void resetForm() {
 		((EditText) getSherlockActivity().findViewById(R.id.mortgage_name)).setText("");
 		((EditText) getSherlockActivity().findViewById(R.id.mortgage_purchase_price)).setText("");
@@ -154,6 +244,9 @@ public class FrgInputOne extends SherlockFragment {
 		((EditText) getSherlockActivity().findViewById(R.id.mortgage_property_insurance)).setText("0");
 		((EditText) getSherlockActivity().findViewById(R.id.mortgage_property_tax)).setText("0");
 		((EditText) getSherlockActivity().findViewById(R.id.mortgage_pmi)).setText("0");
-		((EditText) getSherlockActivity().findViewById(R.id.mortgage_overpayment)).setText("0");		
+		((EditText) getSherlockActivity().findViewById(R.id.mortgage_closing_fees)).setText("0");		
+		((EditText) getSherlockActivity().findViewById(R.id.mortgage_extra_payment)).setText("0");		
 	}
+
+
 }

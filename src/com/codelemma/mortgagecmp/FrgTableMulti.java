@@ -38,7 +38,7 @@ public class FrgTableMulti extends SherlockFragment {
     			appState.getSimulationStartYear(), 
     			appState.getSimulationStartMonth());
     	    TableVisitor tableMaker = new TableMaker(getSherlockActivity(), dates);
-        	account.makeTable(tableMaker);
+        	//account.makeTable(tableMaker);
     	} //TODO: else???  	    	    	
     }
 }

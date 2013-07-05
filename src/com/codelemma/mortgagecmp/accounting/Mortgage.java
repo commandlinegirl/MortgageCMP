@@ -2,336 +2,526 @@ package com.codelemma.mortgagecmp.accounting;
 
 import java.math.BigDecimal;
 
-public class Mortgage  {
- 
-    private BigDecimal purchase_price;
-    private BigDecimal init_interest_rate;
-    private BigDecimal interest_rate_decimal_monthly;
-    private int term_years; // in months
-    private int term_months; // in months
-    private int total_term_months; // in months
-    private BigDecimal downpayment;
-    private BigDecimal base_monthly_payment;
-    private BigDecimal monthly_payment;
-    private BigDecimal property_insurance;
-    private BigDecimal property_tax;
-    private BigDecimal pmi;
-    private BigDecimal monthly_pmi_amount;    
-    private BigDecimal monthly_insurance_amount;  
-    private BigDecimal monthly_tax_amount;  
-    
-    private BigDecimal total_insurance;
-    private BigDecimal total_tax;
-    private BigDecimal total_pmi;
-    
-    private BigDecimal additional_cost = Money.ZERO; //tax & insurance
-    private BigDecimal additional_cost_with_pmi; 
-    private BigDecimal additional_cost_without_pmi; 
-    private BigDecimal total_additional_cost = Money.ZERO;
-  
-    private BigDecimal principal_paid = Money.ZERO;
-    private BigDecimal interests_paid = Money.ZERO;
-    private BigDecimal total_interests = Money.ZERO;
-    private BigDecimal total_principal = Money.ZERO;
-    
-    private BigDecimal property_insurance_decimal_monthly;
-    private BigDecimal property_insurance_decimal;
-    private BigDecimal property_tax_decimal_monthly;
-    private BigDecimal property_tax_decimal;
-    private BigDecimal pmi_decimal_monthly;
-    
-    private BigDecimal outstanding_loan;   
-    private BigDecimal loan_amount;
-    private int month_counter = 1;
-    private String name;
-    private int id;
-    
-    private BigDecimal extra_payment;
-    private int extra_payment_frequency;
-    
-    private HistoryMortgage history;
-    
-    public Mortgage(String _name, 
-    		BigDecimal _purchase_price,
-    		BigDecimal _downpayment,
-    		BigDecimal _interest_rate,
-    		int _term_years,
-    		int _term_months,
-    		BigDecimal _property_insurance,
-    		BigDecimal _property_tax,
-    		BigDecimal _pmi,
-    		BigDecimal extra_payment,
-    		int extra_payment_frequency) {
-    	name = _name;
-    	purchase_price = _purchase_price;
-    	downpayment = Money.scale(_downpayment);
-    	loan_amount = Money.scale(_purchase_price.subtract(_downpayment));
-    	outstanding_loan = loan_amount; //TODO check if not < 0!
-    	this.extra_payment = extra_payment;
-        this.extra_payment_frequency = extra_payment_frequency;
-    	init_interest_rate = _interest_rate;
-        interest_rate_decimal_monthly = _interest_rate.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
+public abstract class Mortgage {
 
-    	property_insurance = _property_insurance;
-    	property_insurance_decimal = _property_insurance.divide(new BigDecimal(100), Money.DECIMALS, Money.ROUNDING_MODE);
-    	property_insurance_decimal_monthly = property_insurance_decimal.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
-    	monthly_insurance_amount = Money.getPercentage(purchase_price, property_insurance_decimal_monthly);
-    	total_insurance = Money.getPercentage(purchase_price, property_insurance_decimal).multiply(new BigDecimal(_term_years)); //TODO: add monthly part here
+	private final String name;
+	private final BigDecimal purchase_price;
+	private final BigDecimal downpayment;	
+	private final BigDecimal interest_rate;	
+	private final Integer term_years; 
+	private final Integer term_months; // in months
+	private final BigDecimal property_insurance;	
+	private final BigDecimal property_tax;
+	private final BigDecimal pmi_rate;
+	private final BigDecimal closing_fees;
+	private final BigDecimal extra_payment;
+	private final int extra_payment_frequency;
 
-    	property_tax = _property_tax;
-    	property_tax_decimal = _property_tax.divide(new BigDecimal(100), Money.DECIMALS, Money.ROUNDING_MODE);
-    	property_tax_decimal_monthly = property_tax_decimal.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
-    	monthly_tax_amount = Money.getPercentage(purchase_price, property_tax_decimal_monthly);
+	private final BigDecimal loan_amount;
+	private final BigDecimal interest_rate_decimal_monthly;
+	private final Integer total_term_months; // in months
+	private final BigDecimal monthly_extra_payment;	
+	private final BigDecimal monthly_property_insurance;
+	private final BigDecimal monthly_property_tax;
+	private final BigDecimal monthly_pmi_amount;
+	private final BigDecimal pmi_decimal_monthly;
 
-    	pmi = _pmi;
-    	pmi_decimal_monthly = _pmi.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
-    	monthly_pmi_amount = Money.getPercentage(loan_amount,  pmi_decimal_monthly);
+	private BigDecimal current_month_payment;
+	private BigDecimal curent_month_tax_insurance_pmi;
+	private BigDecimal tax_insurance_zeropmi;
+	private BigDecimal tax_insurance_nonzeropmi;
+	
+	private BigDecimal total_tax;
+	private BigDecimal total_pmi;
+	private BigDecimal total_principal;
+	private BigDecimal total_extra_payment;
+	private BigDecimal total_insurance;
+	private BigDecimal total_interests;
+	private BigDecimal outstanding_loan;
 
-    	term_years = _term_years;
-    	term_months = _term_months; 
-    	total_term_months = _term_years * 12 + _term_months; 
+	private BigDecimal principal_paid;
+	private BigDecimal interests_paid;
 
-    	additional_cost_without_pmi = monthly_insurance_amount.add(monthly_tax_amount);
-    	additional_cost_with_pmi = monthly_insurance_amount.add(monthly_tax_amount).add(monthly_pmi_amount);
+	private Integer number_of_payments = 0;
+	private int last_pmi_payment_month;
+	private int month_counter = 1;
+	private int id;
 
-    	calculateMonthlyPayment();
-    	monthly_payment = base_monthly_payment;
+	private HistoryMortgage history;
 
-    	history = new HistoryMortgage(this, total_term_months);
-    }
-    
-    private void calculateMonthlyPayment() {
-    	BigDecimal factor = (interest_rate_decimal_monthly.add(Money.ONE)).pow(total_term_months);
-    	BigDecimal factor_minus_one = factor.subtract(Money.ONE);
-    	try {
-    		factor.divide(factor_minus_one, Money.DECIMALS, Money.ROUNDING_MODE);
-    	} catch (IllegalArgumentException iae) {
-    		iae.printStackTrace();
-    	}
-    	   	
-    	base_monthly_payment = Money.scale(interest_rate_decimal_monthly.multiply(
-    			loan_amount.multiply(factor.divide(factor_minus_one, Money.DECIMALS, Money.ROUNDING_MODE))));
-    }
-    
-    public void recalculate(int index, int year, int month) {    	
-        advance(year, month);   		
-        history.add(index, year, this);
-    }
+	protected Mortgage(Builder builder) {
+		name = builder.name;
+		purchase_price = builder.purchase_price;
+		downpayment = builder.downpayment;
+		interest_rate = builder.interest_rate;
+		term_years = builder.term_years;
+		term_months = builder.term_months;
+		property_insurance = builder.property_insurance;
+		property_tax = builder.property_tax;
+		pmi_rate = builder.pmi_rate;
+		closing_fees = builder.closing_fees;
+		extra_payment = builder.extra_payment;
+		extra_payment_frequency = builder.extra_payment_frequency;
 
-    public void advance(int year, int month) {
-    	if (month_counter <= total_term_months && outstanding_loan.compareTo(Money.ZERO) == 1) {
-        	// Calculate interests to be paid this month and total interest paid so far
-            interests_paid = Money.scale(outstanding_loan.multiply(interest_rate_decimal_monthly));
-            total_interests = total_interests.add(interests_paid);
-            
-            BigDecimal ltv = (total_principal.add(downpayment)).divide(purchase_price, Money.DECIMALS, Money.ROUNDING_MODE);        	
-            if (ltv.compareTo(new BigDecimal(0.2)) == -1) {
-            	additional_cost = additional_cost_with_pmi;            	 
-            	//Log.d("monthly_payment with pmi", monthly_payment.toString());
-            	total_pmi = total_pmi.add(monthly_pmi_amount);
-            } else {
-            	additional_cost = additional_cost_without_pmi;
-            	//Log.d("monthly_payment without pmi", monthly_payment.toString());            	
-            }
+		loan_amount = Money.scale(purchase_price.subtract(downpayment));
+		outstanding_loan = loan_amount;
+		
+		monthly_extra_payment = extra_payment.divide(
+				new BigDecimal(extra_payment_frequency), Money.DECIMALS, Money.ROUNDING_MODE);
 
-            if (month_counter % extra_payment_frequency == 0) {
-            	base_monthly_payment = base_monthly_payment.add(extra_payment);
-            }
-            //
-            if (outstanding_loan.compareTo(monthly_payment) == -1) {
-                principal_paid = outstanding_loan.add(interests_paid).subtract(interests_paid);
-                monthly_payment = outstanding_loan.add(interests_paid).add(additional_cost);
-            } else {
-            	monthly_payment = base_monthly_payment.add(additional_cost);
-                principal_paid = base_monthly_payment.subtract(interests_paid); 
-            }
+        interest_rate_decimal_monthly = interest_rate.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
 
-        	// Calculate total principal paid so far
-            total_principal = total_principal.add(principal_paid);
+		total_term_months = term_years * 12 + term_months;
 
-            outstanding_loan = outstanding_loan.subtract(principal_paid);           
-        	
-            /* If loan-to-value (LTV) ratio (the ratio of a loan to a value of an asset purchased)
-             * is < 20%, add pmi to the monthly payment */       
-        	total_additional_cost = total_additional_cost.add(additional_cost);
-        	total_insurance = total_insurance.add(monthly_insurance_amount);
-        	total_tax = total_tax.add(monthly_tax_amount);
-        	
+		monthly_property_insurance = property_insurance.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
+		total_insurance = monthly_property_insurance.multiply(new BigDecimal(total_term_months));
 
-        	
-            month_counter++;
-    	} else {
-    		monthly_payment = Money.ZERO;
-    		interests_paid = Money.ZERO;
-    		principal_paid = Money.ZERO;
-    		additional_cost = Money.ZERO;
-    		//outstanding_loan = Money.ZERO;    	    		
-    	}      
-    }
+		monthly_property_tax = property_tax.divide(new BigDecimal(12), Money.DECIMALS, Money.ROUNDING_MODE);
+		total_tax = monthly_property_tax.multiply(new BigDecimal(total_term_months));
+
+		pmi_decimal_monthly = pmi_rate.divide(new BigDecimal(1200), Money.DECIMALS, Money.ROUNDING_MODE);
+		monthly_pmi_amount = Money.getPercentage(loan_amount, pmi_decimal_monthly);
+		
+		tax_insurance_zeropmi = monthly_property_insurance.add(monthly_property_tax);
+		tax_insurance_nonzeropmi = monthly_property_insurance.add(monthly_property_tax).add(monthly_pmi_amount);
+
+		history = new HistoryMortgage(this, total_term_months);
+	}
+	
+	protected abstract void advance(int year, int month);
+	protected abstract BigDecimal calculateMonthlyPaymentConstant();
+	public abstract BigDecimal getMonthlyPaymentConstant();
+	protected abstract BigDecimal getMonthlyInterestPlusPrincipal();
+	protected abstract BigDecimal getMonthlyPrincipalPlusExtraMoney();
+	public abstract BigDecimal getMonthlyTotalPaymentNonPMI(); // principal+interest+extra+insurance+tax
+	
+	public void recalculate(int index, int year, int month) {
+		advance(year, month);
+		history.add(index, year, this);
+	}
 
 	public void initialize() {
-		outstanding_loan = loan_amount;
 		month_counter = 1;
-    	monthly_payment = base_monthly_payment;
-	    principal_paid = Money.ZERO;
-	    interests_paid = Money.ZERO;
-	    total_interests = Money.ZERO;
-	    total_principal = Money.ZERO;
-	    total_additional_cost = Money.ZERO;
-	    total_insurance = BigDecimal.ZERO;
-	    total_tax = Money.ZERO;
-	    total_pmi = Money.ZERO;
+		number_of_payments = 0;
+		last_pmi_payment_month = -1;
+
+		outstanding_loan = loan_amount;		
+		curent_month_tax_insurance_pmi = BigDecimal.ZERO;
+		principal_paid = BigDecimal.ZERO;
+		interests_paid = BigDecimal.ZERO;
+		current_month_payment = Money.ZERO;
+		total_pmi = BigDecimal.ZERO;
+		total_extra_payment = BigDecimal.ZERO;
+		total_interests = BigDecimal.ZERO;
+		total_principal = BigDecimal.ZERO;
 	}
-    
-	
-	public int getTotalTermMonths() {
-		return total_term_months;
-	}
-	
-	public int getTermYears() {
-		return term_years;
-	}
-	
-	public int getTermMonths() {
-		return term_months;
-	}
-	
-    public BigDecimal getMonthlyPayment() {
-    	return monthly_payment;
-    }
 
-    public BigDecimal getBaseMonthlyPayment() {
-    	return base_monthly_payment;
-    }
-    
-    public BigDecimal getInterestPaid() {
-    	return interests_paid;
-    }
-    
-    public BigDecimal getPrincipalPaid() {
-        return principal_paid;
-    }
-    
-    public BigDecimal getTotalInterestPaid() {
-    	return total_interests;
-    }
-    
-    public BigDecimal getPrincipalFraction() {
-    	return Money.scale(loan_amount.divide(getTotalPayment(), Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));    	
-    }
 
-    public BigDecimal getInterestFraction() {
-    	return Money.scale(total_interests.divide(getTotalPayment(), Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));    	
-    }
-
-    public BigDecimal getExtraCostFraction() {
-    	return Money.scale(total_additional_cost.divide(getTotalPayment(), Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));    	
-    }
-    
-    public BigDecimal getTotalInsurance() {
-    	return total_insurance;
-    }
-    
-    public BigDecimal getTotalPropertyTax() {
-    	return total_tax;
-    }
-    
-    public BigDecimal getTotalPMI() {
-    	return total_pmi;
-    }
-    
-    public BigDecimal getAdditionalCost() {
-    	return additional_cost;
-    }
-    
-    public BigDecimal getTotalAdditionalCost() {
-    	return total_additional_cost;
-    }
-    
-    public BigDecimal getRemainingAmount() {
-    	return outstanding_loan;
-    }
-        
-    public BigDecimal getPropertyInsurance() {
-    	return property_insurance;
-    }
-
-    public BigDecimal getPropertyTax() {
-    	return property_tax;
-    }
-
-    public BigDecimal getPMI() {
-    	return pmi;
-    }
-
-    public BigDecimal getPropertyInsuranceAmount() {
-    	return monthly_insurance_amount;
-    }
-
-    public BigDecimal getPropertyTaxAmount() {
-    	return monthly_tax_amount;
-    }
-
-    public BigDecimal getPMIAmount() {
-    	return monthly_pmi_amount;
-    }
-    
-    public BigDecimal getTotalPayment() {
-    	return   total_additional_cost.add(loan_amount).add(total_interests);
-    }
-
-    
-    public BigDecimal getDownpayment() {
-    	return downpayment;
-    }
-    
-    public BigDecimal getInterestRate() {
-    	return init_interest_rate; 
-    }
-
-    
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    public int getId() {
-        return id;
-    }
-    
-    public String getName() {
-        return name;
-    }  
-    
-    public BigDecimal getValue() {
-    	return purchase_price;
-    }
-
-	public BigDecimal getAmount() {
-		return monthly_payment;
-	}
-		
 	public BigDecimal getLoanAmount() {
 		return loan_amount;
 	}
-
 
 	public BigDecimal getPurchasePrice() {
 		return purchase_price;
 	}
 
-	public BigDecimal getInitAmount() {
-		return purchase_price;
+	public BigDecimal getDownpayment() {
+		return downpayment;
 	}
-		
+	
+	public BigDecimal getTotalPayment() {
+		return loan_amount
+				.add(total_interests)
+				.add(total_insurance)
+				.add(total_tax)
+				.add(total_pmi)
+				.add(total_extra_payment)
+				.add(closing_fees);
+	}
+	
+	public BigDecimal getCurrentMonthTotalPayment() {
+		return current_month_payment;
+	}
+
+	public void setCurrentMonthTotalPayment(BigDecimal interest_plus_principal) {
+		current_month_payment = interest_plus_principal
+				.add(curent_month_tax_insurance_pmi)
+				.add(monthly_extra_payment);
+	}
+
+	public void setValuesAfterCalculation() {
+		principal_paid = Money.ZERO;
+		interests_paid = Money.ZERO;
+		curent_month_tax_insurance_pmi = Money.ZERO;
+		current_month_payment = Money.ZERO;
+		outstanding_loan = BigDecimal.ZERO;
+	}
+
+	/////////////////////////////////
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public HistoryMortgage getHistory() {
 		return history;
 	}
-	
+
 	public void makeHistogram(HistogramVisitor visitor) {
 		visitor.histogramMortgage(this);
 	}
-	
+
 	public void makePieChart(PieChartVisitor visitor) {
 		visitor.piechartMortgage(this);
+	}
+	
+	/* Loan length */
+	
+	public int getMonthCounter() {
+		return month_counter;
+	}
+
+	public void incrementMonthCounter() {
+		month_counter++;
+	}
+
+	public int getTotalTermMonths() {
+		return total_term_months;
+	}
+
+	public int getTermYears() {
+		return term_years;
+	}
+
+	public int getTermMonths() {
+		return term_months;
+	}
+
+	public int getNumberOfPayments() {
+		return number_of_payments;
+	}
+
+	public void incrementNumberOfPayments() {
+		number_of_payments++;
+	}
+
+	/* Principal */
+	
+	public BigDecimal getPrincipalPaid() {
+		return principal_paid;
+	}
+	
+	public void setPrincipalPaid(BigDecimal principal_paid) {
+		this.principal_paid = principal_paid;
+	}
+	
+	public BigDecimal getOutstandingLoan() {
+		return outstanding_loan;
+	}
+
+	public void setOutstandingLoan(BigDecimal outstanding_loan) {
+		this.outstanding_loan = outstanding_loan;
+	}
+
+	public BigDecimal getTotalPrincipalPaid() {
+		return total_principal;
+	}
+
+	public void setTotalPrincipalPaid(BigDecimal total_principal) {
+		this.total_principal = total_principal;
+	}
+	
+	public BigDecimal getPrincipalFraction() {
+		if (getTotalPayment().compareTo(BigDecimal.ZERO) != 0) {
+		    return Money.scale(loan_amount.divide(getTotalPayment(),
+				    Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));
+		} else {
+		    return BigDecimal.ZERO;
+		}
+	}
+	
+	/* Interest */
+	
+	public BigDecimal getInterestPaid() {
+		return interests_paid;
+	}
+
+	public void setInterestPaid(BigDecimal interests_paid) {
+		this.interests_paid = interests_paid;
+	}
+
+	public BigDecimal getTotalInterestPaid() {
+		return total_interests;
+	}
+
+	public void setTotalInterestPaid(BigDecimal total_interests) {
+		this.total_interests = total_interests;
+	}
+	
+	public BigDecimal getInterestRate() {
+		return interest_rate;
+	}
+	
+	public BigDecimal getInterestRateDecimalMonthly() {
+		return interest_rate_decimal_monthly;
+	}
+	
+	public BigDecimal getInterestFraction() {
+		if (getTotalPayment().compareTo(BigDecimal.ZERO) != 0) {
+     		return Money.scale(total_interests.divide(getTotalPayment(),
+	    			Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));
+		} else {
+			return BigDecimal.ZERO;
+		}
+	}
+	
+	
+	/* Insurance */
+
+	public BigDecimal getYearlyPropertyInsurance() {
+		return property_insurance;
+	}
+	
+	public BigDecimal getTotalInsurance() {
+		return total_insurance;
+	}
+	
+	public BigDecimal getMonthlyPropertyInsurance() {
+		return monthly_property_insurance;
+	}
+	
+	/* Tax */
+
+	public BigDecimal getYearlyPropertyTax() {
+		return property_tax;
+	}
+
+	public BigDecimal getTotalPropertyTax() {
+		return total_tax;
+	}
+	
+	public BigDecimal getMonthlyPropertyTax() {
+		return monthly_property_tax;
+	}
+	
+	/* PMI */
+	
+	public BigDecimal getPMI() {
+		return pmi_rate;
+	}
+
+	public BigDecimal getMonthlyPMI() {
+		if (last_pmi_payment_month == -1) {
+			return BigDecimal.ZERO;
+		} else {
+		    return monthly_pmi_amount;
+		}
+	}
+
+	public BigDecimal getTotalPMI() {
+		return total_pmi;
+	}
+	
+	public int lastPmiPaymentMonth() {
+	    return Math.max(0, last_pmi_payment_month-1);
+	}
+	
+	/* Closing fees */
+	
+	public BigDecimal getClosingFees() {
+		return closing_fees; 
+	}
+	
+	/* Additional cost (sum of totals: insurance, tax, pmi, closing fees) */
+	
+	public BigDecimal getTotalTaxInsurancePMIClosingFees() {
+		return total_tax
+		.add(total_insurance)
+		.add(total_pmi)
+		.add(closing_fees);
+	}
+	
+	public BigDecimal getMonthlyTaxInsurancePMISum() {
+		return curent_month_tax_insurance_pmi;
+	}
+
+	public BigDecimal calculateTaxInsurancePMI() { 
+		BigDecimal ltv = (total_principal.add(downpayment)).divide(
+				purchase_price, Money.DECIMALS, Money.ROUNDING_MODE);
+		if (ltv.compareTo(new BigDecimal("0.2")) == -1) {
+			curent_month_tax_insurance_pmi = tax_insurance_nonzeropmi;
+			total_pmi = total_pmi.add(monthly_pmi_amount);
+			last_pmi_payment_month++;
+		} else {
+			curent_month_tax_insurance_pmi = tax_insurance_zeropmi;
+		}
+		return curent_month_tax_insurance_pmi;
+	}
+
+	public BigDecimal getTotalTaxInsurancePMIClosingFeesFraction() {
+		if (getTotalPayment().compareTo(BigDecimal.ZERO) != 0) {		
+		    return Money.scale(getTotalTaxInsurancePMIClosingFees().divide(getTotalPayment(),
+			    	Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));
+		} else {
+			return BigDecimal.ZERO;
+		}
+	}
+	
+	/* Extra payment */
+	
+	public int getExtraPaymentFrequency() {
+		return extra_payment_frequency;
+	}
+	
+	public BigDecimal getMonthlyExtraPayment() {
+		return monthly_extra_payment;
+	}
+
+	public BigDecimal getExtraPayment() {
+		return extra_payment;
+	}
+	
+	public BigDecimal getTotalExtraPayment() {
+		return total_extra_payment;
+	}
+
+	public void setTotalExtraPayment(BigDecimal total_extra_payment) {
+		this.total_extra_payment = total_extra_payment;
+	}
+
+	public BigDecimal getExtraPaymentFraction() {
+		if (getTotalPayment().compareTo(BigDecimal.ZERO) != 0) {
+    		return Money.scale(total_extra_payment.divide(getTotalPayment(),
+	    			Money.DECIMALS, Money.ROUNDING_MODE).multiply(Money.HUNDRED));
+		} else {
+			return BigDecimal.ZERO;
+		}
+	}
+	
+	public static abstract class Builder {
+		
+		private String name;
+		private BigDecimal purchase_price;
+		private BigDecimal downpayment;
+		private BigDecimal interest_rate;
+		private Integer term_years;
+		private Integer term_months;
+		private BigDecimal property_insurance;
+		private BigDecimal property_tax;
+		private BigDecimal pmi_rate;
+		private BigDecimal closing_fees;
+		private BigDecimal extra_payment;
+		private Integer extra_payment_frequency;
+		
+		public String getName() {
+			return name;
+		}
+
+		public BigDecimal getPurchasePrice() {
+			return purchase_price;
+		}
+
+		public BigDecimal getDownpayment() {
+			return downpayment;
+		}
+		
+		public BigDecimal getInterestRate() {
+			return interest_rate;
+		}
+		
+		public Integer getTermYears() {
+			return term_years;
+		}
+		
+		public Integer getTermMonths() {
+			return term_months;
+		}
+		
+		public BigDecimal getPropertyInsurance() {
+			return property_insurance;
+		}
+		
+		public BigDecimal getPropertyTax() {
+			return property_tax;
+		}
+		
+		public BigDecimal getPMIRate() {
+			return pmi_rate;
+		}
+		
+		public BigDecimal getClosingFees() {
+			return closing_fees;
+		}
+		
+		
+		public Builder name(String name) {
+			this.name = name; 
+			return this;
+		}
+
+		public Builder purchase_price(BigDecimal purchase_price) {
+			this.purchase_price = purchase_price; 
+			return this;
+		}
+
+		public Builder downpayment(BigDecimal downpayment) {
+			this.downpayment = downpayment; 
+			return this;
+		}
+
+		public Builder interest_rate(BigDecimal interest_rate) {
+			this.interest_rate = interest_rate; 
+			return this;
+		}
+
+		public Builder term_years(Integer term_years) {
+			this.term_years = term_years; 
+			return this;
+		}
+
+		public Builder term_months(Integer term_months) {
+			this.term_months = term_months; 
+			return this;
+		}
+
+		public Builder property_insurance(BigDecimal property_insurance) {
+			this.property_insurance = property_insurance; 
+			return this;
+		}
+
+		public Builder property_tax(BigDecimal property_tax) {
+			this.property_tax = property_tax; 
+			return this;
+		}
+
+		public Builder pmi_rate(BigDecimal pmi_rate) {
+			this.pmi_rate = pmi_rate; 
+			return this;
+		}
+
+		public Builder closing_fees(BigDecimal closing_fees) {
+			this.closing_fees = closing_fees; 
+			return this;
+		}
+
+		public Builder extra_payment(BigDecimal extra_payment) {
+			this.extra_payment = extra_payment; 
+			return this;
+		}
+
+		public Builder extra_payment_frequency(Integer extra_payment_frequency) {
+			this.extra_payment_frequency = extra_payment_frequency; 
+			return this;
+		}
+		
+		public abstract Mortgage build();
 	}
 }

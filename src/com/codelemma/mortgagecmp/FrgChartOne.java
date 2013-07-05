@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
@@ -40,6 +41,9 @@ public class FrgChartOne extends SherlockFragment {
 
             PlotVisitor plotVisitor = new Plotter(getSherlockActivity(), dates);
             historyMortgage.plot(plotVisitor);
-    	}
+		} else {
+			LinearLayout ll = (LinearLayout) getActivity().findViewById(R.id.frg_chart_one);
+	    	ll.removeAllViews();
+		}
     }
 }

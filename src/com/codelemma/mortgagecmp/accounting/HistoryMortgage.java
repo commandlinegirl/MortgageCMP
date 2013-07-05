@@ -3,6 +3,7 @@ package com.codelemma.mortgagecmp.accounting;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import android.util.Log;
 import android.util.SparseArray;
 
 
@@ -73,20 +74,26 @@ public class HistoryMortgage {
     
 	public void add(int index, int year, Mortgage acctElement) {
 		Mortgage mortgage = (Mortgage) acctElement;
-		try {		    
-		    monthlyPaymentHistory[index] = mortgage.getMonthlyPayment();
-		    interestsPaidHistory[index] = mortgage.getInterestPaid();
-		    totalInterestsHistory[index] = mortgage.getTotalInterestPaid();
-		    principalPaidHistory[index] = mortgage.getPrincipalPaid();
-		    additionalCostHistory[index] = mortgage.getAdditionalCost();
-		    remainingAmountHistory[index] = mortgage.getRemainingAmount();	
+		try {
 		    
-		    addToYearlyHistory(monthlyPaymentYearly, year, mortgage.getMonthlyPayment());
-		    addToYearlyHistory(interestsPaidYearly, year, mortgage.getInterestPaid());		    
+		    principalPaidHistory[index] = mortgage.getPrincipalPaid();
+		    
+			Log.d("HISOTYR mortgage.getPrincipalPaid()", mortgage.getPrincipalPaid().toString());
+
+		    
+		    interestsPaidHistory[index] = mortgage.getInterestPaid();
+		    additionalCostHistory[index] = mortgage.getMonthlyTaxInsurancePMISum();
+		    monthlyPaymentHistory[index] = mortgage.getCurrentMonthTotalPayment();
+		    remainingAmountHistory[index] = mortgage.getOutstandingLoan();	
+		    
+		    totalInterestsHistory[index] = mortgage.getTotalInterestPaid();
+		    
 		    addToYearlyHistory(principalPaidYearly, year, mortgage.getPrincipalPaid());
-		    addToYearlyHistory(additionalCostYearly, year, mortgage.getAdditionalCost());		    		    
+		    addToYearlyHistory(interestsPaidYearly, year, mortgage.getInterestPaid());
+		    addToYearlyHistory(additionalCostYearly, year, mortgage.getMonthlyTaxInsurancePMISum());
+		    addToYearlyHistory(monthlyPaymentYearly, year, mortgage.getCurrentMonthTotalPayment());
 		    setValueInYearlyHistory(totalInterestsAtYearEnd, year, mortgage.getTotalInterestPaid());
-		    setValueInYearlyHistory(remainingAmountAtYearEnd, year, mortgage.getRemainingAmount());
+		    setValueInYearlyHistory(remainingAmountAtYearEnd, year, mortgage.getOutstandingLoan());
 					    
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();

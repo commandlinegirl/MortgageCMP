@@ -1,0 +1,112 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".FrgLoanBreakdownOne"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/frg_loan_breakdown_multi">
+
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+     <TextView
+        style="@style/header_title"
+        android:text="@string/monthly_payment_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>    
+    
+     <LinearLayout
+        android:id="@+id/histogram_multi_breakdown"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"        
+        android:layout_height="200dp"
+        android:layout_margin="0dp"   
+        android:background="#FFFFFFFF">
+     </LinearLayout>
+
+    <LinearLayout 
+        android:id="@+id/summary_text"
+        android:layout_width="fill_parent"       
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
+     
+            <TextView
+              android:id="@+id/loanbreakdown_multi_mortgage_name"
+              android:text="@string/s_mortgage_name_title"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:layout_weight="4"
+              android:layout_gravity="bottom"
+              android:layout_height="wrap_content">
+            </TextView>
+        
+            <TextView
+              android:id="@+id/principal_breakdown_name"
+              android:text="@string/s_mortgage_total_principal_title"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:layout_weight="4"
+              android:layout_height="wrap_content">
+            </TextView>
+         
+            <TextView
+              android:id="@+id/interest_breakdown_name"
+              android:text="@string/s_mortgage_total_interests_title"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/fees_breakdown_name"
+              android:text="@string/s_mortgage_tax_fees_insurance_pmi_title"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>
+            
+            <TextView
+              android:id="@+id/extra_payment_breakdown_name"
+              android:text="@string/s_mortgage_extra_payment_break_title"
+              android:textSize="11sp"
+              android:layout_width="0dp"
+              android:layout_weight="4"       
+              android:layout_height="wrap_content">
+            </TextView>            
+         
+    </LinearLayout>
+
+    <LinearLayout 
+        android:id="@+id/loanbreakdown_multi_table"
+        android:layout_width="fill_parent"       
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+    </LinearLayout>
+    
+   <TextView
+        style="@style/header_title"
+        android:text="@string/s_mortgage_monthly_payment_total_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>   
+    
+    <LinearLayout 
+        android:id="@+id/loanbreakdown_total_multi_table"
+        android:layout_width="fill_parent"       
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+    </LinearLayout>   
+   
+    </LinearLayout>
+</ScrollView>

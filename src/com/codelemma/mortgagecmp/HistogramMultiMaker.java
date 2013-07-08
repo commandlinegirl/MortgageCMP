@@ -29,36 +29,37 @@ public class HistogramMultiMaker implements HistogramVisitor {
 		this.frgActivity = sherlockFragmentActivity;
 	}
 
-	public void histogram(double[] total_principals,
-			double[] total_interests,
-			double[] total_fees,
+	public void histogram(
 			double[] total_extras,
+			double[] total_fees,
+			double[] total_interests,
+			double[] total_principals,
 			String[] titles,
-			String[] colors,
+			int[] colors,
 			double maxValue) {
       
         // Build renderer with three series renderers
         XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, maxValue);
-        SimpleSeriesRenderer rendererFees = getSeriesRenderer(colors[0]);
-        SimpleSeriesRenderer rendererPrincipal = getSeriesRenderer(colors[1]);
-        SimpleSeriesRenderer rendererInterest = getSeriesRenderer(colors[2]);
-        SimpleSeriesRenderer rendererExtra = getSeriesRenderer(colors[3]);
+        SimpleSeriesRenderer rendererExtra = getSeriesRenderer(colors[3]);        
+        SimpleSeriesRenderer rendererFees = getSeriesRenderer(colors[2]);
+        SimpleSeriesRenderer rendererInterest = getSeriesRenderer(colors[1]);
+        SimpleSeriesRenderer rendererPrincipal = getSeriesRenderer(colors[0]);        
 
+        mRenderer.addSeriesRenderer(rendererExtra);
         mRenderer.addSeriesRenderer(rendererFees);
         mRenderer.addSeriesRenderer(rendererInterest);
         mRenderer.addSeriesRenderer(rendererPrincipal);
-        mRenderer.addSeriesRenderer(rendererExtra);
 
         // Build dataset with three series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+        XYSeries seriesExtra = getSeries(total_extras, "Extra payment");        
         XYSeries seriesFees = getSeries(total_fees, "Tax, fees, insurance");
         XYSeries seriesInterest = getSeries(total_interests, "Interest");
         XYSeries seriesPrincipal = getSeries(total_principals, "Principal");
-        XYSeries seriesExtra = getSeries(total_extras, "Extra payment");        
+        dataset.addSeries(seriesExtra);        
         dataset.addSeries(seriesFees);
         dataset.addSeries(seriesInterest);
         dataset.addSeries(seriesPrincipal);
-        dataset.addSeries(seriesExtra);
 
         final GraphicalView grfv = ChartFactory.getBarChartView(frgActivity, 
         		dataset, 
@@ -74,7 +75,7 @@ public class HistogramMultiMaker implements HistogramVisitor {
 
     protected XYMultipleSeriesRenderer buildBarRenderer(
     		String[] titles, 
-    		String[] colors, 
+    		int[] colors, 
     		double maxValue) {
         XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 
@@ -117,9 +118,9 @@ public class HistogramMultiMaker implements HistogramVisitor {
         return mRenderer;
     }
 
-	private SimpleSeriesRenderer getSeriesRenderer(String color) {
+	private SimpleSeriesRenderer getSeriesRenderer(int color) {
 		SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();
-	   	renderer.setColor(Color.parseColor(color));  	
+	   	renderer.setColor(color);  	
 		return renderer;
 	}
 
@@ -145,10 +146,10 @@ public class HistogramMultiMaker implements HistogramVisitor {
 		double[] total_extras = new double[ind+1];
 		String[] titles = new String[ind+1];
 		
-		total_principals[0] = 1;
-		total_interests[0]  = 1;
-		total_fees[0] = 1;
-		total_extras[0] = 1;
+		total_principals[0] = 0;
+		total_interests[0]  = 0;
+		total_fees[0] = 0;
+		total_extras[0] = 0;
 		titles[0] = "";
 		
 		int j = 1;
@@ -163,22 +164,26 @@ public class HistogramMultiMaker implements HistogramVisitor {
 		    j++;
 		}
 		
-		double[] total_principals_adjusted = new double[ind+1];
-		double[] total_interests_adjusted = new double[ind+1];
+		double[] total_extra_adjusted = new double[ind+1];
 		double[] total_fees_adjusted = new double[ind+1];
+		double[] total_interests_adjusted = new double[ind+1];
 		
 		for (int i = 1; i <= ind; i++) {
-			total_principals_adjusted[i] = total_principals[i] + total_extras[i];
-			total_interests_adjusted[i] =  total_principals_adjusted[i] + total_interests[i];
-			total_fees_adjusted[i] =  total_interests_adjusted[i] + total_fees[i];
+			total_interests_adjusted[i] =  total_principals[i] + total_interests[i];
+			total_fees_adjusted[i] = total_interests_adjusted[i] + total_fees[i];
+			total_extra_adjusted[i] =  total_fees_adjusted[i] + total_extras[i];
 		}
 		
-		String[] colors = {"#ff00ff00", "#ff0099ff", "#ffFF0080", "#ff136080"}; 
-	
-        histogram(total_principals_adjusted,
+		int[] colors = {
+				Color.parseColor("#ffBEF243"),
+				Color.parseColor("#FF06A2CB"),				
+				Color.parseColor("#ffE95D22"), 
+				Color.parseColor("#ffCA278C")}; 
+
+        histogram(total_extra_adjusted,
+        		total_fees_adjusted,        		
         		total_interests_adjusted,
-        		total_fees_adjusted,
-        		total_extras,
+        		total_principals,
         		titles, 
         		colors,
         		maxValue);
@@ -187,17 +192,16 @@ public class HistogramMultiMaker implements HistogramVisitor {
 	@Override
 	public void histogramMortgage(Mortgage mortgage) {
 		// TODO Auto-generated method stub
-		
 	}
 	
-    private void setLegendColors(String[] colors) {
+    private void setLegendColors(int[] colors) {
     	TextView tv = (TextView) frgActivity.findViewById(R.id.principal_breakdown_name);
-    	tv.setTextColor(Color.parseColor(colors[0]));
+    	tv.setTextColor(colors[0]);
     	tv = (TextView) frgActivity.findViewById(R.id.interest_breakdown_name);
-    	tv.setTextColor(Color.parseColor(colors[1]));
+    	tv.setTextColor(colors[1]);
     	tv = (TextView) frgActivity.findViewById(R.id.fees_breakdown_name);
-    	tv.setTextColor(Color.parseColor(colors[2]));
+    	tv.setTextColor(colors[2]);
     	tv = (TextView) frgActivity.findViewById(R.id.extra_payment_breakdown_name);
-    	tv.setTextColor(Color.parseColor(colors[3]));
+    	tv.setTextColor(colors[3]);
     }
 }

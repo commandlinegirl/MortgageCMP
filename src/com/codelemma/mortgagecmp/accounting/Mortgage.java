@@ -45,11 +45,15 @@ public abstract class Mortgage {
 	private Integer number_of_payments = 0;
 	private int last_pmi_payment_month;
 	private int month_counter = 1;
-	private int id;
 
+	private static int next_id = 0;
+	private int id = next_id;
+	private int previous_id;
+	
 	private HistoryMortgage history;
 
 	protected Mortgage(Builder builder) {
+		next_id++;
 		name = builder.name;
 		purchase_price = builder.purchase_price;
 		downpayment = builder.downpayment;
@@ -94,6 +98,23 @@ public abstract class Mortgage {
 	protected abstract BigDecimal getMonthlyInterestPlusPrincipal();
 	protected abstract BigDecimal getMonthlyPrincipalPlusExtraMoney();
 	public abstract BigDecimal getMonthlyTotalPaymentNonPMI(); // principal+interest+extra+insurance+tax
+	public abstract String getType();
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getPreviousId() {
+		return previous_id;
+	}
+	
+	public void setPreviousId(int id) {
+		previous_id = id;
+	}
 	
 	public void recalculate(int index, int year, int month) {
 		advance(year, month);
@@ -109,13 +130,13 @@ public abstract class Mortgage {
 		curent_month_tax_insurance_pmi = BigDecimal.ZERO;
 		principal_paid = BigDecimal.ZERO;
 		interests_paid = BigDecimal.ZERO;
-		current_month_payment = Money.ZERO;
+		current_month_payment = BigDecimal.ZERO;
 		total_pmi = BigDecimal.ZERO;
 		total_extra_payment = BigDecimal.ZERO;
 		total_interests = BigDecimal.ZERO;
 		total_principal = BigDecimal.ZERO;
+		history.initialize();
 	}
-
 
 	public BigDecimal getLoanAmount() {
 		return loan_amount;
@@ -159,14 +180,6 @@ public abstract class Mortgage {
 
 	/////////////////////////////////
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -524,4 +537,5 @@ public abstract class Mortgage {
 		
 		public abstract Mortgage build();
 	}
+
 }

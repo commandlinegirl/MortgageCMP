@@ -6,7 +6,7 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 
 	private final BigDecimal monthly_payment_constant;
 	private BigDecimal principal_plus_interest;
-
+	
 	public static class Builder extends Mortgage.Builder {
 
 		public FixedRateVariablePrincipalMortgage build() {
@@ -99,5 +99,8 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 		return monthly_payment_constant;
 	}
 	
-
+    @Override
+	public String getType() {
+		return MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
+	}
 }

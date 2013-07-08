@@ -25,18 +25,16 @@ public class FrgTableMulti extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);   
-    	MortgageCMP appState = MortgageCMP.getInstance();
-    	Account account = appState.getAccount();
     	
     	/* Check which mortgage has the longest loan term;
     	 * build date list for this term */
-    	Mortgage mortgage = account.getLongestMortgage();
+    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getLongestMortgage();
     	
     	if (mortgage != null) {
     	    HistoryMortgage historyMortgage = mortgage.getHistory();
     	    String[] dates = historyMortgage.getDates(
-    			appState.getSimulationStartYear(), 
-    			appState.getSimulationStartMonth());
+    	    		MortgageCMP.getInstance().getSimulationStartYear(), 
+    	    		MortgageCMP.getInstance().getSimulationStartMonth());
     	    TableVisitor tableMaker = new TableMaker(getSherlockActivity(), dates);
         	//account.makeTable(tableMaker);
     	} //TODO: else???  	    	    	

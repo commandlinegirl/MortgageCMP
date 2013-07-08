@@ -11,11 +11,28 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
-     <TextView
+   <TextView
         style="@style/header_title"
-        android:text="@string/monthly_payment_title"
+        android:text="@string/s_mortgage_monthly_payment_total_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>    
+        android:layout_height="wrap_content"/>   
+    
+    <LinearLayout 
+        android:id="@+id/loanbreakdown_total_multi_table"
+        android:layout_width="fill_parent"       
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+    </LinearLayout>   
+    
+
+   <TextView
+        style="@style/header_title"
+        android:text="@string/total_payment_breakdown"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>      
     
      <LinearLayout
         android:id="@+id/histogram_multi_breakdown"
@@ -92,21 +109,5 @@
         android:orientation="vertical">
     </LinearLayout>
     
-   <TextView
-        style="@style/header_title"
-        android:text="@string/s_mortgage_monthly_payment_total_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>   
-    
-    <LinearLayout 
-        android:id="@+id/loanbreakdown_total_multi_table"
-        android:layout_width="fill_parent"       
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
-    </LinearLayout>   
-   
     </LinearLayout>
 </ScrollView>

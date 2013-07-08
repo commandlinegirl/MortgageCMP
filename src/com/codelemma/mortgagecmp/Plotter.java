@@ -148,7 +148,7 @@ public class Plotter implements PlotVisitor {
 	    	    
 	    try {
 	        for(int i = 0; i < item_count; i++) {	        	
-	    	    series.add(i, values[i].setScale(0, Money.ROUNDING_MODE).doubleValue());	    	    
+	    	    series.add(i, values[i].setScale(0, Money.ROUNDING_MODE).doubleValue());
 	        }
 	    } catch (IndexOutOfBoundsException e) {
 	        e.printStackTrace();

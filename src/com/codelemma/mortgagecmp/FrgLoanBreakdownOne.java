@@ -34,8 +34,7 @@ public class FrgLoanBreakdownOne extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState); 
-    	MortgageCMP appState = MortgageCMP.getInstance(); 	    	
-    	Mortgage mortgage = appState.getCurrentMortgage();  
+    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getCurrentMortgage();  
     	
     	if (mortgage != null) {
 

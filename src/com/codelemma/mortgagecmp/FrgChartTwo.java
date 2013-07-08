@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -34,14 +33,13 @@ public class FrgChartTwo extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState); 
-    	MortgageCMP appState = MortgageCMP.getInstance(); 	    	
-    	Mortgage mortgage = appState.getCurrentMortgage();  
+    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getCurrentMortgage();  
     	
         if (mortgage != null) {
         	HistoryMortgage historyMortgage = mortgage.getHistory();
         	String[] dates = historyMortgage.getDates(
-        			appState.getSimulationStartYear(), 
-        			appState.getSimulationStartMonth());
+        			MortgageCMP.getInstance().getSimulationStartYear(), 
+        			MortgageCMP.getInstance().getSimulationStartMonth());
             
             HistogramVisitor histogramVisitor = new HistogramMaker(getSherlockActivity(), dates);
             mortgage.makeHistogram(histogramVisitor);

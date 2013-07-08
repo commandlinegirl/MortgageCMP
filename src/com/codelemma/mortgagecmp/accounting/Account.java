@@ -3,29 +3,20 @@ package com.codelemma.mortgagecmp.accounting;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
-
-import android.util.SparseArray;
-
 public class Account {
 
     private ArrayList<Mortgage> mortgages = new ArrayList<Mortgage>();
     private ArrayList<Mortgage> comparisonList = new ArrayList<Mortgage>();
-    private SparseArray<Mortgage> mortgage_ids = new SparseArray<Mortgage>();
-    private int mortgage_id = 0;
     private int longestLoanTerm = 0;
- 
+    private Mortgage currentMortgage;
+
     public void addMortgage(Mortgage mortgage) {
-    	mortgage.setId(mortgage_id);        
     	mortgages.add(mortgage);
-        mortgage_ids.put(mortgage_id, mortgage);
-        mortgage_id++;      
     }  
     
     public void removeMortgage(Mortgage mortgage) {
     	if (mortgage != null) {
     		mortgages.remove(mortgage);
-        	mortgage_ids.remove(mortgage.getId());
     	}
     }
     
@@ -34,7 +25,12 @@ public class Account {
     }   
     
     public Mortgage getMortgageById(int id) {
-    	return mortgage_ids.get(id);
+        for (Mortgage mortgage: mortgages) {
+            if (mortgage.getId() == id) {
+                return mortgage;
+            }
+        }
+    	return null;
     }
     
     public int getMortgagesSize() {
@@ -105,4 +101,11 @@ public class Account {
 		visitor.plotLoanBreakdownComparison(this);
 	}
 	
+    public Mortgage getCurrentMortgage() {
+    	return currentMortgage;
+    }
+    
+    public void setCurrentMortgage(Mortgage mortgage) {
+    	currentMortgage = mortgage;
+    }
 }

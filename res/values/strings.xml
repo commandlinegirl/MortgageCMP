@@ -10,6 +10,7 @@
     <string name="mortgage_name_input">Name</string>
     <string name="mortgage_name_text">Mortgage 1</string>
     <string name="mortgage_purchase_price_input">Purchase price</string>
+    <string name="mortgage_purchase_price_input_br">Purchase\nprice</string>
     <string name="mortgage_purchase_price_text">200000</string>
     <string name="mortgage_downpayment_input">Down payment</string>
     <string name="mortgage_downpayment_text">0</string>
@@ -35,12 +36,13 @@
     <string name="advanced_input_invisible">+ Tax, fees, insurance (optional)</string>
     <string name="advanced_input_visible">- Tax, fees, insurance (optional)</string>
     <string name="advanced_extra_payments_input_invisible">+ Extra payments (optional)</string>
-    <string name="advanced_extra_payments_input_visible">- Extra payments (optional)</string>
+    <string name="advanced_extra_payments_input_visible">- Extra payments (optional)</string>        
     
     <!-- Summary -->
     
     <string name="s_mortgage_name_title">Name</string>
     <string name="s_mortgage_amount_title">Loan amount</string>
+    <string name="s_mortgage_amount_title_br">Loan\namount</string>
     <string name="s_mortgage_total_payment_title">Total</string>
     <string name="s_mortgage_total_interests_title">Total\ninterest</string>
     <string name="s_mortgage_total_principal_title">Total\nprincipal</string>
@@ -62,6 +64,7 @@
     <string name="s_mortgage_type_title">Mortgage type</string>
     <string name="s_mortgage_last_payment_date_title">Last payment</string>
     <string name="s_mortgage_downpayment_title">Down payment</string>
+    <string name="s_mortgage_downpayment_title_br">Down\npayment</string>
     <string name="s_mortgage_extra_payments_title">Extra payment</string>
     <string name="s_mortgage_extra_payment_break_title">Extra\npayment</string>
     <string name="s_mortgage_monthly_payment_total_title">Total payment</string>
@@ -70,6 +73,15 @@
     <string name="s_mortgage_last_payment">Last payment</string>    
     
     <string name="total">Total</string>
+    
+    <!-- Help -->
+    
+    <string name="help_mortgage_type_info"><b><i>Fixed rate variable principal</i></b>
+        \nMonthly mortgage is constant over the loan term. Interest rate is fixed.
+        \n\n<b><i>Fixed rate fixed principal</i></b>
+        \nPrincipal rate is fixed, monthly payment varies dues to varying monthly interest. Interest rate is fixed.
+    </string>
+    
     
     <!-- General -->
   
@@ -96,5 +108,6 @@
     <string name="monthly_payment_title">Monthly payments</string>
     <string name="principal_payment_title">Principal payment</string>
     <string name="interest_payment_title">Interest payment</string>
-
+    <string name="total_payment_breakdown">Total payment breakdown</string>
+    
 </resources>

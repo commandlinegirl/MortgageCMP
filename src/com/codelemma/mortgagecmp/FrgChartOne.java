@@ -30,14 +30,13 @@ public class FrgChartOne extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-    	MortgageCMP appState = MortgageCMP.getInstance();
-    	Mortgage mortgage = appState.getCurrentMortgage();
+    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
 
     	if (mortgage != null) {
     		HistoryMortgage historyMortgage = mortgage.getHistory();
         	String[] dates = historyMortgage.getDates(
-        			appState.getSimulationStartYear(), 
-        			appState.getSimulationStartMonth());
+        			MortgageCMP.getInstance().getSimulationStartYear(), 
+        			MortgageCMP.getInstance().getSimulationStartMonth());
 
             PlotVisitor plotVisitor = new Plotter(getSherlockActivity(), dates);
             historyMortgage.plot(plotVisitor);

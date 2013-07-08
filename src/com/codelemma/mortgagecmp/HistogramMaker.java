@@ -12,7 +12,6 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -45,11 +44,6 @@ public class HistogramMaker implements HistogramVisitor {
         int chartSize = screenWidthDips  - leftMargin - rightMargin;
         int numOfLabels = Math.round(chartSize / 20);
         int step = Math.max(1, principalHistory.length / numOfLabels);
-				
-        
-    	for (BigDecimal i : principalHistory) {
-    		Log.d("=4-4-4--4-4-4- item", i.toString());
-    	}
         
         // Build renderer with three series renderers
         XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, principalHistory.length, maxValue, step);
@@ -126,16 +120,10 @@ public class HistogramMaker implements HistogramVisitor {
 	}
    
     private XYSeries getSeries(BigDecimal[] values, String title, int step) {
-    	XYSeries series = new XYSeries(title);
-       // series.add(0, 0); // dummy first null value to add space
-        
-        int length = values.length;
-        int i;
-        for (i = 0; i < length; i += step) {
+    	XYSeries series = new XYSeries(title);        
+        for (int i = 0; i < values.length; i += step) {
             series.add(i, values[i].setScale(0, Money.ROUNDING_MODE).doubleValue());
         }
-        Log.d("i", String.valueOf(i));
-        //series.add(i+1, 0); // dummy last null value to add space
     	return series;
     }
 	

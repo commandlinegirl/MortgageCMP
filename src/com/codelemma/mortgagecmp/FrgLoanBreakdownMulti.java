@@ -36,14 +36,11 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState); 
-    	MortgageCMP appState = MortgageCMP.getInstance();
-        Account account = appState.getAccount();	
     	NumberFormatter formatter = new NumberFormatter();
 
-    	if (account != null) {
-
+    	if (MortgageCMP.getInstance().getAccount() != null) {
             HistogramVisitor histogramVisitor = new HistogramMultiMaker(getSherlockActivity());
-            account.histogramLoanBreakdownMulti(histogramVisitor);
+            MortgageCMP.getInstance().getAccount().histogramLoanBreakdownMulti(histogramVisitor);
     	}
     	
     	//loanbreakdown_multi_table
@@ -59,7 +56,7 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
 		LinearLayout.LayoutParams lpline = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1);
 		lpline.setMargins(0, 5, 0, 5); // left, top, right, bottom
 			
-    	ArrayList<Mortgage> mortgages = appState.getAccount().getMortgagesToCompare();
+    	ArrayList<Mortgage> mortgages = MortgageCMP.getInstance().getAccount().getMortgagesToCompare();
 		int size = mortgages.size();
 
     	for (Mortgage mortgage : mortgages) {
@@ -112,7 +109,7 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     		loanbreakdown_total_multi_table.addView(ll2);
     	}
     	
-    	if (account.getMortgagesToCompare().size() == 0) {
+    	if (MortgageCMP.getInstance().getAccount().getMortgagesToCompare().size() == 0) {
     		ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_loan_breakdown_multi);
     		ll.removeAllViews();
     	}

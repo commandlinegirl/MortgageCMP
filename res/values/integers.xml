@@ -4,4 +4,5 @@
     <integer name="form_suffix_weight">2</integer> 
     <integer name="summary_left_weight">2</integer>   
     <integer name="summary_right_weight">2</integer>
+    <integer name="summary_multi_left_weight">5</integer>
 </resources>

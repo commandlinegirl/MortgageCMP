@@ -8,6 +8,7 @@
     <LinearLayout
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:layout_margin="16dp"
       android:orientation="vertical">
     
     <LinearLayout
@@ -22,43 +23,51 @@
               android:text="@string/s_mortgage_name_title"
               android:layout_width="0dp"
               android:layout_weight="4"
-              android:layout_gravity="bottom"
+              android:gravity="center|bottom"
+              android:textStyle="bold"
               android:layout_height="wrap_content">
             </TextView>
 
             <TextView
               android:id="@+id/smulti_mortgage_purchase_price"
-              android:text="@string/mortgage_purchase_price_input"
+              android:text="@string/mortgage_purchase_price_input_br"
               android:layout_width="0dp"
               android:layout_weight="4"
+              android:gravity="center|bottom"      
+              android:textStyle="bold"        
               android:layout_height="wrap_content">
             </TextView>
 
             <TextView
               android:id="@+id/smulti_mortgage_downpayment"
-              android:text="@string/mortgage_downpayment_input"
+              android:text="@string/s_mortgage_downpayment_title_br"
               android:layout_width="0dp"
               android:layout_weight="4"       
+              android:gravity="center|bottom" 
+              android:textStyle="bold"             
               android:layout_height="wrap_content">
             </TextView>
 
             <TextView
               android:id="@+id/smulti_mortgage_loan_amount"
-              android:text="@string/s_mortgage_amount_title"
+              android:text="@string/s_mortgage_amount_title_br"
               android:layout_width="0dp"
               android:layout_weight="4"       
+              android:gravity="center|bottom"        
+              android:textStyle="bold"                    
               android:layout_height="wrap_content">
             </TextView>
-
     </LinearLayout>
 
+
+        
     <LinearLayout 
         android:id="@+id/summary_multi_table_loan_amounts"
         android:layout_width="fill_parent"       
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical">
     </LinearLayout>
     
@@ -67,7 +76,7 @@
         android:layout_width="fill_parent"       
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="10dp"        
         android:orientation="horizontal">
      
             <TextView
@@ -75,7 +84,8 @@
               android:text="@string/s_mortgage_name_title"
               android:layout_width="0dp"
               android:layout_weight="4"
-              android:layout_gravity="bottom"
+              android:gravity="center|bottom"
+              android:textStyle="bold"
               android:layout_height="wrap_content">
             </TextView>
 
@@ -84,26 +94,32 @@
               android:text="@string/mortgage_purchase_price_input"
               android:layout_width="0dp"
               android:layout_weight="4"
+              android:gravity="center|bottom"           
+              android:textStyle="bold"   
               android:layout_height="wrap_content">
             </TextView>
 
             <TextView
               android:id="@+id/smulti_mortgage_interest"
-              android:text="@string/mortgage_downpayment_input"
+              android:text="@string/mortgage_interest_rate_input"
               android:layout_width="0dp"
-              android:layout_weight="4"       
+              android:layout_weight="4"  
+              android:gravity="center|bottom"           
+              android:textStyle="bold"        
               android:layout_height="wrap_content">
             </TextView>
 
     </LinearLayout>
-
+ 
+    
+    
     <LinearLayout 
         android:id="@+id/summary_multi_table_loan_type"
         android:layout_width="fill_parent"       
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical">
     </LinearLayout>
     
@@ -120,7 +136,8 @@
               android:text="@string/s_mortgage_name_title"
               android:layout_width="0dp"
               android:layout_weight="4"
-              android:layout_gravity="bottom"
+              android:gravity="center|bottom"           
+              android:textStyle="bold"   
               android:layout_height="wrap_content">
             </TextView>
 
@@ -129,6 +146,8 @@
               android:text="@string/s_mortgage_last_payment_date_title"
               android:layout_width="0dp"
               android:layout_weight="4"
+              android:gravity="center|bottom"           
+              android:textStyle="bold"   
               android:layout_height="wrap_content">
             </TextView>
 
@@ -137,18 +156,19 @@
               android:text="@string/s_mortgage_term_title"
               android:layout_width="0dp"
               android:layout_weight="4"       
+              android:gravity="center|bottom"         
+              android:textStyle="bold"     
               android:layout_height="wrap_content">
             </TextView>
 
     </LinearLayout>
-
     <LinearLayout 
         android:id="@+id/summary_multi_table_loan_paymentsnum"
         android:layout_width="fill_parent"       
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="26dp"
         android:orientation="vertical">
     </LinearLayout>
     </LinearLayout>

@@ -24,8 +24,7 @@ public class FrgSummaryOne extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-    	MortgageCMP appState = MortgageCMP.getInstance(); 	    	    	   
-    	Mortgage mortg = appState.getCurrentMortgage();
+    	Mortgage mortg = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
     	NumberFormatter formatter = new NumberFormatter();
     	
 		if (mortg != null) {
@@ -48,8 +47,8 @@ public class FrgSummaryOne extends SherlockFragment {
 	    	tv.setText(formatter.formatNumber(mortg.getInterestRate())+"%");
 
 	    	String[] dates = mortg.getHistory().getDates(
-	    			appState.getSimulationStartYear(), 
-	    			appState.getSimulationStartMonth()); 
+	    			MortgageCMP.getInstance().getSimulationStartYear(), 
+	    			MortgageCMP.getInstance().getSimulationStartMonth()); 
 	    	
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_last_payment_date);
 			if (mortg.getNumberOfPayments() > 0) {

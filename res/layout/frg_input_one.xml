@@ -7,16 +7,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/frg_input">
-    
+
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-<LinearLayout
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">    
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal">    
         
     <TextView
         android:text="@string/mortgage_type_input"
@@ -29,12 +30,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="@integer/form_edit_weight"
         android:layout_width="0dp" /> 
-    
+
     <TextView
-        android:text=""
+        android:text="\?"
+        android:textStyle="bold"
+        android:textColor="#ff888888"
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>    
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="showMortgageTypeMoreInfo"/>    
     
 </LinearLayout>            
         

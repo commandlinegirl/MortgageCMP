@@ -1,11 +1,9 @@
 package com.codelemma.mortgagecmp.accounting;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.Arrays;
 
-import android.util.Log;
 import android.util.SparseArray;
-
 
 public class HistoryMortgage {
 
@@ -77,9 +75,6 @@ public class HistoryMortgage {
 		try {
 		    
 		    principalPaidHistory[index] = mortgage.getPrincipalPaid();
-		    
-			Log.d("HISOTYR mortgage.getPrincipalPaid()", mortgage.getPrincipalPaid().toString());
-
 		    
 		    interestsPaidHistory[index] = mortgage.getInterestPaid();
 		    additionalCostHistory[index] = mortgage.getMonthlyTaxInsurancePMISum();
@@ -185,5 +180,25 @@ public class HistoryMortgage {
 
 	public void plot(PlotVisitor visitor) {
 		visitor.plotMortgage(this);
+	}
+	
+	private void clear(BigDecimal[] list_to_clear) {
+		Arrays.fill(list_to_clear, null);
+	}
+	
+	public void initialize() {
+		clear(monthlyPaymentHistory);
+		clear(interestsPaidHistory);
+		clear(totalInterestsHistory);
+		clear(principalPaidHistory);
+		clear(additionalCostHistory);	
+		clear(remainingAmountHistory);
+		
+		monthlyPaymentYearly.clear();
+		interestsPaidYearly.clear();
+		principalPaidYearly.clear();
+		additionalCostYearly.clear();
+		totalInterestsAtYearEnd.clear();
+		remainingAmountAtYearEnd.clear();
 	}
 }

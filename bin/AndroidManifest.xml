@@ -3,32 +3,30 @@
     package="com.codelemma.mortgagecmp"
     android:versionCode="1"
     android:versionName="1.0" >
-
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-
     <application
         android:name="com.codelemma.mortgagecmp.MortgageCMP"        
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Mortgages" >
-                
         <activity
             android:name="com.codelemma.mortgagecmp.ResultsOne"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.codelemma.mortgagecmp.ResultsMulti"
             android:label="@string/title_activity_results_multi"
-            android:parentActivityName="com.codelemma.mortgagecmp.ResultsOne">
+            android:parentActivityName="com.codelemma.mortgagecmp.ResultsOne"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.codelemma.mortgagecmp.ResultsOne" />

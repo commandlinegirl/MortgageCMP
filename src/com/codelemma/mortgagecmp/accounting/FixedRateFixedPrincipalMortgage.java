@@ -2,8 +2,6 @@ package com.codelemma.mortgagecmp.accounting;
 
 import java.math.BigDecimal;
 
-import android.util.Log;
-
 public class FixedRateFixedPrincipalMortgage extends Mortgage {
 
 	private final BigDecimal monthly_payment_constant;
@@ -52,7 +50,6 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 			this.calculateTaxInsurancePMI();
 
 			this.setCurrentMonthTotalPayment(principal.add(this.getInterestPaid()));
-			Log.d("principal.add(this.getMonthlyExtraPayment()", principal.add(this.getMonthlyExtraPayment()).toString());
 			this.setPrincipalPaid(principal.add(this.getMonthlyExtraPayment()));
 			this.setTotalPrincipalPaid(this.getTotalPrincipalPaid().add(this.getPrincipalPaid()));
 			this.setOutstandingLoan(this.getOutstandingLoan().subtract(this.getPrincipalPaid()));
@@ -105,5 +102,10 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 		return monthly_payment_constant;
 	}
 	
+    @Override
+	public String getType() {
+		return MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL;
+	}
+
 
 }

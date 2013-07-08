@@ -24,32 +24,14 @@ import android.widget.Toast;
 
 public class FrgInputMulti extends SherlockFragment {
 
-	private MortgageCMP appState;
     OnDataInputListener mCallback;
 
     private OnClickListener onClickShowDetailListener = new OnClickListener() {
     	@Override
 	    public void onClick(View v) {
     		Mortgage m = (Mortgage) v.getTag();
-        	Intent intent = new Intent(getSherlockActivity(), ResultsOne.class);
-            //intent.putExtra("mortgage_type", m.getType());                	
-            intent.putExtra("mortgage_name", m.getName());        
-            intent.putExtra("mortgage_purchase_price", m.getPurchasePrice().toString());   
-            intent.putExtra("mortgage_downpayment", m.getDownpayment().toString());   
-            intent.putExtra("mortgage_interest_rate", m.getInterestRate().toString());   
-            intent.putExtra("mortgage_term_years", String.valueOf(m.getTermYears()));   
-            intent.putExtra("mortgage_term_months", String.valueOf(m.getTermMonths()));   
-            intent.putExtra("mortgage_property_insurance", m.getYearlyPropertyInsurance().toString());   
-            intent.putExtra("mortgage_property_tax", m.getYearlyPropertyTax().toString());
-            intent.putExtra("mortgage_pmi", m.getPMI().toString());
-            intent.putExtra("mortgage_closing_fees", m.getClosingFees().toString());
-            intent.putExtra("mortgage_extra_payment", m.getExtraPayment().toString());
-            intent.putExtra("mortgage_extra_payment_frequency", m.getExtraPaymentFrequency());
-            intent.putExtra("edited_mortgage_id", m.getId());
-            intent.putExtra("edit_mortgage", true);
-
-            appState.setCurrentMortgage(m);
-    		startActivity(intent);
+            MortgageCMP.getInstance().getAccount().setCurrentMortgage(m);
+    		startActivity(new Intent(getSherlockActivity(), ResultsOne.class));
 	    }
     };
 
@@ -79,8 +61,8 @@ public class FrgInputMulti extends SherlockFragment {
             .setMessage("Do you want to delete this item?")                
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
-            	   appState.getAccount().removeMortgage(mortgage); 
-            	   appState.getAccount().clearComparisonList();
+            	   MortgageCMP.getInstance().getAccount().removeMortgage(mortgage); 
+            	   MortgageCMP.getInstance().getAccount().clearComparisonList();
             	   
             	   // remove views from currently active Summary Fragment
            		   ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
@@ -119,7 +101,6 @@ public class FrgInputMulti extends SherlockFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
     	Log.d("FrgInputMulti.onCreate()", "called");
-		appState = MortgageCMP.getInstance();
 	}
 
     public interface OnDataInputListener {
@@ -166,7 +147,7 @@ public class FrgInputMulti extends SherlockFragment {
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 	 	view_params.gravity = Gravity.CENTER;
 
-		for (Mortgage mortgage : appState.getAccount().getMortgages()) {						
+		for (Mortgage mortgage : MortgageCMP.getInstance().getAccount().getMortgages()) {						
 
 			LinearLayout subLayout = new LinearLayout(getSherlockActivity());	
 			subLayout.setId(1000+mortgage.getId()); // mortgage_id is already given to checkbox, here some other id needs to chosen

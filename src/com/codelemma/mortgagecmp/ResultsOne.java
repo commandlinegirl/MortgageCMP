@@ -7,8 +7,10 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,20 +27,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ResultsOne extends SherlockFragmentActivity
                         implements FrgInputOne.OnDataInputListener {
 
-	private static final String FIXED_RATE_VARIABLE_PRINCIPAL = "frvp";
-	
-	private MortgageCMP appState;
 	static final int NUM_ITEMS = 6;
     private HashMap<String,String> input_values = new HashMap<String,String>();
     private boolean showModifyCloneButtons = false;
     private int extraPaymentFrequency = 12; // 12 means yearly
-    private String mortgage_type = FIXED_RATE_VARIABLE_PRINCIPAL;
+    private String mortgage_type = MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
 
     MyAdapter mAdapter;
     ViewPager mPager;
@@ -47,7 +47,7 @@ public class ResultsOne extends SherlockFragmentActivity
     	@Override
 	    public void onClick(View v) {
 	        final Mortgage mortgage = (Mortgage) v.getTag(R.string.mortgage_to_modify);
-	        appState.getAccount().removeMortgage(mortgage);
+	        MortgageCMP.getInstance().getAccount().removeMortgage(mortgage);
             Toast.makeText(ResultsOne.this, mortgage.getName()+" deleted.", Toast.LENGTH_SHORT).show();
             addMortgage(null);
 	    }
@@ -67,11 +67,19 @@ public class ResultsOne extends SherlockFragmentActivity
 		
         setContentView(R.layout.frg_pager_one);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
-		appState = MortgageCMP.getInstance();
 		setupCurrentDate();
-	    if (appState.getAccount() == null) {
-	    	appState.setAccount();
+	    if (MortgageCMP.getInstance().getAccount() == null) {
+	    	MortgageCMP.getInstance().setAccount();
+	    	for (Mortgage mort : MortgageCMP.getInstance().getAccount().getMortgages()) {
+		    	recalculate(mort);
+		    	
+		    	Log.d("------", "000000");
+		    	Log.d("Mortgage name", mort.getName());
+		    	Log.d("Mortgage type", mort.getType());
+		    	Log.d("------", "000000");
+		    }
 	    }
+	    
 		mAdapter = new MyAdapter(getSupportFragmentManager());
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
@@ -82,14 +90,15 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	private void setupCurrentDate() {
 	    final Calendar c = Calendar.getInstance();	        
-		appState.setSimulationStartYear(c.get(Calendar.YEAR));		        
-		appState.setSimulationStartMonth(c.get(Calendar.MONTH));	
+	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        
+	    MortgageCMP.getInstance().setSimulationStartMonth(c.get(Calendar.MONTH));	
 	}
 
     @Override
     public void onPause() {
     	super.onPause();
     	Log.d("ResultsOne.onPause", "called");
+        MortgageCMP.getInstance().saveAccount();
     }
 
     @Override
@@ -163,8 +172,7 @@ public class ResultsOne extends SherlockFragmentActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 	    case R.id.menu_list:
-	    	Intent intent2 = new Intent(this, ResultsMulti.class);
-	    	startActivity(intent2);
+	    	startActivity(new Intent(this, ResultsMulti.class));
 		    return true;
 	    case R.id.menu_reset:
 	    	resetForm();
@@ -205,18 +213,15 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	@Override
 	public void addMortgageToAccount(HashMap<String,String> data) {
-
 		try {
-			Mortgage mortgage;
-			mortgage = appState.getUniversalMortgageFactory().createMortgage(data);
+			Mortgage mortgage = MortgageCMP.getInstance().getUniversalMortgageFactory().createMortgage(data);
 			recalculate(mortgage);
-			appState.getAccount().addMortgage(mortgage);
-		    appState.setCurrentMortgage(mortgage);			
+			MortgageCMP.getInstance().getAccount().addMortgage(mortgage);
+			MortgageCMP.getInstance().getAccount().setCurrentMortgage(mortgage);			
 		} catch (MortgageFactoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public void addMortgage(View view) {
@@ -224,97 +229,103 @@ public class ResultsOne extends SherlockFragmentActivity
 
 		HashMap<String,String> input = new HashMap<String,String>();
 
-	    input.put("type", mortgage_type);   
+	    String[] mortgage_type_items = {
+	    		MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL, 
+	    		MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL};
 		
+		Spinner sp = (Spinner) findViewById(R.id.mortgage_type);
+		
+	    input.put("type", mortgage_type_items[sp.getSelectedItemPosition()]);
+	    Log.d("Chosen mortgage type", mortgage_type);
+	    
 	    EditText debtName = (EditText) findViewById(R.id.mortgage_name);
 	    String debtNameData = debtName.getText().toString();
 	    if (Utils.alertIfEmpty(this, debtNameData, getResources().getString(R.string.mortgage_name_input))) {
 	    	return;
 	    }
-	    input.put("mortgage_name", debtNameData);
+	    input.put("name", debtNameData);
 
 	    EditText debtAmount = (EditText) findViewById(R.id.mortgage_purchase_price);
 	    String debtAmountData = debtAmount.getText().toString();
 	    if (Utils.alertIfEmpty(this, debtAmountData, getResources().getString(R.string.mortgage_purchase_price_input))) {
 	    	return;	    	
 	    }	
-	    input.put("mortgage_purchase_price", debtAmountData);   
+	    input.put("purchase_price", debtAmountData);   
         
 	    EditText downpayment = (EditText) findViewById(R.id.mortgage_downpayment);
 	    String downpaymentData = downpayment.getText().toString();
 	    if (downpaymentData.trim().length() == 0) { // fill default if not provided
 	    	downpaymentData = "0";
 	    }	
-	    input.put("mortgage_downpayment", downpaymentData);   
+	    input.put("downpayment", downpaymentData);   
         
 	    EditText interestRate = (EditText) findViewById(R.id.mortgage_interest_rate);
 	    String interestRateData = interestRate.getText().toString();
 	    if (Utils.alertIfEmpty(this, interestRateData, getResources().getString(R.string.mortgage_interest_rate_input))) {
 	    	return;	    	
 	    }	
-	    input.put("mortgage_interest_rate", interestRateData);   
+	    input.put("interest_rate", interestRateData);   
         
 	    EditText term_years = (EditText) findViewById(R.id.mortgage_term_years);
 	    String termYearsData = term_years.getText().toString();
 	    if (Utils.alertIfEmpty(this, termYearsData, getResources().getString(R.string.mortgage_term_input))) {
 	    	return;	    	
 	    }	
-	    input.put("mortgage_term_years", termYearsData);   
+	    input.put("term_years", termYearsData);   
 
 	    EditText term_months = (EditText) findViewById(R.id.mortgage_term_months);
 	    String termMonthsData = term_months.getText().toString();
 	    if (termMonthsData.trim().length() == 0) { // fill default if not provided
 	    	termMonthsData = "0";
 	    }	
-	    input.put("mortgage_term_months", termMonthsData);   
+	    input.put("term_months", termMonthsData);   
         
 	    EditText propertyInsurance = (EditText) findViewById(R.id.mortgage_property_insurance);
 	    String propertyInsuranceData = propertyInsurance.getText().toString();
 	    if (propertyInsuranceData.trim().length() == 0) { // fill default if not provided
 	    	propertyInsuranceData = "0";
 	    }	
-	    input.put("mortgage_property_insurance", propertyInsuranceData);   
+	    input.put("property_insurance", propertyInsuranceData);   
         
 	    EditText propertyTax = (EditText) findViewById(R.id.mortgage_property_tax);
 	    String propertyTaxData = propertyTax.getText().toString();
 	    if (propertyTaxData.trim().length() == 0) { // fill default if not provided
 	    	propertyTaxData = "0";
 	    }	
-	    input.put("mortgage_property_tax", propertyTaxData);   
+	    input.put("property_tax", propertyTaxData);   
 
 	    EditText pmi = (EditText) findViewById(R.id.mortgage_pmi);
 	    String pmiData = pmi.getText().toString();
 	    if (pmiData.trim().length() == 0) { // fill default if not provided
 	    	pmiData = "0";
 	    }		
-	    input.put("mortgage_pmi", pmiData);
+	    input.put("pmi_rate", pmiData);
         
 	    EditText closing_fees = (EditText) findViewById(R.id.mortgage_closing_fees);
 	    String closingFeesData = closing_fees.getText().toString();
 	    if (closingFeesData.trim().length() == 0) { // fill default if not provided
 	    	closingFeesData = "0";
 	    }		
-	    input.put("mortgage_closing_fees", closingFeesData);
+	    input.put("closing_fees", closingFeesData);
 	    
 	    EditText extra_payment = (EditText) findViewById(R.id.mortgage_extra_payment);
 	    String extraPaymentData = extra_payment.getText().toString();
 	    if (extraPaymentData.trim().length() == 0) { // fill default if not provided
 	    	extraPaymentData = "0";
 	    }
-	    input.put("mortgage_extra_payment", extraPaymentData);
+	    input.put("extra_payment", extraPaymentData);
 
-	    input.put("mortgage_extra_payment_frequency", String.valueOf(extraPaymentFrequency));
+	    input.put("extra_payment_frequency", String.valueOf(extraPaymentFrequency));
 	    
 	    addMortgageToAccount(input);
 	    
 	    mPager.setAdapter(mAdapter);
 	    mPager.setCurrentItem(1, true);
-	    
 	}
 
-	public void recalculate(Mortgage mortgage) {   
-        int month = appState.getSimulationStartMonth();
-        int year = appState.getSimulationStartYear();	        	        
+	public void recalculate(Mortgage mortgage) {
+        int month = MortgageCMP.getInstance().getSimulationStartMonth();
+        int year = MortgageCMP.getInstance().getSimulationStartYear();	        	        
 
     	mortgage.initialize();
 
@@ -335,6 +346,13 @@ public class ResultsOne extends SherlockFragmentActivity
 		return showModifyCloneButtons;
 	}
 
+	public void showMortgageTypeMoreInfo(View view) {
+		Dialog dialog = new Dialog(this, R.style.FullHeightDialog);			
+	    dialog.setContentView(R.layout.help_mortgage_type_info);
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.show();	
+	}
+	
 	@Override
 	public void replaceButtons(Mortgage mortgage) {
 
@@ -429,12 +447,4 @@ public class ResultsOne extends SherlockFragmentActivity
 	            break;
 	    }
 	}
-
-	@Override
-	public void setMortgageType(String type) {
-		mortgage_type = type;
-		
-	}
-
-
 }

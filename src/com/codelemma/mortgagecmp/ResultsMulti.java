@@ -73,9 +73,9 @@ public class ResultsMulti extends SherlockFragmentActivity
         	} else if (position == 2) {
         		return new FrgLoanBreakdownMulti();
         	} else if (position == 3) {
-        		return new FrgChartMultiMonthly();
+        		return new FrgChartMonthlyMulti();
         	} else if (position == 4) {
-        		return new FrgChartMultiCumulative();        		
+        		return new FrgChartCumulativeMulti();        		
         	} else {
                 return new FrgInputMulti();       		
         	}

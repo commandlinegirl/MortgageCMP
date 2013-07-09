@@ -156,7 +156,6 @@ public abstract class Mortgage {
 				.add(total_insurance)
 				.add(total_tax)
 				.add(total_pmi)
-				.add(total_extra_payment)
 				.add(closing_fees);
 	}
 	

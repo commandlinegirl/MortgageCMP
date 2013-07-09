@@ -1,15 +1,21 @@
 package com.codelemma.mortgagecmp;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 
 public class FrgSummaryOne extends SherlockFragment {
 	
@@ -27,9 +33,16 @@ public class FrgSummaryOne extends SherlockFragment {
     	Mortgage mortg = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
     	NumberFormatter formatter = new NumberFormatter();
     	
+    	Map<String, Integer> mortgage_types = new HashMap<String, Integer>();
+    	mortgage_types.put(MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL, R.string.frvp);
+    	mortgage_types.put(MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL, R.string.frfp);
+    	
 		if (mortg != null) {
 			TextView tv = (TextView) getActivity().findViewById(R.id.s_mortgage_name);
 	    	tv.setText(mortg.getName());
+
+			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_type);
+	    	tv.setText(getResources().getString(mortgage_types.get(mortg.getType())));
 
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_purchase_price);
 	    	tv.setText(formatter.formatNumber(mortg.getPurchasePrice()));
@@ -56,6 +69,19 @@ public class FrgSummaryOne extends SherlockFragment {
 			} else {
 				tv.setText("-");
 			}
+			
+			if (mortg.getExtraPayment().compareTo(BigDecimal.ZERO) > 0) {
+				tv = (TextView) getActivity().findViewById(R.id.s_mortgage_total_extra_payment);
+				tv.setText(formatter.formatNumber(mortg.getTotalExtraPayment()));
+				tv = (TextView) getActivity().findViewById(R.id.s_mortgage_term_reduction);
+		    	tv.setText(String.valueOf(mortg.getTotalTermMonths() - mortg.getNumberOfPayments())+" months");
+			} else {
+                LinearLayout d = (LinearLayout) getActivity().findViewById(R.id.s_mortgage_term_reduction_l);
+                d.setVisibility(View.GONE);
+                d = (LinearLayout) getActivity().findViewById(R.id.s_mortgage_total_extra_payment_l);
+                d.setVisibility(View.GONE);
+			}
+
 		} else {
 	    	ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_one);
 	    	ll.removeAllViews();

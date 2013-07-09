@@ -99,7 +99,8 @@ public class HistogramMaker implements HistogramVisitor {
     	mRenderer.setLabelsTextSize(Utils.px(frgActivity, 8));         	
     	mRenderer.setShowLegend(true);
     	mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
-    			    	
+    	mRenderer.setInScroll(true);
+    	
 		for (int i = 0; i < length; i += step) { //TODO: check if size == values.size()
             String date = dates[i];
             String label = (i % 5 == 0) ? date.replaceFirst(" ", "\n") : "";
@@ -149,7 +150,7 @@ public class HistogramMaker implements HistogramVisitor {
 		String[] titles = new String[] {
 				frgActivity.getResources().getResourceName(R.string.principal),
 				frgActivity.getResources().getResourceName(R.string.interest),
-				frgActivity.getResources().getResourceName(R.string.extra_costs)};
+				frgActivity.getResources().getResourceName(R.string.s_mortgage_tax_fees_insurance)};
 		
 		String[] colors = {"#ffE95D22", "#FF06A2CB", "#ffBEF243" }; 
 

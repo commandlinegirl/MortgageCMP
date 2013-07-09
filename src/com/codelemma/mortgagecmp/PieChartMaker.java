@@ -45,6 +45,7 @@ public class PieChartMaker implements PieChartVisitor {
 		renderer.setPanEnabled(false);
     	renderer.setZoomEnabled(false);
     	renderer.setShowLegend(false);
+    	renderer.setInScroll(true);
     	//renderer.setLegendTextSize(Utils.px(frgActivity, 10));
 
 		return renderer;
@@ -64,24 +65,14 @@ public class PieChartMaker implements PieChartVisitor {
 		double[] values = new double[]{
 				mortgage.getLoanAmount().setScale(2, Money.ROUNDING_MODE).doubleValue(), 
 				mortgage.getTotalInterestPaid().setScale(2, Money.ROUNDING_MODE).doubleValue(), 
-				mortgage.getTotalTaxInsurancePMIClosingFees().setScale(2, Money.ROUNDING_MODE).doubleValue(),
-		        mortgage.getTotalExtraPayment().setScale(2, Money.ROUNDING_MODE).doubleValue()};
+				mortgage.getTotalTaxInsurancePMIClosingFees().setScale(2, Money.ROUNDING_MODE).doubleValue()};
 		
 		String[] titles = new String[] {
-				"Principal",
-				"Interest",
-				"Tax, fees, ins.",
-				"Extra payments"
-		};
+				frgActivity.getResources().getString(R.string.principal),
+				frgActivity.getResources().getString(R.string.interest),
+				frgActivity.getResources().getString(R.string.s_mortgage_tax_fees_ins_title)};
 		
-		/*
-		String[] titles = new String[] {
-				frgActivity.getResources().getResourceName(R.string.principal),
-				frgActivity.getResources().getResourceName(R.string.interest),
-				frgActivity.getResources().getResourceName(R.string.extra_costs)};
-		*/
-		
-		int[] colors = {Color.parseColor("#ffBEF243"), Color.parseColor("#FF06A2CB"), Color.parseColor("#ffE95D22"), Color.parseColor("#CA278C")}; 
+		int[] colors = {Color.parseColor("#ffBEF243"), Color.parseColor("#FF06A2CB"), Color.parseColor("#ffE95D22")}; 
         drawPieChart(values, titles, colors);	
 	}
  	
@@ -92,8 +83,6 @@ public class PieChartMaker implements PieChartVisitor {
     	tv.setBackgroundColor(colors[1]);
     	tv = (TextView) frgActivity.findViewById(R.id.fees_pie_legend);
     	tv.setBackgroundColor(colors[2]);
-    	tv = (TextView) frgActivity.findViewById(R.id.extra_payment_pie_legend);
-    	tv.setBackgroundColor(colors[3]);
     }
 	
 }

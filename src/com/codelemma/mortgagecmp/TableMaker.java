@@ -73,7 +73,7 @@ public class TableMaker implements TableVisitor {
 		header.addView(tv); 
 		
 		tv = new TextView(frgActivity);
-		tv.setText("Remaining \n amount");
+		tv.setText("Outstanding \n amount");
 		tv.setTextSize(11);
 		tv.setLayoutParams(params);
 		tv.setGravity(Gravity.CENTER);

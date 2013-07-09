@@ -30,8 +30,10 @@ public class FrgInputMulti extends SherlockFragment {
     	@Override
 	    public void onClick(View v) {
     		Mortgage m = (Mortgage) v.getTag();
+        	Intent intent = new Intent(getSherlockActivity(), ResultsOne.class);
+            intent.putExtra("edit_mortgage", true);
             MortgageCMP.getInstance().getAccount().setCurrentMortgage(m);
-    		startActivity(new Intent(getSherlockActivity(), ResultsOne.class));
+    		startActivity(intent);
 	    }
     };
 
@@ -43,11 +45,9 @@ public class FrgInputMulti extends SherlockFragment {
 			if (buttonView.isChecked()) {
 				Log.d("buttonView.getId() checked", String.valueOf(buttonView.getId()));
 				mCallback.onAddItemToCompare(buttonView.getId());
-				Toast.makeText(getSherlockActivity(), "Checked: "+buttonView.getId(), Toast.LENGTH_SHORT).show();
 			} else {
 				Log.d("buttonView.getId()", String.valueOf(buttonView.getId()));
 				mCallback.onRemoveItemToCompare(buttonView.getId());
-				Toast.makeText(getSherlockActivity(), "Unhecked: "+buttonView.getId(), Toast.LENGTH_SHORT).show();
 			}
 		}
     };
@@ -67,8 +67,6 @@ public class FrgInputMulti extends SherlockFragment {
             	   // remove views from currently active Summary Fragment
            		   ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
         		   ll.removeAllViews();
-        		   
-                   Toast.makeText(getSherlockActivity(), "Mortgage deleted.", Toast.LENGTH_SHORT).show();
                    LinearLayout subLayout = (LinearLayout) getSherlockActivity().findViewById(1000+mortgage.getId());
                    subLayout.setVisibility(View.GONE);
                }

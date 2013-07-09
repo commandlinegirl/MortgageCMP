@@ -132,9 +132,9 @@ public class ResultsOne extends SherlockFragmentActivity
         	} else if (position == 2) {
         		return new FrgLoanBreakdownOne();
         	} else if (position == 3) {
-        		return new FrgChartOne();
+        		return new FrgChartCumulativeOne();
         	} else if (position == 4) {
-        		return new FrgChartTwo();
+        		return new FrgChartMonthlyOne();
         	} else if (position == 5) {
         		return new FrgTableOne();   		
         	} else {
@@ -362,21 +362,24 @@ public class ResultsOne extends SherlockFragmentActivity
 				                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
 		params.weight = 0.5f;		
 		
-        int px = Utils.px(this, 5);
+        int px = Utils.px(this, 3);
         buttons.removeAllViews();
 
         Button clone = new Button(this);
-        clone.setText("CLONE");
-        params.setMargins(px, 0, 0, 0);            
+        clone.setText("Clone");
+        params.setMargins(0, 0, px, 0);            
         clone.setLayoutParams(params);
         clone.setTextColor(Color.WHITE);
         clone.setOnClickListener(clickCloneListener);
         clone.setBackgroundResource(R.drawable.button_confirm);                      
 		buttons.addView(clone);
 
+		params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.weight = 0.5f;
 		Button modify = new Button(this);
-		modify.setText("MODIFY");
-        params.setMargins(0, 0, px, 0);
+		modify.setText("Modify");
+        params.setMargins(px, 0, 0, 0);
         modify.setLayoutParams(params);
         modify.setTextColor(Color.WHITE);
         modify.setTag(R.string.mortgage_to_modify, mortgage);

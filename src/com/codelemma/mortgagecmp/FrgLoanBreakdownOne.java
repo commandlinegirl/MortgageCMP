@@ -95,13 +95,6 @@ public class FrgLoanBreakdownOne extends SherlockFragment {
                 LinearLayout d = (LinearLayout) getActivity().findViewById(R.id.fees_closing_fees_breakdown);
                 d.setVisibility(View.GONE);
             }
-
-            tv = (TextView) getActivity().findViewById(R.id.extra_payment_breakdown_amount);
-            tv.setText(nf.formatNumber(mortgage.getTotalExtraPayment()));
-
-            tv = (TextView) getActivity().findViewById(R.id.extra_payment_breakdown_percentage);
-            tv.setText(nf.formatNumber(mortgage.getExtraPaymentFraction())+"%");
-            tv.setGravity(Gravity.RIGHT);
  
             tv = (TextView) getActivity().findViewById(R.id.total_breakdown_amount);
             tv.setText(nf.formatNumber(mortgage.getTotalPayment()));

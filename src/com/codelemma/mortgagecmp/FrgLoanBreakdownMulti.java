@@ -3,6 +3,7 @@ package com.codelemma.mortgagecmp;
 import java.util.ArrayList;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,7 +15,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.codelemma.mortgagecmp.accounting.Account;
 import com.codelemma.mortgagecmp.accounting.HistogramVisitor;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 
@@ -54,19 +54,20 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
 
 		// thin gray line
 		LinearLayout.LayoutParams lpline = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1);
-		lpline.setMargins(0, 5, 0, 5); // left, top, right, bottom
+		lpline.setMargins(0, 3, 0, 3); // left, top, right, bottom
 			
     	ArrayList<Mortgage> mortgages = MortgageCMP.getInstance().getAccount().getMortgagesToCompare();
 		int size = mortgages.size();
 
+		Typeface tf = Typeface.DEFAULT;
+
     	for (Mortgage mortgage : mortgages) {
     		LinearLayout ll = new LinearLayout(getSherlockActivity());
     		//ll.setOrientation(orientation);
-    		addTextViewToLayout(ll, mortgage.getName(), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getLoanAmount()), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalInterestPaid()), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalTaxInsurancePMIClosingFees()), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalExtraPayment()), lp);
+    		addTextViewToLayout(ll, mortgage.getName(), lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getLoanAmount()), lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalInterestPaid()), lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalTaxInsurancePMIClosingFees()), lp, tf);
     		LinearLayout lline = new LinearLayout(getSherlockActivity());		
     		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
     		lline.setLayoutParams(lpline);	    		
@@ -75,8 +76,8 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
 
     		ll = new LinearLayout(getSherlockActivity());
     		lp.gravity = Gravity.CENTER; 
-    		addTextViewToLayout(ll, mortgage.getName(), lp, Gravity.CENTER, 0, 0, 16, 0);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalPayment()), lp, Gravity.CENTER, 16, 0, 0, 0);
+    		addTextViewToLayout(ll, mortgage.getName(), lp, Gravity.CENTER, 0, 0, 16, 0, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getTotalPayment()), lp, Gravity.CENTER, 16, 0, 0, 0, tf);
     		lline = new LinearLayout(getSherlockActivity());		
     		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
     		lline.setLayoutParams(lpline);	    		
@@ -85,13 +86,13 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     	}
 
     	if (size == 2) {
+    		tf = Typeface.DEFAULT_BOLD;
 
     		LinearLayout ll = new LinearLayout(getSherlockActivity());
-    		addTextViewToLayout(ll, "Difference", lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getLoanAmount().subtract(mortgages.get(1).getLoanAmount())), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getTotalInterestPaid().subtract(mortgages.get(1).getTotalInterestPaid())), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getTotalTaxInsurancePMIClosingFees().subtract(mortgages.get(1).getTotalTaxInsurancePMIClosingFees())), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getTotalExtraPayment().subtract(mortgages.get(1).getTotalExtraPayment())), lp);
+    		addTextViewToLayout(ll, "Difference", lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getLoanAmount().subtract(mortgages.get(1).getLoanAmount())), lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getTotalInterestPaid().subtract(mortgages.get(1).getTotalInterestPaid())), lp, tf);
+    		addTextViewToLayout(ll, formatter.formatNumber(mortgages.get(0).getTotalTaxInsurancePMIClosingFees().subtract(mortgages.get(1).getTotalTaxInsurancePMIClosingFees())), lp, tf);
     		LinearLayout lline = new LinearLayout(getSherlockActivity());		
     		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
     		lline.setLayoutParams(lpline);	    		
@@ -104,11 +105,12 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     		loanbreakdown_total_multi_table.addView(lline);
 
     		LinearLayout ll2 = new LinearLayout(getSherlockActivity());
-    		addTextViewToLayout(ll2, "Difference", lp, Gravity.CENTER, 0, 0, 16, 0);
-    		addTextViewToLayout(ll2, formatter.formatNumber(mortgages.get(0).getTotalPayment().subtract(mortgages.get(1).getTotalPayment())), lp, Gravity.CENTER, 16, 0, 0, 0);
+    		addTextViewToLayout(ll2, "Difference", lp, Gravity.CENTER, 0, 0, 16, 0, tf);
+    		addTextViewToLayout(ll2, formatter.formatNumber(mortgages.get(0).getTotalPayment().subtract(mortgages.get(1).getTotalPayment())), 
+    				lp, Gravity.CENTER, 16, 0, 0, 0, tf);
     		loanbreakdown_total_multi_table.addView(ll2);
     	}
-    	
+
     	if (MortgageCMP.getInstance().getAccount().getMortgagesToCompare().size() == 0) {
     		ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_loan_breakdown_multi);
     		ll.removeAllViews();
@@ -117,11 +119,12 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
 
     private void addTextViewToLayout(LinearLayout layout,
     		String value,
-    		LinearLayout.LayoutParams params) {
+    		LinearLayout.LayoutParams params,
+    		Typeface tf) {
 		TextView tv = new TextView(getSherlockActivity());
 		tv.setLayoutParams(params);
-		tv.setTextSize(11);
     	tv.setText(value);
+    	tv.setTypeface(tf);
 		layout.addView(tv);
     }
 
@@ -132,12 +135,13 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     		int padding_left,
     		int padding_top,
     		int padding_right,
-    		int padding_bottom) {
+    		int padding_bottom,
+    		Typeface tf) {
 		TextView tv = new TextView(getSherlockActivity());
 		tv.setLayoutParams(params);
-		tv.setTextSize(11);
     	tv.setText(value);
     	tv.setGravity(gravity);
+    	tv.setTypeface(tf);    	
     	tv.setPadding(padding_left, padding_top, padding_right, padding_bottom);
 		layout.addView(tv);
     }

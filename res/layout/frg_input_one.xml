@@ -32,12 +32,12 @@
         android:layout_width="0dp" /> 
 
     <TextView
-        android:text="\?"
+        android:text="  \?  "
         android:textStyle="bold"
         android:textColor="#ff888888"
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:gravity="center"
         android:clickable="true"
         android:onClick="showMortgageTypeMoreInfo"/>    
@@ -69,8 +69,8 @@
         android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>     
-        
+        android:layout_height="wrap_content"/>       
+      
 </LinearLayout>        
 
 <LinearLayout
@@ -92,13 +92,13 @@
         android:layout_height="wrap_content"
         android:text="@string/mortgage_purchase_price_text"
         android:inputType="numberDecimal" />
-
+        
     <TextView
         android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>     
-        
+        android:layout_height="wrap_content"/>       
+    
     </LinearLayout>        
 
 <LinearLayout
@@ -125,8 +125,8 @@
         android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>     
-        
+        android:layout_height="wrap_content"/>       
+    
     </LinearLayout>        
 
 <LinearLayout
@@ -248,7 +248,8 @@
         android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>             
+        android:layout_height="wrap_content"/>       
+    
 </LinearLayout>   
   
   
@@ -271,12 +272,13 @@
         android:layout_height="wrap_content"
         android:text="@string/mortgage_property_tax_text"
         android:inputType="numberDecimal" />
-
+    
     <TextView
         android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>             
+        android:layout_height="wrap_content"/>       
+    
 </LinearLayout> 
 <LinearLayout
     android:layout_width="match_parent"
@@ -326,10 +328,11 @@
         android:inputType="numberDecimal" />
 
     <TextView
-        android:text=""
+        android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>       
+    
 </LinearLayout> 
 
    </LinearLayout>
@@ -383,10 +386,11 @@
         android:inputType="numberDecimal" />
 
     <TextView
-        android:text=""
+        android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"/>      
+        android:layout_height="wrap_content"/>       
+    
     
 </LinearLayout>
 
@@ -427,9 +431,7 @@
  
     </RadioGroup>         
    
-</LinearLayout>
-
- 
+   </LinearLayout>
 
    </LinearLayout>
 

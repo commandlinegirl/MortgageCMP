@@ -30,7 +30,6 @@ public class HistogramMultiMaker implements HistogramVisitor {
 	}
 
 	public void histogram(
-			double[] total_extras,
 			double[] total_fees,
 			double[] total_interests,
 			double[] total_principals,
@@ -40,23 +39,19 @@ public class HistogramMultiMaker implements HistogramVisitor {
       
         // Build renderer with three series renderers
         XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, maxValue);
-        SimpleSeriesRenderer rendererExtra = getSeriesRenderer(colors[3]);        
         SimpleSeriesRenderer rendererFees = getSeriesRenderer(colors[2]);
         SimpleSeriesRenderer rendererInterest = getSeriesRenderer(colors[1]);
         SimpleSeriesRenderer rendererPrincipal = getSeriesRenderer(colors[0]);        
 
-        mRenderer.addSeriesRenderer(rendererExtra);
         mRenderer.addSeriesRenderer(rendererFees);
         mRenderer.addSeriesRenderer(rendererInterest);
         mRenderer.addSeriesRenderer(rendererPrincipal);
 
         // Build dataset with three series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        XYSeries seriesExtra = getSeries(total_extras, "Extra payment");        
         XYSeries seriesFees = getSeries(total_fees, "Tax, fees, insurance");
         XYSeries seriesInterest = getSeries(total_interests, "Interest");
         XYSeries seriesPrincipal = getSeries(total_principals, "Principal");
-        dataset.addSeries(seriesExtra);        
         dataset.addSeries(seriesFees);
         dataset.addSeries(seriesInterest);
         dataset.addSeries(seriesPrincipal);
@@ -100,7 +95,8 @@ public class HistogramMultiMaker implements HistogramVisitor {
     	mRenderer.setLabelsTextSize(Utils.px(frgActivity, 8));         	
     	mRenderer.setShowLegend(false);
     	mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
-    	
+    	mRenderer.setInScroll(true);
+
     	int rightMargin = Utils.px(frgActivity, 12);
 	    int leftMargin = Utils.px(frgActivity, 7);
 		leftMargin += Utils.px(frgActivity, 4) * String.valueOf(maxValue).length();
@@ -143,13 +139,11 @@ public class HistogramMultiMaker implements HistogramVisitor {
 		double[] total_principals = new double[ind+1];
 		double[] total_interests = new double[ind+1];
 		double[] total_fees = new double[ind+1];
-		double[] total_extras = new double[ind+1];
 		String[] titles = new String[ind+1];
 		
 		total_principals[0] = 0;
 		total_interests[0]  = 0;
 		total_fees[0] = 0;
-		total_extras[0] = 0;
 		titles[0] = "";
 		
 		int j = 1;
@@ -158,30 +152,25 @@ public class HistogramMultiMaker implements HistogramVisitor {
 			total_principals[j] = mortgage.getLoanAmount().setScale(2, Money.ROUNDING_MODE).doubleValue();
 			total_interests[j] = mortgage.getTotalInterestPaid().setScale(2, Money.ROUNDING_MODE).doubleValue();
 			total_fees[j] = mortgage.getTotalTaxInsurancePMIClosingFees().setScale(2, Money.ROUNDING_MODE).doubleValue();
-			total_extras[j] = mortgage.getTotalExtraPayment().setScale(2, Money.ROUNDING_MODE).doubleValue();
 		    titles[j] = mortgage.getName();
 		    maxValue = mortgage.getLoanAmount().setScale(0, Money.ROUNDING_MODE).doubleValue();
 		    j++;
 		}
 		
-		double[] total_extra_adjusted = new double[ind+1];
 		double[] total_fees_adjusted = new double[ind+1];
 		double[] total_interests_adjusted = new double[ind+1];
 		
 		for (int i = 1; i <= ind; i++) {
 			total_interests_adjusted[i] =  total_principals[i] + total_interests[i];
 			total_fees_adjusted[i] = total_interests_adjusted[i] + total_fees[i];
-			total_extra_adjusted[i] =  total_fees_adjusted[i] + total_extras[i];
 		}
 		
 		int[] colors = {
 				Color.parseColor("#ffBEF243"),
 				Color.parseColor("#FF06A2CB"),				
-				Color.parseColor("#ffE95D22"), 
-				Color.parseColor("#ffCA278C")}; 
+				Color.parseColor("#ffE95D22")}; 
 
-        histogram(total_extra_adjusted,
-        		total_fees_adjusted,        		
+        histogram(total_fees_adjusted,        		
         		total_interests_adjusted,
         		total_principals,
         		titles, 
@@ -201,7 +190,5 @@ public class HistogramMultiMaker implements HistogramVisitor {
     	tv.setTextColor(colors[1]);
     	tv = (TextView) frgActivity.findViewById(R.id.fees_breakdown_name);
     	tv.setTextColor(colors[2]);
-    	tv = (TextView) frgActivity.findViewById(R.id.extra_payment_breakdown_name);
-    	tv.setTextColor(colors[3]);
     }
 }

@@ -3,7 +3,6 @@ package com.codelemma.mortgagecmp;
 import java.util.ArrayList;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ public class FrgSummaryMulti extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgSummaryMulti.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_summary_multi, container, false);
     }
 
@@ -39,7 +37,6 @@ public class FrgSummaryMulti extends SherlockFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-    	Log.d("FrgSummaryMulti.onActivityCreated()", "called");
     	MortgageCMP appState = MortgageCMP.getInstance(); 
     	NumberFormatter formatter = new NumberFormatter();
 

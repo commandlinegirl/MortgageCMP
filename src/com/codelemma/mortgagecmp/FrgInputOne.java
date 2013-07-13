@@ -4,7 +4,6 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,12 +42,6 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
                     + " must implement OnDataInputListener");
         }
     }
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Log.d("FrgInput.onCreate()", "called");
-	}
 	
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {}
@@ -62,14 +55,12 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgInput.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_input_one, container, false);
     }
     
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-	    Log.d("FrgInput.onActivityCreated()", "called");
 		
 	    Spinner spinner = (Spinner) getActivity().findViewById(R.id.mortgage_type);
 	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -133,12 +124,6 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     }
 
     @Override
-    public void onPause() {
-    	super.onPause();
-    	Log.d("FrgInput.onPause", "called");
-    }
-
-    @Override
     public void onStart() {
       super.onStart();
       EasyTracker.getInstance().activityStart(getActivity());
@@ -148,11 +133,5 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     public void onStop() {
       super.onStop();
       EasyTracker.getInstance().activityStop(getActivity());
-    }
-
-    @Override
-    public void onDestroy() {
-    	super.onDestroy();
-    	Log.d("FrgInput.onDestroy", "called");
     }
 }

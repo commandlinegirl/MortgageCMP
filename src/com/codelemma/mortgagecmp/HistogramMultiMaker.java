@@ -10,7 +10,6 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,7 +66,8 @@ public class HistogramMultiMaker implements HistogramVisitor {
         setLegendColors(colors);
 	}
 
-    protected XYMultipleSeriesRenderer buildBarRenderer(
+    @SuppressWarnings("deprecation")
+	protected XYMultipleSeriesRenderer buildBarRenderer(
     		String[] titles, 
     		int[] colors, 
     		double maxValue) {
@@ -124,7 +124,6 @@ public class HistogramMultiMaker implements HistogramVisitor {
             series.add(i, values[i]);
         }
         i = i++;
-        Log.d("i", String.valueOf(i));
         series.add(i, 0); // dummy last null value to add space
     	return series;
     }

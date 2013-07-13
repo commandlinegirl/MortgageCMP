@@ -9,7 +9,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +42,8 @@ public class FrgInputMulti extends SherlockFragment {
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
 			if (buttonView.isChecked()) {
-				Log.d("buttonView.getId() checked", String.valueOf(buttonView.getId()));
 				mCallback.onAddItemToCompare(buttonView.getId());
 			} else {
-				Log.d("buttonView.getId()", String.valueOf(buttonView.getId()));
 				mCallback.onRemoveItemToCompare(buttonView.getId());
 			}
 		}
@@ -84,22 +81,14 @@ public class FrgInputMulti extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgInputMulti.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_input_multi, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-    	Log.d("FrgInputMulti.onActivityCreated()", "called");
     	showMortgageList();
     }
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-    	Log.d("FrgInputMulti.onCreate()", "called");
-	}
 
     public interface OnDataInputListener {
         public void onAddItemToCompare(int item_id);
@@ -109,8 +98,6 @@ public class FrgInputMulti extends SherlockFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-    	Log.d("FrgInputMulti.onAttach()", "called");
-
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -123,9 +110,7 @@ public class FrgInputMulti extends SherlockFragment {
 
 	@SuppressWarnings("deprecation")
 	private void showMortgageList() {
-		Log.d("FrgInputMulti.showMortgageList()", "called");
 		LinearLayout layout = (LinearLayout) getSherlockActivity().findViewById(R.id.mortgage_listing);
-		Log.d("FrgInputMulti.showMortgageList()", " layout called");
 		layout.removeAllViews();
 		
 	 	LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

@@ -65,34 +65,6 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 		}
 	}
 
-    protected BigDecimal getMonthlyMinInterestPlusPrincipal() {
-    	return null;
-    }
-
-    protected BigDecimal getMonthlyMinInterestPlusPrincipalMonthNumber() {
-    	return null;
-    }
-    
-    protected BigDecimal getMonthlyMaxInterestPlusPrincipal() {
-    	return null;
-    }
-
-    protected BigDecimal getMonthlyMaxInterestPlusPrincipalMonthNumber() {
-    	return null;
-    }
-
-	@Override
-	protected BigDecimal getMonthlyInterestPlusPrincipal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected BigDecimal getMonthlyPrincipalPlusExtraMoney() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public BigDecimal getMonthlyTotalPaymentNonPMI() {
 		return monthly_payment_constant

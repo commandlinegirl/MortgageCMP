@@ -1,7 +1,6 @@
 package com.codelemma.mortgagecmp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,6 @@ public class FrgChartMonthlyMulti extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgChartMulti.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_chart_monthly_multi, container, false);
     }
     

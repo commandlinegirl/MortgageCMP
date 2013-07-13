@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +29,6 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgChartThree.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_loan_breakdown_multi, container, false);
     }
     

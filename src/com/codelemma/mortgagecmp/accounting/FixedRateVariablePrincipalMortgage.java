@@ -77,18 +77,6 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 	}
 
 	@Override
-	protected BigDecimal getMonthlyInterestPlusPrincipal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected BigDecimal getMonthlyPrincipalPlusExtraMoney() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public BigDecimal getMonthlyTotalPaymentNonPMI() {
 		return monthly_payment_constant
 				.add(this.getMonthlyExtraPayment())

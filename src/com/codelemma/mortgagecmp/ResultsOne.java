@@ -23,14 +23,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,9 +62,7 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Log.d("ResultsOne.onCreate()", "called");
-		
+		super.onCreate(savedInstanceState);	
         setContentView(R.layout.frg_pager_one);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		setupCurrentDate();
@@ -94,7 +90,6 @@ public class ResultsOne extends SherlockFragmentActivity
     @Override
     public void onPause() {
     	super.onPause();
-    	Log.d("ResultsOne.onPause", "called");
         MortgageCMP.getInstance().saveAccount();
     }
 
@@ -108,12 +103,6 @@ public class ResultsOne extends SherlockFragmentActivity
     public void onStop() {
       super.onStop();
       EasyTracker.getInstance().activityStop(this);
-    }
-
-    @Override
-    public void onDestroy() {
-    	super.onDestroy();
-    	Log.d("ResultsOne.onDestroy", "called");
     }
 	
     public static class MyAdapter extends FragmentPagerAdapter {
@@ -129,22 +118,16 @@ public class ResultsOne extends SherlockFragmentActivity
         @Override
         public Fragment getItem(int position) {
         	if (position == 0) {
-                Log.d("New fragment: ", "input");
                 return new FrgInputOne();
         	} else if (position == 1) {
-                Log.d("New fragment: ", "1");        		
                 return new FrgSummaryOne();
         	} else if (position == 2) {
-                Log.d("New fragment: ", "2");
         		return new FrgLoanBreakdownOne();
         	} else if (position == 3) {
-                Log.d("New fragment: ", "3");
         		return new FrgChartCumulativeOne();
         	} else if (position == 4) {
-                Log.d("New fragment: ", "4");
         		return new FrgChartMonthlyOne();
         	} else if (position == 5) {
-                Log.d("New fragment: ", "5");
         		return new FrgTableOne();   		
         	} else {
                 return new FrgInputOne();       		
@@ -199,7 +182,6 @@ public class ResultsOne extends SherlockFragmentActivity
 	    	showInfoDialog(R.layout.help_general);
 		    return true;			    
 	    case R.id.menu_about:
-	    	//startActivity(new Intent(this, About.class));
 	    	showInfoDialog(R.layout.about);
 		    return true;			    
 		}
@@ -230,7 +212,6 @@ public class ResultsOne extends SherlockFragmentActivity
 		} catch (IndexOutOfBoundsException ioobe) {
 			return;
 		}
-	    Log.d("Chosen mortgage type", mortgage_type);
 	    
 	    EditText debtName = (EditText) findViewById(R.id.mortgage_name);
 	    String debtNameData = debtName.getText().toString();

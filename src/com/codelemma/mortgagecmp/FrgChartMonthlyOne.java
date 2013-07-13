@@ -3,7 +3,6 @@ package com.codelemma.mortgagecmp;
 import java.math.BigDecimal;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +16,11 @@ import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgChartMonthlyOne extends SherlockFragment {
-		
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-	
+
     @Override
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
-    	Log.d("FrgChartTwo.onCreateView()", "called");
         return inflater.inflate(R.layout.frg_chart_monthly_one, container, false);
     }
     
@@ -109,5 +102,4 @@ public class FrgChartMonthlyOne extends SherlockFragment {
       super.onStop();
       EasyTracker.getInstance().activityStop(getActivity());
     }
-    
 }

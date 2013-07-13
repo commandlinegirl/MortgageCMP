@@ -2,8 +2,6 @@ package com.codelemma.mortgagecmp.accounting;
 
 import java.util.HashMap;
 
-import android.util.Log;
-
 import com.codelemma.mortgagecmp.accounting.Storage.StorageException;
 
 public class FixedRateVariablePrincipalMortgageStorer implements MortgageStorer<FixedRateVariablePrincipalMortgage> {
@@ -57,9 +55,6 @@ public class FixedRateVariablePrincipalMortgageStorer implements MortgageStorer<
 		mortgage_data.put("extra_payment_frequency", String.valueOf(storage.getInt(prefix, EXTRA_PAYMENT_FREQUENCY)));
 		Mortgage mortgage =  mfactory.createMortgage(mortgage_data);
 		mortgage.setPreviousId(storage.getInt(prefix, MORTGAGE_ID));
-		Log.d("TYPE IN frvp STORER", mortgage.getType());
-		Log.d("NAME IN frvp STORER", mortgage.getName());
-		Log.d("PREV ID IN frvp STORER", String.valueOf(mortgage.getPreviousId()));
 		return mortgage;
 	}
 	
@@ -82,13 +77,7 @@ public class FixedRateVariablePrincipalMortgageStorer implements MortgageStorer<
 		storage.putBigDecimal(prefix, PMI_RATE, mortgage.getPMI());
 		storage.putBigDecimal(prefix, CLOSING_FEES, mortgage.getClosingFees());
 		storage.putBigDecimal(prefix, EXTRA_PAYMENT, mortgage.getExtraPayment());
-		storage.putInt(prefix, EXTRA_PAYMENT_FREQUENCY, mortgage.getExtraPaymentFrequency());	
-		
-		Log.d("Saving TYPE IN frvp STORER", mortgage.getType());
-		Log.d("Saving NAME IN frvp STORER", mortgage.getName());
-		Log.d("Saving PREV ID IN frvp STORER", String.valueOf(mortgage.getPreviousId()));
-
-		
+		storage.putInt(prefix, EXTRA_PAYMENT_FREQUENCY, mortgage.getExtraPaymentFrequency());		
 	}
 
 	/**

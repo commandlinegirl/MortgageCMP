@@ -3,8 +3,6 @@ package com.codelemma.mortgagecmp.accounting;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.codelemma.mortgagecmp.MortgageCMP;
-
 public class Account {
 
     private ArrayList<Mortgage> mortgages = new ArrayList<Mortgage>();

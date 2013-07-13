@@ -2,8 +2,6 @@ package com.codelemma.mortgagecmp.accounting;
 
 import java.util.HashMap;
 
-import android.util.Log;
-
 import com.codelemma.mortgagecmp.accounting.Storage.StorageException;
 
 public class FixedRateFixedPrincipalMortgageStorer implements MortgageStorer<FixedRateFixedPrincipalMortgage> {
@@ -57,9 +55,6 @@ public class FixedRateFixedPrincipalMortgageStorer implements MortgageStorer<Fix
 		mortgage_data.put("extra_payment_frequency", String.valueOf(storage.getInt(prefix, EXTRA_PAYMENT_FREQUENCY)));
 		Mortgage mortgage =  mfactory.createMortgage(mortgage_data);
 		mortgage.setPreviousId(storage.getInt(prefix, MORTGAGE_ID));
-		Log.d("TYPE IN frfp STORER", mortgage.getType());
-		Log.d("NAME IN frfp STORER", mortgage.getName());
-		Log.d("PREV ID IN frfp STORER", String.valueOf(mortgage.getPreviousId()));
 		return mortgage;
 	}
 

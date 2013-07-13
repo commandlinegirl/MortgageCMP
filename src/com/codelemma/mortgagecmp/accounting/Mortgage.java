@@ -95,8 +95,6 @@ public abstract class Mortgage {
 	protected abstract void advance(int year, int month);
 	protected abstract BigDecimal calculateMonthlyPaymentConstant();
 	public abstract BigDecimal getMonthlyPaymentConstant();
-	protected abstract BigDecimal getMonthlyInterestPlusPrincipal();
-	protected abstract BigDecimal getMonthlyPrincipalPlusExtraMoney();
 	public abstract BigDecimal getMonthlyTotalPaymentNonPMI(); // principal+interest+extra+insurance+tax
 	public abstract String getType();
 	

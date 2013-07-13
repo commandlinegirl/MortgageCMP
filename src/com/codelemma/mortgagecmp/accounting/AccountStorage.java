@@ -3,8 +3,6 @@ package com.codelemma.mortgagecmp.accounting;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.util.Log;
-
 import com.codelemma.mortgagecmp.accounting.Storage.OpenState;
 import com.codelemma.mortgagecmp.accounting.Storage.StorageException;
 
@@ -101,7 +99,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
 		try {
 			idsAsString = storage.getString("", MORTGAGES_ID_LIST);
 		} catch (StorageException e) {
-			//e.printStackTrace();
 			return new int[]{};
 		}
     	if (idsAsString.equals("")) {
@@ -136,7 +133,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
 			int previous_current_mortgage_id = storage.getInt("", CURRENT_MORTGAGE);
 			for (Mortgage m : account.getMortgages()) {
 	    		if (m.getPreviousId() == previous_current_mortgage_id) {
-	        	    Log.d("Previous current mortgage id was: ", String.valueOf(previous_current_mortgage_id));
 	    			account.setCurrentMortgage(m);
 	    		}
 	    	}	
@@ -149,7 +145,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     private void writeAccountData(Account account) throws StorageException {
     	if (account.getCurrentMortgage() != null) { 
     	    storage.putInt("", CURRENT_MORTGAGE, account.getCurrentMortgage().getId());
-    	    Log.d("Current mortgage id was: ", String.valueOf(account.getCurrentMortgage().getId()));
     	}
     }
 
@@ -170,8 +165,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     private Mortgage readMortgage(int id) throws StorageException {
     	String prefix = Integer.toString(id);
     	String tag = storage.getString(prefix, MORTGAGE_CLASS_TAG);
-    	Log.d("prefix", prefix);
-    	Log.d("tag", tag);
     	MortgageStorer<? extends Mortgage> storer = storerByTag.get(tag);
     	return storer.load(id);
     }

@@ -179,9 +179,9 @@ public class Plotter implements PlotVisitor {
 	public void plotMortgage(HistoryMortgage historyMortgage) {         		        
 		ArrayList<BigDecimal[]> value_lists = new ArrayList<BigDecimal[]>();
 		ArrayList<String> titles = new ArrayList<String>();
-		titles.add("Total Interest");
+		titles.add(frgActivity.getResources().getString(R.string.total_interest));
 		value_lists.add(historyMortgage.getTotalInterestsHistory());
-		titles.add("Outstanding loan");
+		titles.add(frgActivity.getResources().getString(R.string.outstanding_loan));
 		value_lists.add(historyMortgage.getRemainingAmountHistory());
 		plot(value_lists, 
 				titles,

@@ -46,7 +46,7 @@ public class HistogramMaker implements HistogramVisitor {
         int step = Math.max(1, principalHistory.length / numOfLabels);
         
         // Build renderer with three series renderers
-        XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, principalHistory.length, maxValue, step);
+        XYMultipleSeriesRenderer mRenderer = buildBarRenderer(colors, principalHistory.length, maxValue, step);
         SimpleSeriesRenderer rendererExtraCost = getSeriesRenderer(colors[0]);
         SimpleSeriesRenderer rendererPrincipal = getSeriesRenderer(colors[1]);
         SimpleSeriesRenderer rendererInterest = getSeriesRenderer(colors[2]);
@@ -56,9 +56,9 @@ public class HistogramMaker implements HistogramVisitor {
         
         // Build dataset with three series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        XYSeries seriesExtraCost = getSeries(extraCostHistory, "Tax, fees, insurance", step);
-        XYSeries seriesInterest = getSeries(interestHistory, "Interest", step);
-        XYSeries seriesPrincipal = getSeries(principalHistory, "Principal", step);
+        XYSeries seriesExtraCost = getSeries(extraCostHistory, titles[2], step);
+        XYSeries seriesInterest = getSeries(interestHistory, titles[1], step);
+        XYSeries seriesPrincipal = getSeries(principalHistory, titles[0], step);
         dataset.addSeries(seriesExtraCost);
         dataset.addSeries(seriesInterest);
         dataset.addSeries(seriesPrincipal);
@@ -73,7 +73,6 @@ public class HistogramMaker implements HistogramVisitor {
 	}
 
     protected XYMultipleSeriesRenderer buildBarRenderer(
-    		String[] titles, 
     		String[] colors, 
     		int length,
     		double maxValue,
@@ -137,8 +136,6 @@ public class HistogramMaker implements HistogramVisitor {
 		BigDecimal[] principalHistory = history.getPrincipalPaidHistory();
 		BigDecimal[] interestHistory = history.getInterestsPaidHistory();
 		BigDecimal[] extraCostHistory = history.getAdditionalCostHistory();
-
-	
 		
 		BigDecimal[] interestHistoryAdjusted = new BigDecimal[interestHistory.length];
 		BigDecimal[] extraCostHistoryAdjusted = new BigDecimal[extraCostHistory.length];
@@ -150,13 +147,12 @@ public class HistogramMaker implements HistogramVisitor {
 		}
 
 		String[] titles = new String[] {
-				frgActivity.getResources().getResourceName(R.string.principal),
-				frgActivity.getResources().getResourceName(R.string.interest),
-				frgActivity.getResources().getResourceName(R.string.s_mortgage_tax_fees_insurance)};
+				frgActivity.getResources().getString(R.string.principal),
+				frgActivity.getResources().getString(R.string.interest),
+				frgActivity.getResources().getString(R.string.s_mortgage_tax_fees_insurance)};
 		
 		String[] colors = {"#ffE95D22", "#FF06A2CB", "#ffBEF243" }; 
 
-		
 		histogram(principalHistory,
 				interestHistoryAdjusted,
 				extraCostHistoryAdjusted,
@@ -167,7 +163,5 @@ public class HistogramMaker implements HistogramVisitor {
 
 	@Override
 	public void plotLoanBreakdownComparison(Account account) {
-		
-		
 	}
 }

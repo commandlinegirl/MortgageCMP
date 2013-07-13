@@ -16,7 +16,6 @@ import com.codelemma.mortgagecmp.accounting.UniversalMortgageFactory;
 
 import android.app.Application;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class MortgageCMP extends Application {
 
@@ -46,7 +45,6 @@ public class MortgageCMP extends Application {
 		AccountStorage accountStorage = new AccountStorage(storage);
 		accountSaver = accountStorage;
         accountFactory = new SafeAccountFactory(accountStorage);
-        Log.d("---------- NEW APPLICATION ---------", "======");
     }
 
     public static MortgageCMP getInstance() {
@@ -74,7 +72,6 @@ public class MortgageCMP extends Application {
 	}
 	
 	public void setAccount() {
-		//account = new Account();
 		account = accountFactory.loadAccount();
 	}
 

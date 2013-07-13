@@ -1,7 +1,5 @@
 package com.codelemma.mortgagecmp.accounting;
 
-import android.util.Log;
-
 /**
  * Delegate(dp) Account factory(dp) which wraps another Account factory and provides simple
  * error handling mechanism by implementing a fall-back to safe default factory in
@@ -19,7 +17,6 @@ public class SafeAccountFactory implements AccountFactory {
     
     @Override
     public Account loadAccount() {
-    	Log.d("SafeAccountFactory.loadAccount()", "called");
     	try {
     		return primaryFactory.loadAccount();
     	} catch (AccountFactoryException ace) {

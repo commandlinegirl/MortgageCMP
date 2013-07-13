@@ -18,7 +18,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -269,7 +268,6 @@ public class ResultsMulti extends SherlockFragmentActivity
 			}
 		}
 		items_to_compare.add(item_id);
-		Log.d("items_to_compare (ADD)", String.valueOf(items_to_compare));
 	}
 
 	@Override
@@ -286,7 +284,6 @@ public class ResultsMulti extends SherlockFragmentActivity
     @Override
     public void onPause() {
     	super.onPause();
-    	Log.d("ResultsMulti.onPause", "called");
         MortgageCMP.getInstance().saveAccount();
     }
     

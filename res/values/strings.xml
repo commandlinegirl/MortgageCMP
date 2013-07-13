@@ -50,6 +50,8 @@
     <string name="s_mortgage_total_pmi_title">Total pmi</string>
     <string name="s_mortgage_total_property_tax_title">Total property tax</string>
     <string name="s_mortgage_monthly_payment_title">Principal + interest</string>
+    <string name="total_interest">Total interest</string>    
+    <string name="outstanding_loan">Outstanding loan</string>
     <string name="s_mortgage_tax_plus_insurance_title">Tax + insurance</string>
     <string name="s_mortgage_monthly_insurance_title">Insurance</string>
     <string name="s_mortgage_monthly_tax_title">Tax</string>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.HistogramVisitor;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgLoanBreakdownMulti extends SherlockFragment {
 
@@ -145,5 +146,17 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
     	tv.setTypeface(tf);    	
     	tv.setPadding(padding_left, padding_top, padding_right, padding_bottom);
 		layout.addView(tv);
+    }
+    
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(getActivity());
     }
 }

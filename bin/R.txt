@@ -529,7 +529,7 @@ int layout sherlock_spinner_item 0x7f03002d
 int menu results_multi 0x7f0c0000
 int menu results_one 0x7f0c0001
 int string about 0x7f090061
-int string about_description 0x7f090073
+int string about_description 0x7f09007c
 int string abs__action_bar_home_description 0x7f090000
 int string abs__action_bar_up_description 0x7f090001
 int string abs__action_menu_overflow_description 0x7f090002
@@ -554,7 +554,10 @@ int string app_name 0x7f090010
 int string calculate_mortgage 0x7f090053
 int string cancel 0x7f090062
 int string chart_title 0x7f090057
+int string clone 0x7f09007b
 int string compare 0x7f09005d
+int string delete_all 0x7f090074
+int string delete_question 0x7f090075
 int string frfp 0x7f09006d
 int string frfp_br 0x7f09006f
 int string frvp 0x7f09006c
@@ -571,9 +574,11 @@ int string menu_default 0x7f090060
 int string menu_delete_all_mortgages 0x7f090070
 int string menu_delete_selected_mortgages 0x7f090071
 int string menu_list 0x7f09005e
+int string modify 0x7f09007a
 int string monthly_payment_title 0x7f090068
 int string mortgage_closing_fees_input 0x7f090029
 int string mortgage_closing_fees_text 0x7f09002a
+int string mortgage_deleted_toast 0x7f090073
 int string mortgage_downpayment_input 0x7f090018
 int string mortgage_downpayment_text 0x7f090019
 int string mortgage_extra_payment_input 0x7f09002b
@@ -601,11 +606,14 @@ int string mortgage_term_years_text 0x7f09001d
 int string mortgage_to_clone 0x7f090066
 int string mortgage_to_modify 0x7f090065
 int string mortgage_type_input 0x7f090012
+int string nothing_to_compare 0x7f090076
 int string percent 0x7f090055
 int string principal 0x7f090063
 int string principal_payment_title 0x7f090069
 int string radio_monthly 0x7f09002e
 int string radio_yearly 0x7f09002d
+int string remove_all 0x7f090078
+int string remove_selected 0x7f090079
 int string reset 0x7f090054
 int string s_mortgage_amount_title 0x7f090034
 int string s_mortgage_amount_title_br 0x7f090035
@@ -642,6 +650,7 @@ int string title_activity_about 0x7f090072
 int string title_activity_mortgage_list 0x7f09005a
 int string title_activity_results_multi 0x7f090059
 int string title_activity_results_one 0x7f09005b
+int string too_many_mortgages 0x7f090077
 int string total 0x7f09004f
 int string total_payment_breakdown 0x7f09006b
 int style ActionBar_Solid_Mortgages 0x7f0a005d

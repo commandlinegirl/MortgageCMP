@@ -57,7 +57,7 @@ public class ResultsMulti extends SherlockFragmentActivity
 	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        
 	    MortgageCMP.getInstance().setSimulationStartMonth(c.get(Calendar.MONTH));	
 	}
-	
+
     public static class MyAdapter extends FragmentPagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
@@ -121,7 +121,6 @@ public class ResultsMulti extends SherlockFragmentActivity
         }
 	}
 
-    
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.results_multi, menu);
@@ -149,11 +148,11 @@ public class ResultsMulti extends SherlockFragmentActivity
         }	
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private void removeMortgages(final String which) {
 		new AlertDialog.Builder(ResultsMulti.this)
-        .setTitle("Delete?")
-        .setMessage("Are you sure you want to delete mortgages?")                
+        .setTitle(R.string.delete_all)
+        .setMessage(R.string.delete_question)            
         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
         	   if (which.equals("all")) {
@@ -173,9 +172,7 @@ public class ResultsMulti extends SherlockFragmentActivity
 
 	private void removeSelectedMortgages() {
 		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
-		
 		for (int id : items_to_compare) {
-			Log.d("mortgage to compare (for deletion)", String.valueOf(id));
 	        MortgageCMP.getInstance().getAccount().removeMortgage(id);
 	        LinearLayout subLayout = (LinearLayout) findViewById(1000+id);
 	        subLayout.setVisibility(View.GONE);
@@ -193,11 +190,7 @@ public class ResultsMulti extends SherlockFragmentActivity
 	}
 
 	private void removeAllMortgages() {
-		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
-	    MortgageCMP.getInstance().getAccount().removeMortgages();
-	    MortgageCMP.getInstance().getAccount().clearComparisonList();
-	    MortgageCMP.getInstance().getAccount().setLongestLoanTerm(0);
-	    MortgageCMP.getInstance().getAccount().setLongestMortgage(null);
+		MortgageCMP.getInstance().getAccount().removeMortgages();
 	    
  	    // remove views from currently active Summary fragment and from InputMulti fragment
 	    ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
@@ -213,7 +206,7 @@ public class ResultsMulti extends SherlockFragmentActivity
 		int items_len = items_to_compare.size();
 		if (items_len < 1 && MortgageCMP.getInstance().getAccount().getMortgagesSize() > 0) {
 	        new AlertDialog.Builder(ResultsMulti.this)
-            .setTitle("Nothing to compare")
+            .setTitle(R.string.nothing_to_compare)
             .setMessage("Please, check mortgages to compare.")
             .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
@@ -223,7 +216,7 @@ public class ResultsMulti extends SherlockFragmentActivity
           .show();
 		} else if (items_len < 1 && MortgageCMP.getInstance().getAccount().getMortgagesSize() == 0) {
 	        new AlertDialog.Builder(ResultsMulti.this)
-            .setTitle("Nothing to compare")
+            .setTitle(R.string.nothing_to_compare)
             .setMessage("Please, add mortgages to compare.")                
             .setPositiveButton("Add mortgage", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {

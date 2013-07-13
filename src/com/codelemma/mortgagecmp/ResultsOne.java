@@ -328,14 +328,14 @@ public class ResultsOne extends SherlockFragmentActivity
 	    
 	    if (MortgageCMP.getInstance().getAccount().getMortgagesSize() >= MAX_MORTGAGE_NUMBER) {
 			new AlertDialog.Builder(this)
-            .setTitle("Too many mortgages")
+            .setTitle(R.string.too_many_mortgages)
             .setMessage("Max number of mortgages is "+MAX_MORTGAGE_NUMBER+". Please, remove some of the mortgages.")                
-            .setPositiveButton("Remove all mortgages", new DialogInterface.OnClickListener() {
+            .setPositiveButton(R.string.remove_all, new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
             	   removeAllMortgages();
                }
             })
-            .setNegativeButton("Remove selected mortgages", new DialogInterface.OnClickListener() {
+            .setNegativeButton(R.string.remove_selected, new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
               	   Intent intent = new Intent(ResultsOne.this, ResultsMulti.class);
                	   startActivity(intent);
@@ -352,15 +352,22 @@ public class ResultsOne extends SherlockFragmentActivity
 	}
 	
 	public void removeAllMortgages() {
-		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
-	    MortgageCMP.getInstance().getAccount().removeMortgages();
-	    MortgageCMP.getInstance().getAccount().clearComparisonList();
-	    MortgageCMP.getInstance().getAccount().setLongestLoanTerm(0);
-	    MortgageCMP.getInstance().getAccount().setLongestMortgage(null);
- 	    // remove views from currently active Summary fragment and from InputMulti fragment
-	    //ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
-		//ll.removeAllViews();
-     	MortgageCMP.getInstance().saveAccount();
+		new AlertDialog.Builder(ResultsOne.this)
+        .setTitle(R.string.delete_all)
+        .setMessage(R.string.delete_question)                
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+       	       MortgageCMP.getInstance().getAccount().removeMortgages();
+               MortgageCMP.getInstance().saveAccount();
+               Toast.makeText(ResultsOne.this, R.string.mortgage_deleted_toast, Toast.LENGTH_SHORT).show();
+           }
+        })
+        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   dialog.cancel();
+           }
+       })
+      .show();
 	}
 
 	public void recalculate(Mortgage mortgage) {
@@ -410,7 +417,7 @@ public class ResultsOne extends SherlockFragmentActivity
         int px = Utils.px(this, 3);
 
         Button clone = new Button(this);
-        clone.setText("Clone");
+        clone.setText(R.string.clone);
         params.setMargins(0, 0, px, 0);            
         clone.setLayoutParams(params);
         clone.setTextColor(Color.WHITE);
@@ -422,7 +429,7 @@ public class ResultsOne extends SherlockFragmentActivity
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         params.weight = 0.5f;
 		Button modify = new Button(this);
-		modify.setText("Modify");
+		modify.setText(R.string.modify);
         params.setMargins(px, 0, 0, 0);
         modify.setLayoutParams(params);
         modify.setTextColor(Color.WHITE);
@@ -442,13 +449,13 @@ public class ResultsOne extends SherlockFragmentActivity
 	    switch(view.getId()) {
 	        case R.id.radioMonthly:
 	            if (checked) {
-	                Toast.makeText(this, "monthly", Toast.LENGTH_SHORT).show();
+	                Toast.makeText(this, R.string.radio_monthly, Toast.LENGTH_SHORT).show();
 	                extraPaymentFrequency = 1;
 	            }
 	            break;
 	        case R.id.radioYearly:
 	            if (checked) {
-	            	Toast.makeText(this, "yearly", Toast.LENGTH_SHORT).show();
+	            	Toast.makeText(this, R.string.radio_yearly, Toast.LENGTH_SHORT).show();
 	                extraPaymentFrequency = 12;
 	            }
 	            break;

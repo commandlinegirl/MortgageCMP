@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgOverpayment extends SherlockFragment {
 
@@ -28,4 +29,16 @@ public class FrgOverpayment extends SherlockFragment {
 		super.onActivityCreated(savedInstanceState); 
 		
 	}
+	
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(getActivity());
+    }
 }

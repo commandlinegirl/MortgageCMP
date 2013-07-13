@@ -128,6 +128,18 @@ Assumed to be coincide with payments.  When payment and compounding frequency do
     <string name="menu_delete_all_mortgages">Delete all mortgages</string>
     <string name="menu_delete_selected_mortgages">Delete selected mortgages</string>
     <string name="title_activity_about">About</string>
+    <string name="mortgage_deleted_toast">Mortgages deleted</string>
+    <string name="delete_all">Delete all?</string>
+    <string name="delete_question">Are you sure you want to delete mortgages?</string>
+    <string name="nothing_to_compare">Nothing to compare</string>
+    <string name="too_many_mortgages">Too many mortgages</string>
+    <string name="remove_all">Remove all</string>
+    <string name="remove_selected">Remove selected</string>
+    
+    
+    <string name="modify">Modify</string>
+    <string name="clone">Clone</string>
+    
     <string name="about_description"><b>MortgageCC</b> is a calculator that let\'s you store different mortgage options and compare them.
         \n\n<b>Disclaimer</b>\nMortgageCC serves informative functions only and may not be used as a replacement of legal advice. Although every precaution
         has been taken in preparation of the app, the author assumes no responsibility for errors or omissions and the app is provided without any guarantees,

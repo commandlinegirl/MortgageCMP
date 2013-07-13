@@ -1226,7 +1226,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int about=0x7f090061;
-        public static final int about_description=0x7f090073;
+        public static final int about_description=0x7f09007c;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abs__action_bar_home_description=0x7f090000;
@@ -1283,7 +1283,10 @@ containing a value of this type.
         public static final int calculate_mortgage=0x7f090053;
         public static final int cancel=0x7f090062;
         public static final int chart_title=0x7f090057;
+        public static final int clone=0x7f09007b;
         public static final int compare=0x7f09005d;
+        public static final int delete_all=0x7f090074;
+        public static final int delete_question=0x7f090075;
         public static final int frfp=0x7f09006d;
         public static final int frfp_br=0x7f09006f;
         public static final int frvp=0x7f09006c;
@@ -1304,9 +1307,11 @@ containing a value of this type.
         public static final int menu_delete_all_mortgages=0x7f090070;
         public static final int menu_delete_selected_mortgages=0x7f090071;
         public static final int menu_list=0x7f09005e;
+        public static final int modify=0x7f09007a;
         public static final int monthly_payment_title=0x7f090068;
         public static final int mortgage_closing_fees_input=0x7f090029;
         public static final int mortgage_closing_fees_text=0x7f09002a;
+        public static final int mortgage_deleted_toast=0x7f090073;
         public static final int mortgage_downpayment_input=0x7f090018;
         public static final int mortgage_downpayment_text=0x7f090019;
         public static final int mortgage_extra_payment_input=0x7f09002b;
@@ -1336,11 +1341,14 @@ containing a value of this type.
         /**  Input form 
          */
         public static final int mortgage_type_input=0x7f090012;
+        public static final int nothing_to_compare=0x7f090076;
         public static final int percent=0x7f090055;
         public static final int principal=0x7f090063;
         public static final int principal_payment_title=0x7f090069;
         public static final int radio_monthly=0x7f09002e;
         public static final int radio_yearly=0x7f09002d;
+        public static final int remove_all=0x7f090078;
+        public static final int remove_selected=0x7f090079;
         public static final int reset=0x7f090054;
         public static final int s_mortgage_amount_title=0x7f090034;
         public static final int s_mortgage_amount_title_br=0x7f090035;
@@ -1379,6 +1387,7 @@ containing a value of this type.
         public static final int title_activity_mortgage_list=0x7f09005a;
         public static final int title_activity_results_multi=0x7f090059;
         public static final int title_activity_results_one=0x7f09005b;
+        public static final int too_many_mortgages=0x7f090077;
         public static final int total=0x7f09004f;
         public static final int total_payment_breakdown=0x7f09006b;
     }

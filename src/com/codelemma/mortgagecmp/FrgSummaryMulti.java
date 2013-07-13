@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgSummaryMulti extends SherlockFragment {
 	
@@ -77,5 +78,17 @@ public class FrgSummaryMulti extends SherlockFragment {
     		ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
     		ll.removeAllViews();
     	}
+    }
+    
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(getActivity());
     }
 }

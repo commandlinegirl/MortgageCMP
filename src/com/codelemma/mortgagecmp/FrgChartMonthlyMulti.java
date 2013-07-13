@@ -11,6 +11,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.PlotVisitor;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgChartMonthlyMulti extends SherlockFragment {
 		
@@ -49,5 +50,17 @@ public class FrgChartMonthlyMulti extends SherlockFragment {
     		LinearLayout ll = (LinearLayout) getActivity().findViewById(R.id.frg_chart_multi_monthly);
     		ll.removeAllViews();
     	}
+    }
+    
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(getActivity());
     }
 }

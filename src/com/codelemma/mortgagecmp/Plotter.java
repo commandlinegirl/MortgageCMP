@@ -138,17 +138,21 @@ public class Plotter implements PlotVisitor {
         mRenderer.setPointSize(Utils.px(frgActivity, 2));     
     	mRenderer.setLabelsTextSize(Utils.px(frgActivity, 8));
         mRenderer.setShowLegend(true);
-        //mRenderer.setLegendHeight(Utils.px(frgActivity, 48));
         mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
         mRenderer.setInScroll(true);
 	}
 	
 	private TimeSeries getSeries(BigDecimal[] values, int item_count, String name) {
 	    TimeSeries series = new TimeSeries(name);	    
-	    	    
+        int len = values.length;
 	    try {
-	        for(int i = 0; i < item_count; i++) {	        	
+	        for(int i = 0; i < len; i++) {
 	    	    series.add(i, values[i].setScale(0, Money.ROUNDING_MODE).doubleValue());
+	        }
+	        // if one of this mortgage is shorter than other mortgages to compare,
+	        // the reminder should be filled with zeros
+	        for(int i = len; i < item_count; i++) {
+	            series.add(i, 0);
 	        }
 	    } catch (IndexOutOfBoundsException e) {
 	        e.printStackTrace();
@@ -179,10 +183,9 @@ public class Plotter implements PlotVisitor {
 		value_lists.add(historyMortgage.getTotalInterestsHistory());
 		titles.add("Outstanding loan");
 		value_lists.add(historyMortgage.getRemainingAmountHistory());
-		int size = historyMortgage.getSimLength();
 		plot(value_lists, 
 				titles,
-        		size, 
+				historyMortgage.getSimLength(), 
         		(LinearLayout) frgActivity.findViewById(R.id.pred_chart)); 	
 	}	
 

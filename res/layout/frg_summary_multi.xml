@@ -31,7 +31,8 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content"        
         android:layout_width="fill_parent"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:textStyle="bold">
       <TextView
         android:text="@string/s_mortgage_name_title"
         android:layout_weight="@integer/summary_multi_left_weight"        

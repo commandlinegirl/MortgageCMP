@@ -9,6 +9,7 @@ public class Account {
     private ArrayList<Mortgage> comparisonList = new ArrayList<Mortgage>();
     private int longestLoanTerm = 0;
     private Mortgage currentMortgage;
+    private Mortgage longestTermMortgage;
 
     public void addMortgage(Mortgage mortgage) {
     	mortgages.add(mortgage);
@@ -44,10 +45,6 @@ public class Account {
     	return mortgages.size();
     }
     
-    public void setMortgagesToCompare(int[] ids) {
-
-    }
-    
 	public void addToComparisonList(Mortgage mortgage) {
 		comparisonList.add(mortgage);
 	}
@@ -69,24 +66,22 @@ public class Account {
 	}
 	
 	public Mortgage getLongestMortgage() {
-		/* Return mortgage from comparisonList with longest loan term */
-		int currentTermLen = 0;
-		Mortgage currentLongestMortgage = null;
-		for (Mortgage m : comparisonList) {
-			int term = m.getTotalTermMonths();
-			if (m.getTotalTermMonths() >= currentTermLen) {
-				currentLongestMortgage = m;
-				currentTermLen = term; 
-			}
-		}
-		longestLoanTerm = currentTermLen;
-		return currentLongestMortgage;
+        return longestTermMortgage;
 	}
 	
 	public int getLongestLoanTerm() {
 		return longestLoanTerm;
 	}
     
+	
+	public void setLongestMortgage(Mortgage mortgage) {
+        longestTermMortgage = mortgage;
+	}
+	
+	public void setLongestLoanTerm(int term) {
+		longestLoanTerm = term;
+	}
+	
     public boolean mortgageExists(Mortgage mortgage) {
     	for (Mortgage m : mortgages) {
     		if (m == mortgage) {

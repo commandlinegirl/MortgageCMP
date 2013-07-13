@@ -158,10 +158,8 @@ public class ResultsMulti extends SherlockFragmentActivity
            public void onClick(DialogInterface dialog, int id) {
         	   if (which.equals("all")) {
         		   removeAllMortgages();
-        		   Log.d("removeAllMortgages", "called");
         	   } else if (which.equals("selected")) {
         		   removeSelectedMortgages();
-        		   Log.d("removeSelectedMortgages", "called");
         	   }
            }
         })
@@ -183,6 +181,8 @@ public class ResultsMulti extends SherlockFragmentActivity
 	        subLayout.setVisibility(View.GONE);
 		}
 	    MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    MortgageCMP.getInstance().getAccount().setLongestLoanTerm(0);
+	    MortgageCMP.getInstance().getAccount().setLongestMortgage(null);
 	    items_to_compare.clear();
  	    // remove views from currently active Summary fragment
 	    ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
@@ -196,6 +196,8 @@ public class ResultsMulti extends SherlockFragmentActivity
 		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
 	    MortgageCMP.getInstance().getAccount().removeMortgages();
 	    MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    MortgageCMP.getInstance().getAccount().setLongestLoanTerm(0);
+	    MortgageCMP.getInstance().getAccount().setLongestMortgage(null);
 	    
  	    // remove views from currently active Summary fragment and from InputMulti fragment
 	    ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
@@ -249,10 +251,16 @@ public class ResultsMulti extends SherlockFragmentActivity
 	    } else {
 	    	// create a list of mortgages to compare in Account
 	    	MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    	int longestTerm = 0;
 			for (int id : items_to_compare) {
 				Mortgage mortgage = MortgageCMP.getInstance().getAccount().getMortgageById(id);
 				if (mortgage != null) {
 					MortgageCMP.getInstance().getAccount().addToComparisonList(mortgage);
+					if (mortgage.getTotalTermMonths() > longestTerm) {
+						longestTerm = mortgage.getTotalTermMonths();
+						MortgageCMP.getInstance().getAccount().setLongestLoanTerm(mortgage.getTotalTermMonths());
+						MortgageCMP.getInstance().getAccount().setLongestMortgage(mortgage);
+					}
 				}
 			}
 		    mPager.setAdapter(mAdapter); //

@@ -1,8 +1,6 @@
 package com.codelemma.mortgagecmp;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +18,12 @@ import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 public class FrgSummaryOne extends SherlockFragment {
 	
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);    	
+		Log.d("FrgInput.onCreate()", "called");
+    }
+    
+    @Override
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,17 +36,18 @@ public class FrgSummaryOne extends SherlockFragment {
     	super.onActivityCreated(savedInstanceState);
     	Mortgage mortg = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
     	NumberFormatter formatter = new NumberFormatter();
-    	
-    	Map<String, Integer> mortgage_types = new HashMap<String, Integer>();
-    	mortgage_types.put(MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL, R.string.frvp);
-    	mortgage_types.put(MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL, R.string.frfp);
-    	
+    	    	
 		if (mortg != null) {
 			TextView tv = (TextView) getActivity().findViewById(R.id.s_mortgage_name);
 	    	tv.setText(mortg.getName());
 
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_type);
-	    	tv.setText(getResources().getString(mortgage_types.get(mortg.getType())));
+			int type_r_id = MortgageNameConstants.getTypeInfo(mortg.getType());
+    		if (getResources().getString(type_r_id) != null) {
+    		    tv.setText(getResources().getString(type_r_id));
+    		} else {
+    			tv.setText("-");
+    		}
 
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_purchase_price);
 	    	tv.setText(formatter.formatNumber(mortg.getPurchasePrice()));
@@ -87,4 +92,6 @@ public class FrgSummaryOne extends SherlockFragment {
 	    	ll.removeAllViews();
 		}
     }
+
+    
 }

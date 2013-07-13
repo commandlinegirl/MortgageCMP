@@ -18,8 +18,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
 	private static final String CURRENT_MORTGAGE = "cm";
 	private static final String MORTGAGES_ID_LIST = "mil";
 	private static final String MORTGAGE_CLASS_TAG = "mct";	
-	private static final String SIMULATION_START_YEAR = "ssy";
-	private static final String SIMULATION_START_MONTH = "ssm";
 	
 	private final Storage storage;
 	private final Map<String, MortgageStorer<?>> storerByTag;
@@ -98,10 +96,19 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     	}
     }
 
-    private int[] readIds() throws StorageException {
-    	String idsAsString = storage.getString("", MORTGAGES_ID_LIST);
+    private int[] readIds() throws StorageException  {
+    	String idsAsString = "";
+		try {
+			idsAsString = storage.getString("", MORTGAGES_ID_LIST);
+		} catch (StorageException e) {
+			//e.printStackTrace();
+			return new int[]{};
+		}
+    	if (idsAsString.equals("")) {
+    		return new int[]{};
+    	}
     	String[] idsAsStrings = idsAsString.split(",");
-    	int[] ids = new int[idsAsStrings.length];
+    	int[] ids = new int[idsAsStrings.length];   	    	
     	try {
     		for (int i = 0; i < ids.length; i++) {
     			ids[i] = Integer.parseInt(idsAsStrings[i]);
@@ -109,10 +116,6 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     	} catch (NumberFormatException nfe) {
     		throw new StorageException("Could not parse ID", nfe);
     	}
-    	for (int id : ids) {
-    	    Log.d("Mortgage id", "."+id);
-    	}
-    	
     	return ids;
     }
 
@@ -128,14 +131,19 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     	storage.putString("", MORTGAGES_ID_LIST, idsBuilder.toString());
     }
 
-    private void readAccountData(Account account) throws StorageException {
-    	int previous_current_mortgage_id = storage.getInt("", CURRENT_MORTGAGE);
-    	for (Mortgage m : account.getMortgages()) {
-    		if (m.getPreviousId() == previous_current_mortgage_id) {
-        	    Log.d("Previous current mortgage id was: ", String.valueOf(previous_current_mortgage_id));
-    			account.setCurrentMortgage(m);
-    		}
-    	}
+    private void readAccountData(Account account) {
+		try {
+			int previous_current_mortgage_id = storage.getInt("", CURRENT_MORTGAGE);
+			for (Mortgage m : account.getMortgages()) {
+	    		if (m.getPreviousId() == previous_current_mortgage_id) {
+	        	    Log.d("Previous current mortgage id was: ", String.valueOf(previous_current_mortgage_id));
+	    			account.setCurrentMortgage(m);
+	    		}
+	    	}	
+		} catch (StorageException e) {
+			//e.printStackTrace(); //TODO: good solution???
+			return;
+		}
     }
 
     private void writeAccountData(Account account) throws StorageException {

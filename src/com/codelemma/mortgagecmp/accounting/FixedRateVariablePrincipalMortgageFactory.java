@@ -1,12 +1,12 @@
 package com.codelemma.mortgagecmp.accounting;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.Map;
 
 public class FixedRateVariablePrincipalMortgageFactory implements MortgageFactory {
 
 	@Override
-	public Mortgage createMortgage(HashMap<String,String> data) {
+	public Mortgage createMortgage(Map<String,String> data) {
 	  	String name = data.get("name");
     	BigDecimal price = new BigDecimal(data.get("purchase_price"));
     	BigDecimal downpayment = new BigDecimal(data.get("downpayment"));

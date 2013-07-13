@@ -24,7 +24,6 @@ public class MortgageCMP extends Application {
     private int simStartYear = -1;  // not set yet
     private Account account;  
     private static MortgageCMP appInstance;
-	private boolean needToRecalculate = true;
     private UniversalMortgageFactory universal_mortgage_factory;
 	private SafeAccountFactory accountFactory;
 	private AccountSaver accountSaver;

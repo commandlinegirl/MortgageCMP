@@ -20,7 +20,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 public class FrgInputMulti extends SherlockFragment {
 
@@ -121,6 +120,7 @@ public class FrgInputMulti extends SherlockFragment {
         }
     }
 
+	@SuppressWarnings("deprecation")
 	private void showMortgageList() {
 		Log.d("FrgInputMulti.showMortgageList()", "called");
 		LinearLayout layout = (LinearLayout) getSherlockActivity().findViewById(R.id.mortgage_listing);
@@ -137,7 +137,7 @@ public class FrgInputMulti extends SherlockFragment {
 	 	LinearLayout.LayoutParams paramsR = new LinearLayout.LayoutParams(
 	 			LinearLayout.LayoutParams.FILL_PARENT,
 	 			LinearLayout.LayoutParams.WRAP_CONTENT);
-	 	paramsR.weight = 1;
+	 	paramsR.weight = 2;
 	 	params.setMargins(0, 5, 0, 5); // left, top, right, bottom
 
 	 	LinearLayout.LayoutParams view_params = new LinearLayout.LayoutParams(

@@ -2,6 +2,7 @@ package com.codelemma.mortgagecmp;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -9,6 +10,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -20,7 +22,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,8 +36,6 @@ public class ResultsOne extends SherlockFragmentActivity
                         implements FrgInputOne.OnDataInputListener {
 
 	static final int NUM_ITEMS = 6;
-    private HashMap<String,String> input_values = new HashMap<String,String>();
-    private boolean showModifyCloneButtons = false;
     private int extraPaymentFrequency = 12; // 12 means yearly
     private String mortgage_type = MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
 
@@ -48,7 +47,6 @@ public class ResultsOne extends SherlockFragmentActivity
 	    public void onClick(View v) {
 	        final Mortgage mortgage = (Mortgage) v.getTag(R.string.mortgage_to_modify);
 	        MortgageCMP.getInstance().getAccount().removeMortgage(mortgage);
-            Toast.makeText(ResultsOne.this, mortgage.getName()+" deleted.", Toast.LENGTH_SHORT).show();
             addMortgage(null);
 	    }
     };
@@ -72,11 +70,6 @@ public class ResultsOne extends SherlockFragmentActivity
 	    	MortgageCMP.getInstance().setAccount();
 	    	for (Mortgage mort : MortgageCMP.getInstance().getAccount().getMortgages()) {
 		    	recalculate(mort);
-		    	
-		    	Log.d("------", "000000");
-		    	Log.d("Mortgage name", mort.getName());
-		    	Log.d("Mortgage type", mort.getType());
-		    	Log.d("------", "000000");
 		    }
 	    }
 	    
@@ -102,9 +95,15 @@ public class ResultsOne extends SherlockFragmentActivity
     }
 
     @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(this);
+    }
+
+    @Override
     public void onStop() {
-    	super.onStop();
-    	Log.d("ResultsOne.onStop", "called");
+      super.onStop();
+      EasyTracker.getInstance().activityStop(this);
     }
 
     @Override
@@ -126,16 +125,22 @@ public class ResultsOne extends SherlockFragmentActivity
         @Override
         public Fragment getItem(int position) {
         	if (position == 0) {
+                Log.d("New fragment: ", "input");
                 return new FrgInputOne();
         	} else if (position == 1) {
+                Log.d("New fragment: ", "1");        		
                 return new FrgSummaryOne();
         	} else if (position == 2) {
+                Log.d("New fragment: ", "2");
         		return new FrgLoanBreakdownOne();
         	} else if (position == 3) {
+                Log.d("New fragment: ", "3");
         		return new FrgChartCumulativeOne();
         	} else if (position == 4) {
+                Log.d("New fragment: ", "4");
         		return new FrgChartMonthlyOne();
         	} else if (position == 5) {
+                Log.d("New fragment: ", "5");
         		return new FrgTableOne();   		
         	} else {
                 return new FrgInputOne();       		
@@ -172,47 +177,33 @@ public class ResultsOne extends SherlockFragmentActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 	    case R.id.menu_list:
-	    	startActivity(new Intent(this, ResultsMulti.class));
+	    	Intent intent = new Intent(this, ResultsMulti.class);
+	    	startActivity(intent);
 		    return true;
+	    case R.id.menu_add:
+	    	MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
+	    	mPager.setAdapter(mAdapter);
+		    mPager.setCurrentItem(0, true);
+		    return true;		    
 	    case R.id.menu_reset:
 	    	resetForm();
-		    return true;		    
+		    return true;
+	    case R.id.menu_default:
+	    	setDefaultFormValues();
+		    return true;
+	    case R.id.menu_help:
+	    	showInfoDialog(R.layout.help_general);
+		    return true;			    
+	    case R.id.menu_about:
+	    	//startActivity(new Intent(this, About.class));
+	    	showInfoDialog(R.layout.about);
+		    return true;			    
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void resetForm() {
-		((EditText) findViewById(R.id.mortgage_name)).setText("");
-		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("");
-		((EditText) findViewById(R.id.mortgage_downpayment)).setText("");
-		((EditText) findViewById(R.id.mortgage_interest_rate)).setText("");
-		((EditText) findViewById(R.id.mortgage_term_years)).setText("");
-		((EditText) findViewById(R.id.mortgage_term_months)).setText("");
-		((EditText) findViewById(R.id.mortgage_property_insurance)).setText("");
-		((EditText) findViewById(R.id.mortgage_property_tax)).setText("");
-		((EditText) findViewById(R.id.mortgage_pmi)).setText("");
-	}
-	
-	public boolean onTouch(View v, MotionEvent event) {
-	    switch (event.getAction()) {
-	    case MotionEvent.ACTION_MOVE: 
-	    	mPager.requestDisallowInterceptTouchEvent(true);
-	        break;
-	    case MotionEvent.ACTION_UP:
-	    case MotionEvent.ACTION_CANCEL:
-	    	mPager.requestDisallowInterceptTouchEvent(false);
-	        break;
-	    }
-	    return true;
-	}
 
 	@Override
-	public void onDataInput(String key, String value) {
-		input_values.put(key, value);
-	}
-
-	@Override
-	public void addMortgageToAccount(HashMap<String,String> data) {
+	public void addMortgageToAccount(Map<String,String> data) {
 		try {
 			Mortgage mortgage = MortgageCMP.getInstance().getUniversalMortgageFactory().createMortgage(data);
 			recalculate(mortgage);
@@ -227,15 +218,14 @@ public class ResultsOne extends SherlockFragmentActivity
 	public void addMortgage(View view) {
 		/* Executed when used clicks "Calculate" to add a new mortgage */
 
-		HashMap<String,String> input = new HashMap<String,String>();
+		Map<String,String> input = new HashMap<String,String>();
 
-	    String[] mortgage_type_items = {
-	    		MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL, 
-	    		MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL};
-		
 		Spinner sp = (Spinner) findViewById(R.id.mortgage_type);
-		
-	    input.put("type", mortgage_type_items[sp.getSelectedItemPosition()]);
+		try {
+	        input.put("type", MortgageNameConstants.getTypeNameByIndex(sp.getSelectedItemPosition()));
+		} catch (IndexOutOfBoundsException ioobe) {
+			return;
+		}
 	    Log.d("Chosen mortgage type", mortgage_type);
 	    
 	    EditText debtName = (EditText) findViewById(R.id.mortgage_name);
@@ -256,28 +246,37 @@ public class ResultsOne extends SherlockFragmentActivity
 	    String downpaymentData = downpayment.getText().toString();
 	    if (downpaymentData.trim().length() == 0) { // fill default if not provided
 	    	downpaymentData = "0";
-	    }	
+	    }
 	    input.put("downpayment", downpaymentData);   
         
 	    EditText interestRate = (EditText) findViewById(R.id.mortgage_interest_rate);
 	    String interestRateData = interestRate.getText().toString();
 	    if (Utils.alertIfEmpty(this, interestRateData, getResources().getString(R.string.mortgage_interest_rate_input))) {
 	    	return;	    	
-	    }	
+	    }
+	    if (Utils.alertIfNotInBounds(this, interestRateData, 0, 100, getResources().getString(R.string.mortgage_interest_rate_input))) {
+	    	return;
+	    }
 	    input.put("interest_rate", interestRateData);   
-        
+
 	    EditText term_years = (EditText) findViewById(R.id.mortgage_term_years);
 	    String termYearsData = term_years.getText().toString();
 	    if (Utils.alertIfEmpty(this, termYearsData, getResources().getString(R.string.mortgage_term_input))) {
 	    	return;	    	
-	    }	
+	    }
+	    if (Utils.alertIfIntNotInBounds(this, termYearsData, 0, 100, getResources().getString(R.string.mortgage_term_years_input))) {
+	    	return;
+	    }
 	    input.put("term_years", termYearsData);   
 
 	    EditText term_months = (EditText) findViewById(R.id.mortgage_term_months);
 	    String termMonthsData = term_months.getText().toString();
 	    if (termMonthsData.trim().length() == 0) { // fill default if not provided
 	    	termMonthsData = "0";
-	    }	
+	    }
+	    if (Utils.alertIfIntNotInBounds(this, termMonthsData, 0, 1000, getResources().getString(R.string.mortgage_term_months_input))) {
+	    	return;
+	    }
 	    input.put("term_months", termMonthsData);   
         
 	    EditText propertyInsurance = (EditText) findViewById(R.id.mortgage_property_insurance);
@@ -298,14 +297,20 @@ public class ResultsOne extends SherlockFragmentActivity
 	    String pmiData = pmi.getText().toString();
 	    if (pmiData.trim().length() == 0) { // fill default if not provided
 	    	pmiData = "0";
-	    }		
+	    }
+	    if (Utils.alertIfNotInBounds(this, pmiData, 0, 100, getResources().getString(R.string.mortgage_pmi_input))) {
+	    	return;
+	    }
 	    input.put("pmi_rate", pmiData);
         
 	    EditText closing_fees = (EditText) findViewById(R.id.mortgage_closing_fees);
 	    String closingFeesData = closing_fees.getText().toString();
 	    if (closingFeesData.trim().length() == 0) { // fill default if not provided
 	    	closingFeesData = "0";
-	    }		
+	    }
+	    //if (Utils.alertIfNotInBounds(this, closingFeesData, 0, 100, getResources().getString(R.string.mortgage_closing_fees_input))) {
+	    //	return;
+	    //}
 	    input.put("closing_fees", closingFeesData);
 	    
 	    EditText extra_payment = (EditText) findViewById(R.id.mortgage_extra_payment);
@@ -341,29 +346,33 @@ public class ResultsOne extends SherlockFragmentActivity
         }
 	}
 
-	@Override
-	public boolean showModifyCloneButtons() {
-		return showModifyCloneButtons;
-	}
-
 	public void showMortgageTypeMoreInfo(View view) {
-		Dialog dialog = new Dialog(this, R.style.FullHeightDialog);			
-	    dialog.setContentView(R.layout.help_mortgage_type_info);
-		dialog.setCanceledOnTouchOutside(true);
-		dialog.show();	
+		showInfoDialog(R.layout.help_mortgage_type_info);
 	}
 	
+	public void showInfoDialog(int r_id) {
+		Dialog dialog = new Dialog(this, R.style.FullHeightDialog);			
+	    dialog.setContentView(r_id);
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.show();
+	}
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void replaceButtons(Mortgage mortgage) {
 
+		if (mortgage == null) {
+			return;
+		}
+		
 		LinearLayout buttons = (LinearLayout) findViewById(R.id.sumbit_mortgage_buttons);
-		@SuppressWarnings("deprecation")
+        buttons.removeAllViews();
+
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 
 				                                                         LinearLayout.LayoutParams.WRAP_CONTENT);
 		params.weight = 0.5f;		
 		
         int px = Utils.px(this, 3);
-        buttons.removeAllViews();
 
         Button clone = new Button(this);
         clone.setText("Clone");
@@ -390,6 +399,44 @@ public class ResultsOne extends SherlockFragmentActivity
         buttons.refreshDrawableState();
 	}
 
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.radioMonthly:
+	            if (checked) {
+	                Toast.makeText(this, "monthly", Toast.LENGTH_SHORT).show();
+	                extraPaymentFrequency = 1;
+	            }
+	            break;
+	        case R.id.radioYearly:
+	            if (checked) {
+	            	Toast.makeText(this, "yearly", Toast.LENGTH_SHORT).show();
+	                extraPaymentFrequency = 12;
+	            }
+	            break;
+	    }
+	}
+
+	public void setRadioButtonClicked(int id) {
+	    // Check which radio button was clicked
+	    switch(id) {
+	        case 1:
+	            RadioButton rbm = (RadioButton) findViewById(R.id.radioMonthly);
+	            rbm.setChecked(true);
+	            break;
+	        case 12:
+	        	RadioButton rby = (RadioButton) findViewById(R.id.radioYearly);
+	            rby.setChecked(true);
+	            break;
+	        default:
+	        	rby = (RadioButton) findViewById(R.id.radioYearly);
+	            rby.setChecked(true);
+	            break;	        	
+	    }
+	}
 	public void toggleVisibilityFees(View view) {
 		LinearLayout v = (LinearLayout) findViewById(R.id.advanced_input);
 	    TextView tv = (TextView) findViewById(R.id.advanced_input_text);
@@ -414,40 +461,31 @@ public class ResultsOne extends SherlockFragmentActivity
 		}
 	}
 
-	public void onRadioButtonClicked(View view) {
-	    // Is the button now checked?
-	    boolean checked = ((RadioButton) view).isChecked();
-
-	    // Check which radio button was clicked
-	    switch(view.getId()) {
-	        case R.id.radioMonthly:
-	            if (checked) {
-	                Toast.makeText(this, "monthly", Toast.LENGTH_SHORT).show();
-	                extraPaymentFrequency = 1;
-	            }
-	            break;
-	        case R.id.radioYearly:
-	            if (checked) {
-	            	Toast.makeText(this, "yearly", Toast.LENGTH_SHORT).show();
-	                extraPaymentFrequency = 12;
-	            }
-	            break;
-	    }
+	public void resetForm() {
+		((EditText) findViewById(R.id.mortgage_name)).setText("");
+		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("");
+		((EditText) findViewById(R.id.mortgage_downpayment)).setText("");
+		((EditText) findViewById(R.id.mortgage_interest_rate)).setText("");
+		((EditText) findViewById(R.id.mortgage_term_years)).setText("");
+		((EditText) findViewById(R.id.mortgage_term_months)).setText("");
+		((EditText) findViewById(R.id.mortgage_property_insurance)).setText("");
+		((EditText) findViewById(R.id.mortgage_property_tax)).setText("");
+		((EditText) findViewById(R.id.mortgage_pmi)).setText("");
+		((EditText) findViewById(R.id.mortgage_closing_fees)).setText("");
+		((EditText) findViewById(R.id.mortgage_extra_payment)).setText("");
 	}
 
-	public void setRadioButtonClicked(int id) {
-	    // Is the button now checked?
-
-	    // Check which radio button was clicked
-	    switch(id) {
-	        case 1:
-	            RadioButton rbm = (RadioButton) findViewById(R.id.radioMonthly);
-	            rbm.setChecked(true);
-	            break;
-	        case 12:
-	        	RadioButton rby = (RadioButton) findViewById(R.id.radioYearly);
-	            rby.setChecked(true);
-	            break;
-	    }
+	public void setDefaultFormValues() {
+		((EditText) findViewById(R.id.mortgage_name)).setText("Mortgage 1");
+		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("250000");
+		((EditText) findViewById(R.id.mortgage_downpayment)).setText("20000");
+		((EditText) findViewById(R.id.mortgage_interest_rate)).setText("5");
+		((EditText) findViewById(R.id.mortgage_term_years)).setText("30");
+		((EditText) findViewById(R.id.mortgage_term_months)).setText("");
+		((EditText) findViewById(R.id.mortgage_property_insurance)).setText("0");
+		((EditText) findViewById(R.id.mortgage_property_tax)).setText("0");
+		((EditText) findViewById(R.id.mortgage_pmi)).setText("0");
+		((EditText) findViewById(R.id.mortgage_closing_fees)).setText("0");
+		((EditText) findViewById(R.id.mortgage_extra_payment)).setText("0");
 	}
 }

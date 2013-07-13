@@ -1,10 +1,10 @@
 package com.codelemma.mortgagecmp.accounting;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public interface MortgageFactory {
 
-	Mortgage createMortgage(HashMap<String, String> data) throws MortgageFactoryException;
+	Mortgage createMortgage(Map<String, String> data) throws MortgageFactoryException;
 	
 	
 	public static class MortgageFactoryException extends Exception {

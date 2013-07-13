@@ -100,7 +100,9 @@ public class HistogramMaker implements HistogramVisitor {
     	mRenderer.setShowLegend(true);
     	mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
     	mRenderer.setInScroll(true);
-    	
+    	mRenderer.setYAxisMin(0);
+    	mRenderer.setXAxisMin(0);
+
 		for (int i = 0; i < length; i += step) { //TODO: check if size == values.size()
             String date = dates[i];
             String label = (i % 5 == 0) ? date.replaceFirst(" ", "\n") : "";

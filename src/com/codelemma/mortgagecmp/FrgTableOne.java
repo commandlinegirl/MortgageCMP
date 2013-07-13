@@ -38,4 +38,5 @@ public class FrgTableOne extends SherlockFragment {
 	    	ll.removeAllViews();
 		}
     }
+
 }

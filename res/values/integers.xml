@@ -5,5 +5,5 @@
     <integer name="form_edit_plus_suffix_weight">10</integer> 
     <integer name="summary_left_weight">2</integer>   
     <integer name="summary_right_weight">2</integer>
-    <integer name="summary_multi_left_weight">5</integer>
+    <integer name="summary_multi_left_weight">3</integer>
 </resources>

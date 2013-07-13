@@ -25,8 +25,8 @@ public class Plotter implements PlotVisitor {
 
 	private SherlockFragmentActivity frgActivity;
     private int currentColor = 0;
-    private String[] colors = {"#FFFF9900", "#ff6600CC", "#ff5BC236", "#ff8C489F", 
-    		                   "#ff9CAA9C", "#ffffff00", "#ff66CCFF",  "#ffcccccc"};    
+    private String[] colors = {"#FFFF9900", "#ff6600CC", "#ff5BC236", "#ffCA278C", 
+    		                   "#ffEECD86", "#ffAFCBF3", "#ff66CCFF",  "#ffcccccc"};    
     private String[] dates;
 
 	public Plotter(SherlockFragmentActivity sherlockFragmentActivity, String[] dates) {

@@ -6,7 +6,8 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 
 	private final BigDecimal monthly_payment_constant;
 	private BigDecimal principal_plus_interest;
-	
+	private BigDecimal principal_plus_interest_plus_extra_payment;
+
 	public static class Builder extends Mortgage.Builder {
 
 		public FixedRateVariablePrincipalMortgage build() {
@@ -20,6 +21,7 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 		super(builder);
 		monthly_payment_constant = calculateMonthlyPaymentConstant();
 		principal_plus_interest = monthly_payment_constant;
+		principal_plus_interest_plus_extra_payment = principal_plus_interest.add(this.getMonthlyExtraPayment());
 	}
 
 	@Override
@@ -54,8 +56,8 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 			this.setInterestPaid(Money.scale(this.getOutstandingLoan().multiply(this.getInterestRateDecimalMonthly()))); //same
 			this.setTotalInterestPaid(this.getTotalInterestPaid().add(this.getInterestPaid())); //same
 			
-			if (this.getOutstandingLoan().compareTo(principal_plus_interest.add(this.getMonthlyExtraPayment())) == -1) {
-				principal_plus_interest = this.getOutstandingLoan().add(this.getInterestPaid());
+			if (this.getOutstandingLoan().compareTo(principal_plus_interest_plus_extra_payment) == -1) {
+				principal_plus_interest_plus_extra_payment = this.getOutstandingLoan().add(this.getInterestPaid());
 			}
 
 			/* If loan-to-value (LTV) ratio (the ratio of a loan to a value of
@@ -63,8 +65,8 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 			 */
 			this.calculateTaxInsurancePMI();
 
-			this.setCurrentMonthTotalPayment(principal_plus_interest);
-			this.setPrincipalPaid(principal_plus_interest.add(this.getMonthlyExtraPayment()).subtract(this.getInterestPaid()));
+			this.setCurrentMonthTotalPayment(principal_plus_interest_plus_extra_payment);
+			this.setPrincipalPaid(principal_plus_interest_plus_extra_payment.subtract(this.getInterestPaid()));
 			this.setTotalPrincipalPaid(this.getTotalPrincipalPaid().add(this.getPrincipalPaid()));
 			this.setOutstandingLoan(this.getOutstandingLoan().subtract(this.getPrincipalPaid()));
 			this.setTotalExtraPayment(this.getTotalExtraPayment().add(this.getMonthlyExtraPayment()));

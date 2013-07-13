@@ -165,8 +165,7 @@ public abstract class Mortgage {
 
 	public void setCurrentMonthTotalPayment(BigDecimal interest_plus_principal) {
 		current_month_payment = interest_plus_principal
-				.add(curent_month_tax_insurance_pmi)
-				.add(monthly_extra_payment);
+				.add(curent_month_tax_insurance_pmi);
 	}
 
 	public void setValuesAfterCalculation() {

@@ -104,4 +104,6 @@ public class FrgLoanBreakdownOne extends SherlockFragment {
 	    	ll.removeAllViews();
 		}
     }
+
+    
 }

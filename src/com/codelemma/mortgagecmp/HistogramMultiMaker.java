@@ -20,11 +20,10 @@ import com.codelemma.mortgagecmp.accounting.HistogramVisitor;
 import com.codelemma.mortgagecmp.accounting.Money;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 
-
 public class HistogramMultiMaker implements HistogramVisitor {
 
 	private SherlockFragmentActivity frgActivity;
-          
+
 	public HistogramMultiMaker(SherlockFragmentActivity sherlockFragmentActivity) {
 		this.frgActivity = sherlockFragmentActivity;
 	}
@@ -36,7 +35,7 @@ public class HistogramMultiMaker implements HistogramVisitor {
 			String[] titles,
 			int[] colors,
 			double maxValue) {
-      
+
         // Build renderer with three series renderers
         XYMultipleSeriesRenderer mRenderer = buildBarRenderer(titles, colors, maxValue);
         SimpleSeriesRenderer rendererFees = getSeriesRenderer(colors[2]);
@@ -75,7 +74,7 @@ public class HistogramMultiMaker implements HistogramVisitor {
         XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 
         //mRenderer.setBarSpacing();
-    	mRenderer.setBarWidth(65);
+    	mRenderer.setBarWidth(Utils.px(frgActivity, 35));
     	mRenderer.setDisplayChartValues(true);
     	mRenderer.setAxesColor(Color.WHITE);
         mRenderer.setAxisTitleTextSize(Utils.px(frgActivity, 10));    	
@@ -96,21 +95,19 @@ public class HistogramMultiMaker implements HistogramVisitor {
     	mRenderer.setShowLegend(false);
     	mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
     	mRenderer.setInScroll(true);
-
-    	int rightMargin = Utils.px(frgActivity, 12);
-	    int leftMargin = Utils.px(frgActivity, 7);
-		leftMargin += Utils.px(frgActivity, 4) * String.valueOf(maxValue).length();
-		
-		int bottomMargin = 10;
+    	mRenderer.setYAxisMax(maxValue+maxValue/20);
+    	mRenderer.setYAxisMin(0);
 
 		for (int i = 0; i < titles.length; i++) { //TODO: check if size == values.size()
 	        mRenderer.addXTextLabel(i, titles[i]);
         }
+		
+	    mRenderer.setMargins(new int[] {
+	        Utils.px(frgActivity, 8), 
+			Utils.px(frgActivity, 7) + Utils.px(frgActivity, 4) * String.valueOf(maxValue).length(), 
+			Utils.px(frgActivity, 10), 
+			Utils.px(frgActivity, 12)}); // top, left, bottom, right
 
-	    mRenderer.setMargins(new int[] {Utils.px(frgActivity, 8), 
-			leftMargin, 
-			Utils.px(frgActivity, bottomMargin), 
-			rightMargin}); // top, left, bottom, right
         return mRenderer;
     }
 
@@ -153,7 +150,7 @@ public class HistogramMultiMaker implements HistogramVisitor {
 			total_interests[j] = mortgage.getTotalInterestPaid().setScale(2, Money.ROUNDING_MODE).doubleValue();
 			total_fees[j] = mortgage.getTotalTaxInsurancePMIClosingFees().setScale(2, Money.ROUNDING_MODE).doubleValue();
 		    titles[j] = mortgage.getName();
-		    maxValue = mortgage.getLoanAmount().setScale(0, Money.ROUNDING_MODE).doubleValue();
+		    maxValue = Math.max(maxValue, mortgage.getTotalPayment().setScale(0, Money.ROUNDING_MODE).doubleValue());
 		    j++;
 		}
 		
@@ -166,8 +163,8 @@ public class HistogramMultiMaker implements HistogramVisitor {
 		}
 		
 		int[] colors = {
+				Color.parseColor("#FF06A2CB"),
 				Color.parseColor("#ffBEF243"),
-				Color.parseColor("#FF06A2CB"),				
 				Color.parseColor("#ffE95D22")}; 
 
         histogram(total_fees_adjusted,        		

@@ -72,7 +72,7 @@ public class PieChartMaker implements PieChartVisitor {
 				frgActivity.getResources().getString(R.string.interest),
 				frgActivity.getResources().getString(R.string.s_mortgage_tax_fees_ins_title)};
 		
-		int[] colors = {Color.parseColor("#ffBEF243"), Color.parseColor("#FF06A2CB"), Color.parseColor("#ffE95D22")}; 
+		int[] colors = { Color.parseColor("#FF06A2CB"), Color.parseColor("#ffBEF243"), Color.parseColor("#ffE95D22")}; 
         drawPieChart(values, titles, colors);	
 	}
  	

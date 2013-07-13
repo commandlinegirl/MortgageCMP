@@ -7,6 +7,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -19,11 +20,14 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 public class ResultsMulti extends SherlockFragmentActivity  
                           implements FrgInputMulti.OnDataInputListener {
 
 	static final int NUM_ITEMS = 5;
+	private final int NUM_MORTGAGES_TO_COMPARE = 6;
 	private ArrayList<Integer> items_to_compare;
 
     MyAdapter mAdapter;
@@ -131,14 +135,78 @@ public class ResultsMulti extends SherlockFragmentActivity
 			NavUtils.navigateUpFromSameTask(this);
 			return true;		
 	    case R.id.menu_add:
-	    	Intent intent = new Intent(this, ResultsOne.class);
 	    	MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
+	    	Intent intent = new Intent(this, ResultsOne.class);
+	    	//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    	startActivity(intent);
 		    return true;
-		}
+        case R.id.menu_delete_selected_mortgages:
+        	removeMortgages("selected");        	
+            return true;
+        case R.id.menu_delete_all_mortgages:
+    	    removeMortgages("all");
+	        return true;            
+        }	
 		return super.onOptionsItemSelected(item);
 	}
+	
+	private void removeMortgages(final String which) {
+		new AlertDialog.Builder(ResultsMulti.this)
+        .setTitle("Delete?")
+        .setMessage("Are you sure you want to delete mortgages?")                
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   if (which.equals("all")) {
+        		   removeAllMortgages();
+        		   Log.d("removeAllMortgages", "called");
+        	   } else if (which.equals("selected")) {
+        		   removeSelectedMortgages();
+        		   Log.d("removeSelectedMortgages", "called");
+        	   }
+           }
+        })
+        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+        	   dialog.cancel();
+           }
+       })
+      .show();
+	}
 
+	private void removeSelectedMortgages() {
+		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
+		
+		for (int id : items_to_compare) {
+			Log.d("mortgage to compare (for deletion)", String.valueOf(id));
+	        MortgageCMP.getInstance().getAccount().removeMortgage(id);
+	        LinearLayout subLayout = (LinearLayout) findViewById(1000+id);
+	        subLayout.setVisibility(View.GONE);
+		}
+	    MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    items_to_compare.clear();
+ 	    // remove views from currently active Summary fragment
+	    ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
+		ll.removeAllViews();
+		
+		// remove from storage, too
+		MortgageCMP.getInstance().saveAccount();
+	}
+
+	private void removeAllMortgages() {
+		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
+	    MortgageCMP.getInstance().getAccount().removeMortgages();
+	    MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    
+ 	    // remove views from currently active Summary fragment and from InputMulti fragment
+	    ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
+		ll.removeAllViews();
+        LinearLayout subLayout = (LinearLayout) findViewById(R.id.mortgage_listing);
+        subLayout.setVisibility(View.GONE);
+        // remove from storage, too
+        items_to_compare.clear();
+     	MortgageCMP.getInstance().saveAccount();
+	}
+	
 	public void compare(View view) {
 		int items_len = items_to_compare.size();
 		if (items_len < 1 && MortgageCMP.getInstance().getAccount().getMortgagesSize() > 0) {
@@ -168,10 +236,10 @@ public class ResultsMulti extends SherlockFragmentActivity
                }
            })
           .show();
-		} else if (items_len > 10) {
+		} else if (items_len > NUM_MORTGAGES_TO_COMPARE) {
 			new AlertDialog.Builder(ResultsMulti.this)
             .setTitle("Too many items")
-            .setMessage("Max number of mortgages to compare is 10. Please, uncheck some of the items.")                
+            .setMessage("Max number of mortgages to compare is "+NUM_MORTGAGES_TO_COMPARE+". Please, uncheck some of the items.")                
             .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
             	   dialog.cancel();
@@ -214,11 +282,22 @@ public class ResultsMulti extends SherlockFragmentActivity
 		items_to_compare = temp;
 	}
 	
-
     @Override
     public void onPause() {
     	super.onPause();
     	Log.d("ResultsMulti.onPause", "called");
         MortgageCMP.getInstance().saveAccount();
+    }
+    
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(this);
     }
 }

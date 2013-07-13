@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string-array name="mortgage_types_spinner">
-        <item>Variable principal</item>
-        <item>Fixed principal</item>
+        <item>Constant loan payments</item>
+        <item>Constant principal payments</item>
     </string-array>
 </resources>

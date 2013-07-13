@@ -53,8 +53,9 @@ public class FrgLoanBreakdownMulti extends SherlockFragment {
 		LinearLayout loanbreakdown_total_multi_table = (LinearLayout) getSherlockActivity().findViewById(R.id.loanbreakdown_total_multi_table); 
 
 		// thin gray line
+		@SuppressWarnings("deprecation")
 		LinearLayout.LayoutParams lpline = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1);
-		lpline.setMargins(0, 3, 0, 3); // left, top, right, bottom
+		lpline.setMargins(0, Utils.px(getActivity(), 2), 0, Utils.px(getActivity(), 2)); // left, top, right, bottom
 			
     	ArrayList<Mortgage> mortgages = MortgageCMP.getInstance().getAccount().getMortgagesToCompare();
 		int size = mortgages.size();

@@ -19,12 +19,19 @@ public class Account {
     		mortgages.remove(mortgage);
     	}
     }
+
+    public void removeMortgage(int id) {
+    	removeMortgage(getMortgageById(id));
+    }
     
     public Iterable<Mortgage> getMortgages() {
     	return Collections.unmodifiableList(mortgages);
     }   
     
     public Mortgage getMortgageById(int id) {
+    	if (id < 0) {
+    		return null;
+    	}
         for (Mortgage mortgage: mortgages) {
             if (mortgage.getId() == id) {
                 return mortgage;
@@ -49,6 +56,10 @@ public class Account {
 		comparisonList.clear();
 	}
 
+	public void removeMortgages() {
+		mortgages.clear();
+	}
+	
 	public void removeFromComparisonList(Mortgage mortgage) {
 		comparisonList.remove(mortgage);
 	}	

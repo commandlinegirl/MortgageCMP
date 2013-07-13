@@ -96,4 +96,5 @@ public class FrgChartMonthlyOne extends SherlockFragment {
 	    	ll.removeAllViews();
 		}
     }
+    
 }

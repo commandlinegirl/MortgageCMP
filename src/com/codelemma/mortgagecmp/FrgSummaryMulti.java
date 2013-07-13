@@ -2,10 +2,8 @@ package com.codelemma.mortgagecmp;
 
 import java.util.ArrayList;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +13,10 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
+import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 
 public class FrgSummaryMulti extends SherlockFragment {
-
+	
     @Override
     public View onCreateView(LayoutInflater inflater, 
     		                 ViewGroup container,
@@ -26,82 +25,55 @@ public class FrgSummaryMulti extends SherlockFragment {
         return inflater.inflate(R.layout.frg_summary_multi, container, false);
     }
 
-    private void addTextViewToLayout(LinearLayout layout,
+    private void addTextViewToLayout(int view_id,
     		String value,
     		LinearLayout.LayoutParams params) {
+		LinearLayout layout = (LinearLayout) getSherlockActivity().findViewById(view_id);    		
 		TextView tv = new TextView(getSherlockActivity());
 		tv.setLayoutParams(params);
     	tv.setText(value);
-    	tv.setGravity(Gravity.CENTER);
 		layout.addView(tv);
     }
-    
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
     	Log.d("FrgSummaryMulti.onActivityCreated()", "called");
+    	MortgageCMP appState = MortgageCMP.getInstance(); 
     	NumberFormatter formatter = new NumberFormatter();
-    	
-    	ArrayList<Mortgage> mortgages = MortgageCMP.getInstance().getAccount().getMortgagesToCompare();
+
+    	ArrayList<Mortgage> mortgages = appState.getAccount().getMortgagesToCompare();
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, 
 				LinearLayout.LayoutParams.WRAP_CONTENT);
-		//lp.setMargins(5, 0, 5, 0); // left, top, right, bottom
-		lp.weight = 4;
-		
-		// thin gray line
-		LinearLayout.LayoutParams lpline = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1);
-		lpline.setMargins(0, 16, 0, 16); // left, top, right, bottom
-		
-		int size = mortgages.size();
-		LinearLayout summary_multi_table_loan_amounts = (LinearLayout) getSherlockActivity().findViewById(R.id.summary_multi_table_loan_amounts); 
-		LinearLayout summary_multi_table_loan_type = (LinearLayout) getSherlockActivity().findViewById(R.id.summary_multi_table_loan_type); 
-		LinearLayout summary_multi_table_loan_paymentsnum = (LinearLayout) getSherlockActivity().findViewById(R.id.summary_multi_table_loan_paymentsnum); 
+		lp.weight = 3;
 
     	for (Mortgage mortgage : mortgages) {
-    		LinearLayout ll = new LinearLayout(getSherlockActivity());
-    		
-    		addTextViewToLayout(ll, mortgage.getName(), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getPurchasePrice()), lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getDownpayment()), lp);    		
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getLoanAmount()), lp);
-    		LinearLayout lline = new LinearLayout(getSherlockActivity());		
-    		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
-    		lline.setLayoutParams(lpline);	    		
-    		summary_multi_table_loan_amounts.addView(lline);
-    		summary_multi_table_loan_amounts.addView(ll);
-
-    		ll = new LinearLayout(getSherlockActivity());
-    		addTextViewToLayout(ll, mortgage.getName(), lp);
-    		addTextViewToLayout(ll, "Fixed rate", lp);
-    		addTextViewToLayout(ll, formatter.formatNumber(mortgage.getInterestRate()), lp);   
-    		lline = new LinearLayout(getSherlockActivity());		
-    		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
-    		lline.setLayoutParams(lpline);	    		
-    		summary_multi_table_loan_type.addView(lline);    		
-    		summary_multi_table_loan_type.addView(ll);
-
-    		ll = new LinearLayout(getSherlockActivity());
-    		addTextViewToLayout(ll, mortgage.getName(), lp);
+    		addTextViewToLayout(R.id.smulti_mortgage_name, mortgage.getName(), lp);
+    		Integer type_r_id = MortgageNameConstants.getTypeInfo(mortgage.getType()+"BR");
+    		if (getResources().getString(type_r_id) != null) {
+    		    addTextViewToLayout(R.id.s_multi_mortgage_type, getResources().getString(type_r_id), lp);
+    		} else {
+    			addTextViewToLayout(R.id.s_multi_mortgage_type, "-", lp);
+    		}
+    		addTextViewToLayout(R.id.smulti_mortgage_loan_amount, formatter.formatNumber(mortgage.getLoanAmount()), lp);
+    		addTextViewToLayout(R.id.s_multi_mortgage_term, String.valueOf(mortgage.getNumberOfPayments()), lp);
+    		addTextViewToLayout(R.id.smulti_mortgage_interest, formatter.formatNumber(mortgage.getInterestRate()), lp);
     		
 	    	String[] dates = mortgage.getHistory().getDates(
 	    			MortgageCMP.getInstance().getSimulationStartYear(), 
 	    			MortgageCMP.getInstance().getSimulationStartMonth());
-    		
-	    	if (mortgage.getNumberOfPayments() > 0) {
-				addTextViewToLayout(ll, dates[mortgage.getNumberOfPayments()-1], lp);
+	    	
+			if (mortgage.getNumberOfPayments() > 0) {
+				addTextViewToLayout(R.id.s_multi_mortgage_last_payment_date, dates[mortgage.getNumberOfPayments()-1], lp);
 			} else {
-				addTextViewToLayout(ll, "-", lp);
+				addTextViewToLayout(R.id.s_multi_mortgage_last_payment_date, "-", lp);
 			}
-    		addTextViewToLayout(ll, String.valueOf(mortgage.getNumberOfPayments()), lp);
-    		lline = new LinearLayout(getSherlockActivity());		
-    		lline.setBackgroundColor(Color.parseColor("#FFCCCCCC"));
-    		lline.setLayoutParams(lpline);	    		
-    		summary_multi_table_loan_paymentsnum.addView(lline);    		
-    		summary_multi_table_loan_paymentsnum.addView(ll);
-
+    		
+    		addTextViewToLayout(R.id.s_multi_mortgage_extra_payments, formatter.formatNumber(mortgage.getTotalExtraPayment()), lp);
+    		addTextViewToLayout(R.id.s_mortgage_term_reduction, String.valueOf(mortgage.getTotalTermMonths() - mortgage.getNumberOfPayments())+" months", lp);    		
     	}
-		
-    	if (MortgageCMP.getInstance().getAccount().getMortgagesToCompare().size() == 0) {
+
+    	if (appState.getAccount().getMortgagesToCompare().size() == 0) {
     		ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
     		ll.removeAllViews();
     	}

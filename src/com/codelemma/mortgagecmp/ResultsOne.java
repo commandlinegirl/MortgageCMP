@@ -12,7 +12,9 @@ import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
 import com.google.analytics.tracking.android.EasyTracker;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	static final int NUM_ITEMS = 6;
     private int extraPaymentFrequency = 12; // 12 means yearly
+    private int MAX_MORTGAGE_NUMBER = 10;
     private String mortgage_type = MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
 
     MyAdapter mAdapter;
@@ -322,10 +326,41 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	    input.put("extra_payment_frequency", String.valueOf(extraPaymentFrequency));
 	    
+	    if (MortgageCMP.getInstance().getAccount().getMortgagesSize() >= MAX_MORTGAGE_NUMBER) {
+			new AlertDialog.Builder(this)
+            .setTitle("Too many mortgages")
+            .setMessage("Max number of mortgages is "+MAX_MORTGAGE_NUMBER+". Please, remove some of the mortgages.")                
+            .setPositiveButton("Remove all mortgages", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+            	   removeAllMortgages();
+               }
+            })
+            .setNegativeButton("Remove selected mortgages", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+              	   Intent intent = new Intent(ResultsOne.this, ResultsMulti.class);
+               	   startActivity(intent);
+               }
+            })
+            .show();
+			return;
+	    }
+	    
 	    addMortgageToAccount(input);
 	    
 	    mPager.setAdapter(mAdapter);
 	    mPager.setCurrentItem(1, true);
+	}
+	
+	public void removeAllMortgages() {
+		MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
+	    MortgageCMP.getInstance().getAccount().removeMortgages();
+	    MortgageCMP.getInstance().getAccount().clearComparisonList();
+	    MortgageCMP.getInstance().getAccount().setLongestLoanTerm(0);
+	    MortgageCMP.getInstance().getAccount().setLongestMortgage(null);
+ 	    // remove views from currently active Summary fragment and from InputMulti fragment
+	    //ScrollView ll = (ScrollView) findViewById(R.id.frg_summary_multi);
+		//ll.removeAllViews();
+     	MortgageCMP.getInstance().saveAccount();
 	}
 
 	public void recalculate(Mortgage mortgage) {

@@ -247,7 +247,7 @@ public class ResultsMulti extends SherlockFragmentActivity
             	   dialog.cancel();
                }
            })
-          .show();
+          .show();			
 	    } else {
 	    	// create a list of mortgages to compare in Account
 	    	MortgageCMP.getInstance().getAccount().clearComparisonList();

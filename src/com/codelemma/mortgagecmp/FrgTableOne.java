@@ -10,7 +10,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.HistoryMortgage;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.TableVisitor;
-import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgTableOne extends SherlockFragment {
 	
@@ -37,16 +36,5 @@ public class FrgTableOne extends SherlockFragment {
 	    	ll.removeAllViews();
 		}
     }
-    
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(getActivity());
-    }
 
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(getActivity());
-    }
 }

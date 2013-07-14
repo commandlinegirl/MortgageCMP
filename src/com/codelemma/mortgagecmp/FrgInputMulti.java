@@ -2,7 +2,6 @@ package com.codelemma.mortgagecmp;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
-import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -174,16 +173,4 @@ public class FrgInputMulti extends SherlockFragment {
 		    layout.addView(subLayout);
 		}
 	}
-	
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(getActivity());
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(getActivity());
-    }
 }

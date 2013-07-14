@@ -9,10 +9,10 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center_horizontal">      
+        android:layout_marginRight="20dp">      
         
       <com.codelemma.mortgagecmp.NonScrollableHorizontalScroller
         android:id="@+id/s_multi_summary"
@@ -26,17 +26,14 @@
         android:layout_height="fill_parent"
         android:paddingBottom="5dp">     
           
+      <!-- Name -->    
+          
       <LinearLayout
         android:id="@+id/smulti_mortgage_name"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"        
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
       <TextView
         android:text="@string/s_mortgage_name_title"
-        android:layout_weight="@integer/summary_multi_left_weight"        
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/summary_multi_column"
         android:textStyle="bold"/>
 
       </LinearLayout>
@@ -46,17 +43,15 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
       
+      <!-- Type -->      
+      
       <LinearLayout
         android:id="@+id/s_multi_mortgage_type" 
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
       <TextView
         android:text="@string/s_mortgage_type_title"     
-        android:layout_weight="@integer/summary_multi_left_weight"                  
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        style="@style/summary_multi_column"/>
       </LinearLayout>
 
       <LinearLayout
@@ -64,17 +59,15 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
       
+      <!-- Loan amount -->      
+      
       <LinearLayout
         android:id="@+id/smulti_mortgage_loan_amount"                                   
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
       <TextView
         android:text="@string/s_mortgage_amount_title"       
-        android:layout_weight="@integer/summary_multi_left_weight"                
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        style="@style/summary_multi_column"/>
 
       </LinearLayout>
 
@@ -83,18 +76,16 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
           
+      <!-- Interest -->    
+    
     <LinearLayout
         android:id="@+id/smulti_mortgage_interest"                    
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
 
       <TextView
         android:text="@string/mortgage_interest_rate_input"  
-        android:layout_weight="@integer/summary_multi_left_weight"                     
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>     
+        style="@style/summary_multi_column"/>   
     </LinearLayout>
     
     <LinearLayout
@@ -102,18 +93,16 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
     
+      <!-- Term -->    
+    
     <LinearLayout
         android:id="@+id/s_multi_mortgage_term"                       
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
 
       <TextView
         android:text="@string/s_mortgage_term_title"      
-        android:layout_weight="@integer/summary_multi_left_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        style="@style/summary_multi_column"/>
 
     </LinearLayout>
 
@@ -122,18 +111,16 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>
     
+      <!-- Last payment -->    
+    
     <LinearLayout
         android:id="@+id/s_multi_mortgage_last_payment_date"                       
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
 
       <TextView
         android:text="@string/s_mortgage_last_payment_date_title"               
-        android:layout_weight="@integer/summary_multi_left_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        style="@style/summary_multi_column"/>
 
     </LinearLayout>    
         
@@ -142,17 +129,15 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
       
+      <!-- Extra payment -->    
+      
       <LinearLayout
         android:id="@+id/s_multi_mortgage_extra_payments"                                   
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
       <TextView
         android:text="@string/s_mortgage_extra_payments_title"      
-        android:layout_weight="@integer/summary_multi_left_weight"                 
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        style="@style/summary_multi_column"/>
 
       </LinearLayout>
       
@@ -161,18 +146,16 @@
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>    
       
+      <!-- Term reduction -->  
+      
     <LinearLayout
         android:id="@+id/s_mortgage_term_reduction"                    
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:padding="10dp">
+        style="@style/summary_multi_row">
+
 
       <TextView
         android:text="@string/s_mortgage_term_reduction_title"       
-        android:layout_weight="@integer/summary_multi_left_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>     
+        style="@style/summary_multi_column"/>  
 
     </LinearLayout>     
     

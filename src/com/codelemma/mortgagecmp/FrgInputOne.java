@@ -19,7 +19,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
-import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgInputOne extends SherlockFragment implements OnItemSelectedListener {
 
@@ -121,17 +120,5 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
 
     		spinner.setSelection(MortgageNameConstants.getTypeInteger(mortgage.getType()));
     	}
-    }
-
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(getActivity());
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(getActivity());
     }
 }

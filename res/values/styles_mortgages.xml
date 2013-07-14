@@ -95,4 +95,15 @@
         <item name="android:layout_marginBottom">6dp</item>
     </style>
     
+    <style name="summary_multi_row">  
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    
+    <style name="summary_multi_column">  
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">150dp</item>
+    </style>    
 </resources>

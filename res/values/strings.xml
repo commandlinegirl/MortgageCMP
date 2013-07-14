@@ -15,7 +15,7 @@
     <string name="mortgage_downpayment_input">Down payment</string>
     <string name="mortgage_downpayment_text">0</string>
     <string name="mortgage_interest_rate_input">Interest rate</string>
-    <string name="mortgage_interest_rate_text">5</string>
+    <string name="mortgage_interest_rate_text">6</string>
     <string name="mortgage_term_input">Mortgage term</string>
     <string name="mortgage_term_years_text">30</string>
     <string name="mortgage_term_years_abbr">yrs</string>
@@ -138,8 +138,8 @@
     <string name="total_payment_breakdown">Total payment breakdown</string>
     <string name="frvp">Constant loan payments</string>
     <string name="frfp">Constant principal payments</string>
-    <string name="frvp_br">Constant loan\npayments</string>
-    <string name="frfp_br">Constant principal\npayments</string>
+    <string name="frvp_br">Constant loan\npayment</string>
+    <string name="frfp_br">Constant principal</string>
     <string name="menu_delete_all_mortgages">Delete all mortgages</string>
     <string name="menu_delete_selected_mortgages">Delete selected mortgages</string>
     <string name="title_activity_about">About</string>

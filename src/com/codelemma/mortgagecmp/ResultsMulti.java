@@ -51,6 +51,17 @@ public class ResultsMulti extends SherlockFragmentActivity
         MortgageCMP.getInstance().getAccount().clearComparisonList();
 	}
 
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(this);
+    }	
 	private void setupCurrentDate() {
 	    final Calendar c = Calendar.getInstance();	        
 	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        
@@ -143,7 +154,7 @@ public class ResultsMulti extends SherlockFragmentActivity
             return true;
         case R.id.menu_delete_all_mortgages:
     	    removeMortgages("all");
-	        return true;            
+	        return true;	        
         }	
 		return super.onOptionsItemSelected(item);
 	}

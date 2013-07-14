@@ -10,6 +10,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -78,7 +79,19 @@ public class ResultsOne extends SherlockFragmentActivity
         	mPager.setCurrentItem(1);
         }
 	}
+    
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance().activityStart(this);
+    }
 
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance().activityStop(this);
+    }	
+	
 	private void setupCurrentDate() {
 	    final Calendar c = Calendar.getInstance();	        
 	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        

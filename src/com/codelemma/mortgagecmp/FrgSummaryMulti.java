@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
-import com.google.analytics.tracking.android.EasyTracker;
 
 public class FrgSummaryMulti extends SherlockFragment {
 	
@@ -45,7 +44,7 @@ public class FrgSummaryMulti extends SherlockFragment {
 		tv.setLayoutParams(params);
     	tv.setText(value);
     	tv.setTypeface(tf);
-    	tv.setPadding(5, 0, 5, 0);
+    	//tv.setPadding(5, 0, 5, 0);
 		layout.addView(tv);
     }
 
@@ -56,9 +55,8 @@ public class FrgSummaryMulti extends SherlockFragment {
     	NumberFormatter formatter = new NumberFormatter();
 
     	ArrayList<Mortgage> mortgages = appState.getAccount().getMortgagesToCompare();
-		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, 
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(200, 
 				LinearLayout.LayoutParams.WRAP_CONTENT);
-		lp.weight = 3;
 
     	for (Mortgage mortgage : mortgages) {
     		addTextViewToLayout(R.id.smulti_mortgage_name, mortgage.getName(), Typeface.DEFAULT_BOLD, lp);
@@ -90,17 +88,5 @@ public class FrgSummaryMulti extends SherlockFragment {
     		ScrollView ll = (ScrollView) getActivity().findViewById(R.id.frg_summary_multi);
     		ll.removeAllViews();
     	}
-    }
-    
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(getActivity());
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(getActivity());
     }
 }

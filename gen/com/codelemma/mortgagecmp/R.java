@@ -1213,18 +1213,17 @@ containing a value of this type.
         public static final int frg_input_one=0x7f03001f;
         public static final int frg_loan_breakdown_multi=0x7f030020;
         public static final int frg_loan_breakdown_one=0x7f030021;
-        public static final int frg_overpayment=0x7f030022;
-        public static final int frg_pager_multi=0x7f030023;
-        public static final int frg_pager_one=0x7f030024;
-        public static final int frg_summary_multi=0x7f030025;
-        public static final int frg_summary_one=0x7f030026;
-        public static final int frg_table_one=0x7f030027;
-        public static final int help_general=0x7f030028;
-        public static final int help_mortgage_type_info=0x7f030029;
-        public static final int list_mortgage=0x7f03002a;
-        public static final int progress_bar=0x7f03002b;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
-        public static final int sherlock_spinner_item=0x7f03002d;
+        public static final int frg_pager_multi=0x7f030022;
+        public static final int frg_pager_one=0x7f030023;
+        public static final int frg_summary_multi=0x7f030024;
+        public static final int frg_summary_one=0x7f030025;
+        public static final int frg_table_one=0x7f030026;
+        public static final int help_general=0x7f030027;
+        public static final int help_mortgage_type_info=0x7f030028;
+        public static final int list_mortgage=0x7f030029;
+        public static final int progress_bar=0x7f03002a;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002b;
+        public static final int sherlock_spinner_item=0x7f03002c;
     }
     public static final class menu {
         public static final int results_multi=0x7f0c0000;
@@ -1534,6 +1533,8 @@ containing a value of this type.
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0032;
         public static final int header_title=0x7f0a0067;
         public static final int scrollbar_style=0x7f0a0066;
+        public static final int summary_multi_column=0x7f0a0069;
+        public static final int summary_multi_row=0x7f0a0068;
     }
     public static final class styleable {
         /**  Attributes used to style the Action Bar. 

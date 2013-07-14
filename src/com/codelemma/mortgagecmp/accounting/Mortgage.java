@@ -97,6 +97,7 @@ public abstract class Mortgage {
 	public abstract BigDecimal getMonthlyPaymentConstant();
 	public abstract BigDecimal getMonthlyTotalPaymentNonPMI(); // principal+interest+extra+insurance+tax
 	public abstract String getType();
+	public abstract void listMonthlyPayment(MonthlyPaymentListingVisitor mplv);
 	
 	public int getId() {
 		return id;
@@ -340,7 +341,7 @@ public abstract class Mortgage {
 	}
 	
 	public int lastPmiPaymentMonth() {
-	    return Math.max(0, last_pmi_payment_month-1);
+	    return Math.max(0, last_pmi_payment_month);
 	}
 	
 	/* Closing fees */
@@ -533,5 +534,4 @@ public abstract class Mortgage {
 		
 		public abstract Mortgage build();
 	}
-
 }

@@ -43,7 +43,7 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 			this.setTotalInterestPaid(this.getTotalInterestPaid().add(this.getInterestPaid())); //same
 
 			BigDecimal principal_plus_interest_plus_extra_payment = principal_plus_extra_payment.add(this.getInterestPaid());
-			
+
 			if (this.getOutstandingLoan().compareTo(principal_plus_interest_plus_extra_payment) == -1) {
 				principal_plus_interest_plus_extra_payment = this.getOutstandingLoan().add(this.getInterestPaid());
 				//principal_plus_extra_payment = this.getOutstandingLoan();
@@ -73,16 +73,32 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 				.add(this.getMonthlyPropertyInsurance())
 				.add(this.getMonthlyPropertyTax());
 	}
-	
+
 	@Override
 	public BigDecimal getMonthlyPaymentConstant() {
 		return monthly_payment_constant;
 	}
-	
+
     @Override
 	public String getType() {
 		return MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL;
 	}
 
+	public void listMonthlyPayment(MonthlyPaymentListingVisitor mplv) {
+		mplv.listConstantPrincipal(this);
+	}
 
+	public BigDecimal getMinMonthlyInterest() {
+		if (this.getNumberOfPayments() < 1) {
+			return BigDecimal.ZERO;
+		}
+		return this.getHistory().getInterestsPaidHistory()[Math.max(0, this.getNumberOfPayments()-2)]; //TODO: exceptions!!
+	}
+
+	public BigDecimal getMaxMonthlyInterest() {
+		if (this.getNumberOfPayments() < 1) {
+			return BigDecimal.ZERO;
+		}
+		return this.getHistory().getInterestsPaidHistory()[0];
+	}
 }

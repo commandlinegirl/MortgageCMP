@@ -2,6 +2,7 @@ package com.codelemma.mortgagecmp;
 
 import java.util.ArrayList;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,20 @@ public class FrgSummaryMulti extends SherlockFragment {
 		TextView tv = new TextView(getSherlockActivity());
 		tv.setLayoutParams(params);
     	tv.setText(value);
+    	tv.setPadding(5, 0, 5, 0);
+		layout.addView(tv);
+    }
+    
+    private void addTextViewToLayout(int view_id,
+    		String value,
+    		Typeface tf, 
+    		LinearLayout.LayoutParams params) {
+		LinearLayout layout = (LinearLayout) getSherlockActivity().findViewById(view_id);    		
+		TextView tv = new TextView(getSherlockActivity());
+		tv.setLayoutParams(params);
+    	tv.setText(value);
+    	tv.setTypeface(tf);
+    	tv.setPadding(5, 0, 5, 0);
 		layout.addView(tv);
     }
 
@@ -46,7 +61,7 @@ public class FrgSummaryMulti extends SherlockFragment {
 		lp.weight = 3;
 
     	for (Mortgage mortgage : mortgages) {
-    		addTextViewToLayout(R.id.smulti_mortgage_name, mortgage.getName(), lp);
+    		addTextViewToLayout(R.id.smulti_mortgage_name, mortgage.getName(), Typeface.DEFAULT_BOLD, lp);
     		Integer type_r_id = MortgageNameConstants.getTypeInfo(mortgage.getType()+"BR");
     		if (getResources().getString(type_r_id) != null) {
     		    addTextViewToLayout(R.id.s_multi_mortgage_type, getResources().getString(type_r_id), lp);

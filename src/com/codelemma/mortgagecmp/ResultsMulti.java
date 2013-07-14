@@ -280,22 +280,10 @@ public class ResultsMulti extends SherlockFragmentActivity
 		}
 		items_to_compare = temp;
 	}
-	
+
     @Override
     public void onPause() {
     	super.onPause();
         MortgageCMP.getInstance().saveAccount();
-    }
-    
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(this);
     }
 }

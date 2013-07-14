@@ -37,7 +37,7 @@ public class FrgSummaryOne extends SherlockFragment {
 			tv = (TextView) getActivity().findViewById(R.id.s_mortgage_type);
 			int type_r_id = MortgageNameConstants.getTypeInfo(mortg.getType());
     		if (getResources().getString(type_r_id) != null) {
-    		    tv.setText(getResources().getString(type_r_id));
+    		    tv.setText(type_r_id);
     		} else {
     			tv.setText("-");
     		}

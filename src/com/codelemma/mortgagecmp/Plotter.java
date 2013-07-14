@@ -141,7 +141,7 @@ public class Plotter implements PlotVisitor {
         mRenderer.setLegendTextSize(Utils.px(frgActivity, 8));
         mRenderer.setInScroll(true);
 	}
-	
+
 	private TimeSeries getSeries(BigDecimal[] values, int item_count, String name) {
 	    TimeSeries series = new TimeSeries(name);	    
         int len = values.length;

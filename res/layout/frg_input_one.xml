@@ -453,5 +453,14 @@
         android:background="@drawable/button_confirm"    
         android:onClick="addMortgage" /> 
     </LinearLayout>
+    
+    <TextView
+        android:layout_width="fill_parent"            
+        android:layout_height="wrap_content"
+        android:id="@+id/save_as_new_info"
+        android:textSize="11sp"
+        android:textColor="#FFCCCCCC"
+        android:layout_marginTop="3dp"/>
+
 </LinearLayout>
 </ScrollView>

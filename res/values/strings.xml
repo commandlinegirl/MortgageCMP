@@ -11,7 +11,7 @@
     <string name="mortgage_name_text">Mortgage 1</string>
     <string name="mortgage_purchase_price_input">Purchase price</string>
     <string name="mortgage_purchase_price_input_br">Purchase\nprice</string>
-    <string name="mortgage_purchase_price_text">200000</string>
+    <string name="mortgage_purchase_price_text">250000</string>
     <string name="mortgage_downpayment_input">Down payment</string>
     <string name="mortgage_downpayment_text">0</string>
     <string name="mortgage_interest_rate_input">Interest rate</string>
@@ -24,15 +24,15 @@
     <string name="mortgage_term_months_abbr">mts</string>
     <string name="mortgage_term_months_input">months</string>
     <string name="mortgage_property_insurance_input">Home insurance</string>
-    <string name="mortgage_property_insurance_text">120</string>
+    <string name="mortgage_property_insurance_text"></string>
     <string name="mortgage_property_tax_input">Property tax</string>
-    <string name="mortgage_property_tax_text">240</string>
+    <string name="mortgage_property_tax_text"></string>
     <string name="mortgage_pmi_input">PMI</string>
-    <string name="mortgage_pmi_text">0.5</string>
+    <string name="mortgage_pmi_text"></string>
     <string name="mortgage_closing_fees_input">Closing fees</string>
-    <string name="mortgage_closing_fees_text">0</string>
+    <string name="mortgage_closing_fees_text"></string>
     <string name="mortgage_extra_payment_input">Extra payment</string>
-    <string name="mortgage_extra_payment_text">100</string>
+    <string name="mortgage_extra_payment_text"></string>
     <string name="radio_yearly">yearly</string>
     <string name="radio_monthly">monthly</string>
     <string name="advanced_input_invisible">+ Tax, fees, insurance (optional)</string>
@@ -50,12 +50,13 @@
     <string name="s_mortgage_total_pmi_title">Total pmi</string>
     <string name="s_mortgage_total_property_tax_title">Total property tax</string>
     <string name="s_mortgage_monthly_payment_title">Principal + interest</string>
+    <string name="s_mortgage_monthly_interest_title">Interest (min / max)</string>    
     <string name="total_interest">Total interest</string>    
     <string name="outstanding_loan">Outstanding loan</string>
     <string name="s_mortgage_tax_plus_insurance_title">Tax + insurance</string>
     <string name="s_mortgage_monthly_insurance_title">Insurance</string>
     <string name="s_mortgage_monthly_tax_title">Tax</string>
-    <string name="s_mortgage_monthly_pmi_title">PMI until %s</string>
+    <string name="s_mortgage_monthly_pmi_title">PMI (until %s)</string>
     <string name="s_mortgage_term_title">Monthly tax</string>
     <string name="s_mortgage_interest_title">Monthly tax</string>
     <string name="s_mortgage_closing_fees_title">Closing fees</string>
@@ -69,6 +70,7 @@
     <string name="s_mortgage_extra_payments_title">Extra payment</string>
     <string name="s_mortgage_extra_payment_break_title">Extra\npayment</string>
     <string name="s_mortgage_monthly_payment_total_title">Total payment</string>
+    <string name="s_mortgage_monthly_payment_total_min_max_title">Total (min / max)</string>
     <string name="s_mortgage_monthly_payment_total_wo_PMI_title">Total w/o PMI</string>
     <string name="s_mortgage_monthly_payment_total_with_PMI_title">Total with PMI</string>
     <string name="s_mortgage_last_payment">Last payment</string>
@@ -78,24 +80,35 @@
     <!-- Help -->
 
     <string name="help_mortgage_type_info"><b><i>Constant loan payments</i></b>
-        \nMost popular mortgage type (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
+        \nMost popular amortization schedule (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
         \n\n<b><i>Constant principal payments</i></b>
-        \nThe principal paid, not the total payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. 
+        \nThe principal paid, not the total monthly payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. 
         Interest rate is fixed. Amortization schedule popular in Europe.</string>
 
-    <string name="help_general">Loan Amount
-Amount or present value of the loan.
-Interest Rate
-The annual stated rate of your loan. Nominal rate.
-Number of Payments
-The total number of payments, initial or remaining, to pay off the given loan amount.
-Payment Frequency
-Calendar periods that payments will be made. (e.g. Weekly, Monthly, Quarterly, etc.)
-Compounding
-Assumed to be coincide with payments.  When payment and compounding frequency do not coincide, first use the Loan Calculator with Compounding and the Interest Rate will be calculated in terms of payments.</string>
-    
+    <string name="help_general"><b>Amortization type</b>
+        \n<i>Constant loan payments</i>
+        \nMost popular amortization schedule (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
+        \n<i>Constant principal payments</i>
+        \nThe principal paid, not the total monthly payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. Interest rate is fixed. Amortization schedule popular in Europe.
+        \n\n<b>Purchase price</b>\nPurchased property price.
+        \n\n<b>Down payment</b>\nAmount paid in cash at the onset of the loan.
+        \n\n<b>Loan amount</b>\nValue of the loan (purchase price - downpayment)
+        \n\n<b>Interest rate</b>\nAnnual interest rate (nominal).
+        \n\n<b>Mortgage term</b>\nThe length of time the mortgage terms and conditions (including interest rate) are in effect.
+        \n\n<b>Home insurance</b>\nAnnual insurance against risks to the property.
+        \n\n<b>Property tax</b>\nAnnual property (or millage) tax.
+        \n\n<b>Closing fees</b>\nThe total of one-time fees (attorney, survey, application fees, etc.).
+        \n\n<b>PMI</b>\nPrivate Mortgage Insurance, paid to the lender if the down payment is lower than 20\u0025 of the purchased property price or when the loan-to-value ratio is lower than 80\u0025. Loan-to-value ratio is a ratio of the loan to the value of an asset purchased.
+        \n\n<b>Extra payment</b>\nMonthly or yearly additional payment that reduces the costs and term of the loan.
+        \n\n<b># of payments</b>\nThe total number of payments to pay off the loan amount.
+        \n\nCompounding is monthly.
+        \nMax number of mortgages stored is 20.
+        \nMax number of mortgages to compare is 6.
+        
+        </string>
+        
     <string name="help">Help</string>
-    
+
     <!-- General -->
 
     <string name="calculate_mortgage">ADD MORTGAGE</string>
@@ -118,15 +131,15 @@ Assumed to be coincide with payments.  When payment and compounding frequency do
     <string name="interest">Interest</string>
     <string name="mortgage_to_modify">mortgage_to_modify</string>
     <string name="mortgage_to_clone">mortgage_to_clone</string>
-    <string name="time_to_pay_loan_chart_title">Time to pay loan and interest cumulation</string>
+    <string name="time_to_pay_loan_chart_title">Outstanding loan and total interest in time</string>
     <string name="monthly_payment_title">Monthly payments</string>
     <string name="principal_payment_title">Principal payment</string>
     <string name="interest_payment_title">Interest payment</string>
     <string name="total_payment_breakdown">Total payment breakdown</string>
     <string name="frvp">Constant loan payments</string>
     <string name="frfp">Constant principal payments</string>
-    <string name="frvp_br">Constant loan\payments</string>
-    <string name="frfp_br">Constant principal\payments</string>
+    <string name="frvp_br">Constant loan\npayments</string>
+    <string name="frfp_br">Constant principal\npayments</string>
     <string name="menu_delete_all_mortgages">Delete all mortgages</string>
     <string name="menu_delete_selected_mortgages">Delete selected mortgages</string>
     <string name="title_activity_about">About</string>
@@ -137,10 +150,10 @@ Assumed to be coincide with payments.  When payment and compounding frequency do
     <string name="too_many_mortgages">Too many mortgages</string>
     <string name="remove_all">Remove all</string>
     <string name="remove_selected">Remove selected</string>
-    
-    
+
     <string name="modify">Modify</string>
-    <string name="clone">Clone</string>
+    <string name="clone">Clone<sup>\u002A</sup></string>
+    <string name="save_as_new"><sup>\u002A</sup>Save as new mortgage</string>
     
     <string name="about_description"><b>MortgageCC</b> is a calculator that let\'s you store different mortgage options and compare them.
         \n\n<b>Disclaimer</b>\nMortgageCC serves informative functions only and may not be used as a replacement of legal advice. Although every precaution

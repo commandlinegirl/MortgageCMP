@@ -10,7 +10,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
-import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -37,9 +36,8 @@ public class ResultsOne extends SherlockFragmentActivity
                         implements FrgInputOne.OnDataInputListener {
 
 	static final int NUM_ITEMS = 6;
+    private final int MAX_MORTGAGE_NUMBER = 20;	
     private int extraPaymentFrequency = 12; // 12 means yearly
-    private int MAX_MORTGAGE_NUMBER = 10;
-    private String mortgage_type = MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
 
     MyAdapter mAdapter;
     ViewPager mPager;
@@ -91,18 +89,6 @@ public class ResultsOne extends SherlockFragmentActivity
     public void onPause() {
     	super.onPause();
         MortgageCMP.getInstance().saveAccount();
-    }
-
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(this);
     }
 	
     public static class MyAdapter extends FragmentPagerAdapter {
@@ -246,7 +232,7 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	    EditText term_years = (EditText) findViewById(R.id.mortgage_term_years);
 	    String termYearsData = term_years.getText().toString();
-	    if (Utils.alertIfEmpty(this, termYearsData, getResources().getString(R.string.mortgage_term_input))) {
+	    if (Utils.alertIfEmpty(this, termYearsData, getResources().getString(R.string.mortgage_term_years_input))) {
 	    	return;	    	
 	    }
 	    if (Utils.alertIfIntNotInBounds(this, termYearsData, 0, 100, getResources().getString(R.string.mortgage_term_years_input))) {
@@ -418,6 +404,8 @@ public class ResultsOne extends SherlockFragmentActivity
         modify.setOnClickListener(clickModifyListener);
         modify.setBackgroundResource(R.drawable.button_confirm);            
         buttons.addView(modify);
+        
+        ((TextView) findViewById(R.id.save_as_new_info)).setText(R.string.save_as_new);
         
         buttons.refreshDrawableState();
 	}

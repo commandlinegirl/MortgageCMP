@@ -93,4 +93,9 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 	public String getType() {
 		return MortgageNameConstants.FIXED_RATE_VARIABLE_PRINCIPAL;
 	}
+
+	@Override
+	public void listMonthlyPayment(MonthlyPaymentListingVisitor mplv) {
+		mplv.listConstantPayment(this);		
+	}
 }

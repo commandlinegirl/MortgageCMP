@@ -112,28 +112,12 @@ public class MonthlyPaymentListingMaker implements MonthlyPaymentListingVisitor 
 				.add(mortgage.getMonthlyPropertyTax());
 
     	tv = (TextView) frgActivity.findViewById(R.id.s_mortgage_monthly_payment_min_total);
-    	if (mortgage.getMonthlyPropertyInsurance()
-    			.add(mortgage.getMonthlyPropertyTax())
-    			.compareTo(BigDecimal.ZERO) > 0) {
         	tv.setText(formatter.formatNumber(mortgage.getMinMonthlyInterest()
 					.add(constant_payment_wo_interest))); 
-    	} else {
-    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-        	LinearLayout hr = (LinearLayout) frgActivity.findViewById(R.id.chart_monthly_one_hr);
-        	hr.setVisibility(View.GONE);
-    	}
 
     	tv = (TextView) frgActivity.findViewById(R.id.s_mortgage_monthly_payment_max_total);
-    	if (mortgage.getMonthlyPropertyInsurance()
-    			.add(mortgage.getMonthlyPropertyTax())
-    			.compareTo(BigDecimal.ZERO) > 0) {
         	tv.setText(formatter.formatNumber(mortgage.getMaxMonthlyInterest()
 					.add(constant_payment_wo_interest))); 
-    	} else {
-    		((LinearLayout) tv.getParent()).setVisibility(View.GONE);
-        	LinearLayout hr = (LinearLayout) frgActivity.findViewById(R.id.chart_monthly_one_hr);
-        	hr.setVisibility(View.GONE);
-    	}
 
     	
     	tv = (TextView) frgActivity.findViewById(R.id.s_mortgage_monthly_payment_total_title);

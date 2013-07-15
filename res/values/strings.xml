@@ -155,8 +155,8 @@
     <string name="clone">Clone<sup>\u002A</sup></string>
     <string name="save_as_new"><sup>\u002A</sup>Save as new mortgage</string>
     
-    <string name="about_description"><b>MortgageCC</b> is a calculator that let\'s you store different mortgage options and compare them.
-        \n\n<b>Disclaimer</b>\nMortgageCC serves informative functions only and may not be used as a replacement of legal advice. Although every precaution
+    <string name="about_description"><b>MortgageCMP</b> is a calculator that let\'s you store different mortgage options and compare them.
+        \n\n<b>Disclaimer</b>\nMortgageCMP serves informative functions only and may not be used as a replacement of legal advice. Although every precaution
         has been taken in preparation of the app, the author assumes no responsibility for errors or omissions and the app is provided without any guarantees,
         conditions or warranties as to its accuracy.
         </string>

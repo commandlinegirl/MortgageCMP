@@ -292,9 +292,9 @@ public class ResultsOne extends SherlockFragmentActivity
 	    if (closingFeesData.trim().length() == 0) { // fill default if not provided
 	    	closingFeesData = "0";
 	    }
-	    //if (Utils.alertIfNotInBounds(this, closingFeesData, 0, 100, getResources().getString(R.string.mortgage_closing_fees_input))) {
-	    //	return;
-	    //}
+	    if (Utils.alertIfNotInBounds(this, closingFeesData, 0, 1000000, getResources().getString(R.string.mortgage_closing_fees_input))) {
+	    	return;
+	    }
 	    input.put("closing_fees", closingFeesData);
 	    
 	    EditText extra_payment = (EditText) findViewById(R.id.mortgage_extra_payment);

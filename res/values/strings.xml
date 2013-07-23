@@ -84,8 +84,8 @@
         \n\n<b><i>Constant principal payments</i></b>
         \nThe principal paid, not the total monthly payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. 
         Interest rate is fixed. Amortization schedule popular in Europe.</string>
-
-    <string name="help_general"><b>Amortization type</b>
+    
+    <string name="help_general">\n<b>Amortization type</b>
         \n<i>Constant loan payments</i>
         \nMost popular amortization schedule (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
         \n<i>Constant principal payments</i>
@@ -102,13 +102,13 @@
         \n\n<b>Extra payment</b>\nMonthly or yearly additional payment that reduces the costs and term of the loan.
         \n\n<b># of payments</b>\nThe total number of payments to pay off the loan amount.
         \n\nCompounding is monthly.
-        \nMax number of mortgages stored is 20.
+        \nMax number of mortgages stored is 30.
         \nMax number of mortgages to compare is 6.
-        
         </string>
         
     <string name="help">Help</string>
-
+    <string name="icons"><b>Icons</b></string>
+    
     <!-- General -->
 
     <string name="calculate_mortgage">ADD MORTGAGE</string>
@@ -144,7 +144,7 @@
     <string name="menu_delete_selected_mortgages">Delete selected mortgages</string>
     <string name="title_activity_about">About</string>
     <string name="mortgage_deleted_toast">Mortgages deleted</string>
-    <string name="delete_all">Delete all?</string>
+    <string name="delete_all">Delete?</string>
     <string name="delete_question">Are you sure you want to delete mortgages?</string>
     <string name="nothing_to_compare">Nothing to compare</string>
     <string name="too_many_mortgages">Too many mortgages</string>
@@ -155,10 +155,20 @@
     <string name="clone">Clone<sup>\u002A</sup></string>
     <string name="save_as_new"><sup>\u002A</sup>Save as new mortgage</string>
     
-    <string name="about_description"><b>MortgageCMP</b> is a calculator that let\'s you store different mortgage options and compare them.
-        \n\n<b>Disclaimer</b>\nMortgageCMP serves informative functions only and may not be used as a replacement of legal advice. Although every precaution
+    <string name="about_description"><b>Mortgage calculator CMP</b> calculates and compares your mortgage options.
+        \n\n<b>Disclaimer</b>\nMortgage CMP serves informative functions only and may not be used as a replacement of legal advice. Although every precaution
         has been taken in preparation of the app, the author assumes no responsibility for errors or omissions and the app is provided without any guarantees,
         conditions or warranties as to its accuracy.
         </string>
 
+    <!-- At-startup-popup info -->
+
+    <string name="start_popup_intro"><b>Mortgage calculator CMP</b> calculates and compares your mortgage options.\n</string>
+    <string name="start_popup_input">add new mortgage</string>
+    <string name="start_popup_list">compare mortgages</string>
+    <string name="start_popup_ending">\nPlease, rate the app in Google Play.</string>
+
+    <string name="start_popup_chart">view or modify a mortgage</string>
+    <string name="start_popup_delete">delete a mortgage</string>
+       
 </resources>

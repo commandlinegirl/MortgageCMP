@@ -7,7 +7,103 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">    
+        
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:text="@string/icons"
+        android:paddingBottom="5dp">     
+    </TextView>          
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_add">    
+        </ImageView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:text="@string/start_popup_input"
+            android:layout_gravity="center_vertical">
+        </TextView>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_list">
+        </ImageView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:text="@string/start_popup_list"
+            android:layout_gravity="center_vertical">
+        </TextView>
+    </LinearLayout>    
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_chart">
+        </ImageView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:text="@string/start_popup_chart"
+            android:layout_gravity="center_vertical">
+        </TextView>
+    </LinearLayout>   
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_delete">
+        </ImageView>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:text="@string/start_popup_delete"
+            android:layout_gravity="center_vertical">
+        </TextView>
+    </LinearLayout>   
+    
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
@@ -15,4 +111,7 @@
         android:paddingBottom="10dp">     
     </TextView>
 
+
+    
+    </LinearLayout>
 </ScrollView>

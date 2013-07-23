@@ -10,7 +10,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory.MortgageFactoryException;
-import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -37,7 +36,7 @@ public class ResultsOne extends SherlockFragmentActivity
                         implements FrgInputOne.OnDataInputListener {
 
 	static final int NUM_ITEMS = 6;
-    private final int MAX_MORTGAGE_NUMBER = 20;	
+    private final int MAX_MORTGAGE_NUMBER = 30;	
     private int extraPaymentFrequency = 12; // 12 means yearly
 
     MyAdapter mAdapter;
@@ -65,6 +64,7 @@ public class ResultsOne extends SherlockFragmentActivity
         setContentView(R.layout.frg_pager_one);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		setupCurrentDate();
+		showStartPopup();
 	    if (MortgageCMP.getInstance().getAccount() == null) {
 	    	MortgageCMP.getInstance().setAccount();
 	    	for (Mortgage mort : MortgageCMP.getInstance().getAccount().getMortgages()) {
@@ -79,19 +79,7 @@ public class ResultsOne extends SherlockFragmentActivity
         	mPager.setCurrentItem(1);
         }
 	}
-    
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(this);
-    }
 
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(this);
-    }	
-	
 	private void setupCurrentDate() {
 	    final Calendar c = Calendar.getInstance();	        
 	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        
@@ -485,6 +473,16 @@ public class ResultsOne extends SherlockFragmentActivity
 		}
 	}
 
+    private void showStartPopup() {   
+        if (MortgageCMP.getInstance().showStartupWindow() == 1) {
+            Dialog dialog = new Dialog(this, R.style.FullHeightDialog);
+            dialog.setContentView(R.layout.start_popup);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.show();
+            MortgageCMP.getInstance().setShowStartupWindow(0); //TODO: set to 0!!
+        }   
+    } 
+	
 	public void resetForm() {
 		((EditText) findViewById(R.id.mortgage_name)).setText("");
 		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("");
@@ -503,7 +501,7 @@ public class ResultsOne extends SherlockFragmentActivity
 		((EditText) findViewById(R.id.mortgage_name)).setText("Mortgage 1");
 		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("250000");
 		((EditText) findViewById(R.id.mortgage_downpayment)).setText("20000");
-		((EditText) findViewById(R.id.mortgage_interest_rate)).setText("5");
+		((EditText) findViewById(R.id.mortgage_interest_rate)).setText("6");
 		((EditText) findViewById(R.id.mortgage_term_years)).setText("30");
 		((EditText) findViewById(R.id.mortgage_term_months)).setText("");
 		((EditText) findViewById(R.id.mortgage_property_insurance)).setText("0");

@@ -12,6 +12,7 @@ import com.codelemma.mortgagecmp.accounting.MortgageFactory;
 import com.codelemma.mortgagecmp.accounting.MortgageNameConstants;
 import com.codelemma.mortgagecmp.accounting.SafeAccountFactory;
 import com.codelemma.mortgagecmp.accounting.Storage;
+import com.codelemma.mortgagecmp.accounting.Storage.StorageException;
 import com.codelemma.mortgagecmp.accounting.UniversalMortgageFactory;
 
 import android.app.Application;
@@ -87,4 +88,35 @@ public class MortgageCMP extends Application {
 			se.printStackTrace();
 		}
 	}
+	
+    public void setShowStartupWindow(int i) {
+        Storage storage = StorageFactory.create(
+                PreferenceManager.getDefaultSharedPreferences(
+                        getApplicationContext()));
+        try {
+            storage.open(Storage.OpenState.WRITE);
+            storage.putInt("#", "start_popup_window", i); 
+        } catch (StorageException e) {
+            e.printStackTrace();
+        } finally {
+            storage.close();
+        }   
+    }
+
+    public int showStartupWindow() {
+        Storage storage = StorageFactory.create(
+                PreferenceManager.getDefaultSharedPreferences(
+                        getApplicationContext()));
+        int i = 0;
+        try {
+            storage.open(Storage.OpenState.READ);
+            i = storage.getInt("#", "start_popup_window");   
+        } catch (StorageException e) {
+            i = 1;
+            //e.printStackTrace();
+        } finally {
+            storage.close();
+        }   
+        return i;
+    }
 }

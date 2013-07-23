@@ -7,9 +7,9 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.codelemma.mortgagecmp.accounting.Mortgage;
-import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,17 +51,6 @@ public class ResultsMulti extends SherlockFragmentActivity
         MortgageCMP.getInstance().getAccount().clearComparisonList();
 	}
 
-    @Override
-    public void onStart() {
-      super.onStart();
-      EasyTracker.getInstance().activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-      super.onStop();
-      EasyTracker.getInstance().activityStop(this);
-    }	
 	private void setupCurrentDate() {
 	    final Calendar c = Calendar.getInstance();	        
 	    MortgageCMP.getInstance().setSimulationStartYear(c.get(Calendar.YEAR));		        
@@ -146,8 +135,13 @@ public class ResultsMulti extends SherlockFragmentActivity
 	    case R.id.menu_add:
 	    	MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
 	    	Intent intent = new Intent(this, ResultsOne.class);
-	    	//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    	startActivity(intent);
+		    return true;
+	    case R.id.menu_help:
+	    	showInfoDialog(R.layout.help_general);
+		    return true;
+	    case R.id.menu_about:
+	    	showInfoDialog(R.layout.about);
 		    return true;
         case R.id.menu_delete_selected_mortgages:
         	removeMortgages("selected");        	
@@ -159,6 +153,13 @@ public class ResultsMulti extends SherlockFragmentActivity
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void showInfoDialog(int r_id) {
+		Dialog dialog = new Dialog(this, R.style.FullHeightDialog);			
+	    dialog.setContentView(r_id);
+		dialog.setCanceledOnTouchOutside(true);
+		dialog.show();
+	}
+	
 	private void removeMortgages(final String which) {
 		new AlertDialog.Builder(ResultsMulti.this)
         .setTitle(R.string.delete_all)

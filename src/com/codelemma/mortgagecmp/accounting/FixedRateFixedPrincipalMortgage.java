@@ -8,8 +8,14 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 	private BigDecimal principal;
 	private BigDecimal principal_plus_extra_payment;
 
-	public static class Builder extends Mortgage.Builder {
+	public static class Builder extends Mortgage.Builder<Builder> {
 
+		@Override
+		protected Builder getThis() {
+			return this;
+		}
+		
+		@Override
 		public FixedRateFixedPrincipalMortgage build() {
 			// here check if all build setters called
 			return new FixedRateFixedPrincipalMortgage(this);
@@ -85,7 +91,7 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 	}
 
 	public void listMonthlyPayment(MonthlyPaymentListingVisitor mplv) {
-		mplv.listConstantPrincipal(this);
+		mplv.listMonthlyPaymentBreakdown(this);
 	}
 
 	public BigDecimal getMinMonthlyInterest() {

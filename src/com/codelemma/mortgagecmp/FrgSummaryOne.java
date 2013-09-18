@@ -28,7 +28,7 @@ public class FrgSummaryOne extends SherlockFragment {
     	super.onActivityCreated(savedInstanceState);
     	Mortgage mortg = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
     	NumberFormatter formatter = new NumberFormatter();
-    	    	
+
 		if (mortg != null) {
 			TextView tv = (TextView) getActivity().findViewById(R.id.s_mortgage_name);
 	    	tv.setText(mortg.getName());

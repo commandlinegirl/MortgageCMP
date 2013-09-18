@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,9 +36,12 @@ import android.widget.Toast;
 public class ResultsOne extends SherlockFragmentActivity
                         implements FrgInputOne.OnDataInputListener {
 
-	static final int NUM_ITEMS = 6;
+	static final int NUM_ITEMS = 6; // number of slides
     private final int MAX_MORTGAGE_NUMBER = 30;	
     private int extraPaymentFrequency = 12; // 12 means yearly
+    private int adjustment_period;
+    private int months_between_adjustments;
+    private int arm_type = 71;
 
     MyAdapter mAdapter;
     ViewPager mPager;
@@ -199,6 +203,39 @@ public class ResultsOne extends SherlockFragmentActivity
 		} catch (IndexOutOfBoundsException ioobe) {
 			return;
 		}
+		
+		if (sp.getSelectedItemPosition() == 2) {
+
+		    input.put("arm_type", String.valueOf(arm_type));
+			
+		    EditText adjustment_period = (EditText) findViewById(R.id.adjustment_period);
+		    String adjustment_periodData = adjustment_period.getText().toString();
+		    if (Utils.alertIfEmpty(this, adjustment_periodData, getResources().getString(R.string.adjustment_period_input))) {
+		    	return;
+		    }
+		    input.put("adjustment_period", adjustment_periodData);
+		    
+		    EditText months_between_adjustments = (EditText) findViewById(R.id.months_between_adjustments);
+		    String months_between_adjustmentsData = months_between_adjustments.getText().toString();
+		    if (Utils.alertIfEmpty(this, months_between_adjustmentsData, getResources().getString(R.string.months_between_adjustments_input))) {
+		    	return;
+		    }
+		    input.put("months_between_adjustments", months_between_adjustmentsData);
+		    
+		    EditText max_single_rate_adjustment = (EditText) findViewById(R.id.max_single_rate_adjustment);
+		    String max_single_rate_adjustmentData = max_single_rate_adjustment.getText().toString();
+		    if (Utils.alertIfEmpty(this, max_single_rate_adjustmentData, getResources().getString(R.string.max_single_rate_adjustment_input))) {
+		    	return;
+		    }
+		    input.put("max_single_rate_adjustment", max_single_rate_adjustmentData);
+		    
+		    EditText total_interest_cap = (EditText) findViewById(R.id.total_interest_cap);
+		    String total_interest_capData = total_interest_cap.getText().toString();
+		    if (Utils.alertIfEmpty(this, total_interest_capData, getResources().getString(R.string.total_interest_cap_input))) {
+		    	return;
+		    }
+		    input.put("total_interest_cap", total_interest_capData);
+		}
 	    
 	    EditText debtName = (EditText) findViewById(R.id.mortgage_name);
 	    String debtNameData = debtName.getText().toString();
@@ -210,7 +247,7 @@ public class ResultsOne extends SherlockFragmentActivity
 	    EditText debtAmount = (EditText) findViewById(R.id.mortgage_purchase_price);
 	    String debtAmountData = debtAmount.getText().toString();
 	    if (Utils.alertIfEmpty(this, debtAmountData, getResources().getString(R.string.mortgage_purchase_price_input))) {
-	    	return;	    	
+	    	return;
 	    }	
 	    input.put("purchase_price", debtAmountData);   
         
@@ -313,12 +350,14 @@ public class ResultsOne extends SherlockFragmentActivity
 			return;
 	    }
 	    
+	    // Add
+
 	    addMortgageToAccount(input);
 	    
 	    mPager.setAdapter(mAdapter);
 	    mPager.setCurrentItem(1, true);
 	}
-	
+
 	public void removeAllMortgages() {
 		new AlertDialog.Builder(ResultsOne.this)
         .setTitle(R.string.delete_all)
@@ -359,7 +398,7 @@ public class ResultsOne extends SherlockFragmentActivity
 	public void showMortgageTypeMoreInfo(View view) {
 		showInfoDialog(R.layout.help_mortgage_type_info);
 	}
-	
+
 	public void showInfoDialog(int r_id) {
 		Dialog dialog = new Dialog(this, R.style.FullHeightDialog);			
 	    dialog.setContentView(r_id);
@@ -419,13 +458,11 @@ public class ResultsOne extends SherlockFragmentActivity
 	    switch(view.getId()) {
 	        case R.id.radioMonthly:
 	            if (checked) {
-	                Toast.makeText(this, R.string.radio_monthly, Toast.LENGTH_SHORT).show();
 	                extraPaymentFrequency = 1;
 	            }
 	            break;
 	        case R.id.radioYearly:
 	            if (checked) {
-	            	Toast.makeText(this, R.string.radio_yearly, Toast.LENGTH_SHORT).show();
 	                extraPaymentFrequency = 12;
 	            }
 	            break;
@@ -449,6 +486,73 @@ public class ResultsOne extends SherlockFragmentActivity
 	            break;	        	
 	    }
 	}
+	
+	public void onARMTypeRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.arm71:
+	            if (checked) {
+	                arm_type = 71;
+	                setARMTypeEditText(84);
+	            }
+	            break;
+	        case R.id.arm51:
+	            if (checked) {
+	                arm_type = 51;
+	                setARMTypeEditText(60);
+	            }	                
+	            break;
+	        case R.id.arm31:
+	            if (checked) {
+	                arm_type = 31;
+	                setARMTypeEditText(36);
+	            }	                
+	            break;
+	        case R.id.arm_other:
+	            if (checked) {
+	                arm_type = 0;
+	                EditText edit_text = (EditText) findViewById(R.id.adjustment_period);
+	                edit_text.setEnabled(true);
+	                edit_text = (EditText) findViewById(R.id.months_between_adjustments);
+	                edit_text.setEnabled(true);
+	            }
+	            break;
+	    }
+	}
+
+	private void setARMTypeEditText(int arm_type) {
+        EditText edit_text = (EditText) findViewById(R.id.adjustment_period);
+        edit_text.setText(String.valueOf(arm_type));
+        edit_text.setEnabled(false);
+        edit_text = (EditText) findViewById(R.id.months_between_adjustments);
+        edit_text.setText("12");
+        edit_text.setEnabled(false);
+	}
+
+	public void setARMTypeRadioButtonClicked(int id) {
+	    switch(id) {
+        case 71:
+            RadioButton rb71 = (RadioButton) findViewById(R.id.arm71);
+            rb71.setChecked(true);
+            break;
+        case 51:
+        	RadioButton rb51 = (RadioButton) findViewById(R.id.arm51);
+        	rb51.setChecked(true);
+            break;
+        case 31:
+        	RadioButton rb31 = (RadioButton) findViewById(R.id.arm31);
+        	rb31.setChecked(true);
+            break;
+        default:
+        	RadioButton rb_other = (RadioButton) findViewById(R.id.arm_other);
+        	rb_other.setChecked(true);
+            break;
+	    }
+	}
+
 	public void toggleVisibilityFees(View view) {
 		LinearLayout v = (LinearLayout) findViewById(R.id.advanced_input);
 	    TextView tv = (TextView) findViewById(R.id.advanced_input_text);
@@ -482,7 +586,7 @@ public class ResultsOne extends SherlockFragmentActivity
             MortgageCMP.getInstance().setShowStartupWindow(0); //TODO: set to 0!!
         }   
     } 
-	
+
 	public void resetForm() {
 		((EditText) findViewById(R.id.mortgage_name)).setText("");
 		((EditText) findViewById(R.id.mortgage_purchase_price)).setText("");

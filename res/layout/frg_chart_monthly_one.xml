@@ -46,6 +46,17 @@
         android:layout_height="wrap_content"/>  
     </LinearLayout>
 
+    <!-- Principal + interest for ARM -->
+
+    <LinearLayout
+        android:id="@+id/principal_interest"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+    </LinearLayout>
+    
     <!-- Interest -->
 
     <LinearLayout
@@ -180,6 +191,7 @@
 
     <LinearLayout
         android:id="@+id/chart_monthly_one_hr"
+        android:orientation="horizontal"        
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="16dp"
@@ -233,4 +245,13 @@
         android:layout_margin="0dp"        
         android:background="#FFFFFFFF">
      </LinearLayout> 
+     
+     <LinearLayout
+        android:orientation="horizontal"        
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#FFCCCCCC"/>
+     
 </LinearLayout>

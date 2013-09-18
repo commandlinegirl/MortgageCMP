@@ -1,0 +1,159 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">    
+
+   <RadioGroup
+        android:id="@+id/radioARMtype"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+ 
+        <RadioButton
+            android:id="@+id/arm71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/1" 
+            android:checked="true"
+            android:onClick="onARMTypeRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/arm51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5/1" 
+            android:checked="true"
+            android:onClick="onARMTypeRadioButtonClicked"/>
+        
+        <RadioButton
+            android:id="@+id/arm31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3/1" 
+            android:checked="true"
+            android:onClick="onARMTypeRadioButtonClicked"/>
+        
+        <RadioButton
+            android:id="@+id/arm_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="other" 
+            android:checked="true"
+            android:onClick="onARMTypeRadioButtonClicked"/>
+    </RadioGroup>  
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
+    <TextView
+        android:text="@string/adjustment_period_input"                        
+        android:layout_weight="@integer/form_text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dip" />        
+
+    <TextView
+        android:text="@string/months_between_adjustments_input"                        
+        android:layout_weight="@integer/form_text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dip" />    
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
+    <EditText
+        android:id="@+id/adjustment_period"   
+        android:layout_weight="@integer/form_edit_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/adjustment_period_text"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:text="mts"                        
+        android:layout_weight="@integer/form_suffix_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dip" />
+
+    <EditText
+        android:id="@+id/months_between_adjustments"   
+        android:layout_weight="@integer/form_edit_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/months_between_adjustments_text"
+        android:inputType="numberDecimal" 
+        android:layout_marginLeft="6dip" />        
+    
+    <TextView
+        android:text="mts"                        
+        android:layout_weight="@integer/form_suffix_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>             
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">       
+    
+    <TextView
+        android:text="@string/max_single_rate_adjustment_input"                        
+        android:layout_weight="@integer/form_text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="3dip" />        
+    
+    <TextView
+        android:text="@string/total_interest_cap_input"                        
+        android:layout_weight="@integer/form_text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dip" />              
+    
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">       
+        
+    <EditText
+        android:id="@+id/max_single_rate_adjustment"   
+        android:layout_weight="@integer/form_edit_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/max_single_rate_adjustment_text"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:text="@string/percent"                        
+        android:layout_weight="@integer/form_suffix_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    
+    <EditText
+        android:id="@+id/total_interest_cap"   
+        android:layout_weight="@integer/form_edit_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/total_interest_cap_text"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:text="@string/percent"                        
+        android:layout_weight="@integer/form_suffix_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>    
+    
+</LinearLayout>
+</LinearLayout>

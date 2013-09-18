@@ -27,6 +27,7 @@ public class AccountStorage implements AccountFactory, AccountSaver {
     	storerByClass = new HashMap<Class<?>, MortgageStorer<?>>();
     	registerStorer(FixedRateFixedPrincipalMortgage.class, new FixedRateFixedPrincipalMortgageStorer(storage));
     	registerStorer(FixedRateVariablePrincipalMortgage.class, new FixedRateVariablePrincipalMortgageStorer(storage));
+    	registerStorer(AdjustableRateMortgage.class, new AdjustableRateMortgageStorer(storage));    	
     }
 
 	@Override

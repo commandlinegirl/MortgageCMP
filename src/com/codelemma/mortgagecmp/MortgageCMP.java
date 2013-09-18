@@ -6,6 +6,7 @@ import com.codelemma.mortgagecmp.accounting.Account;
 import com.codelemma.mortgagecmp.accounting.AccountSaver;
 import com.codelemma.mortgagecmp.accounting.AccountSaver.AccountSaverException;
 import com.codelemma.mortgagecmp.accounting.AccountStorage;
+import com.codelemma.mortgagecmp.accounting.AdjustableRateMortgageFactory;
 import com.codelemma.mortgagecmp.accounting.FixedRateFixedPrincipalMortgageFactory;
 import com.codelemma.mortgagecmp.accounting.FixedRateVariablePrincipalMortgageFactory;
 import com.codelemma.mortgagecmp.accounting.MortgageFactory;
@@ -29,7 +30,7 @@ public class MortgageCMP extends Application {
 	private AccountSaver accountSaver;
 
     @Override
-    public void onCreate() {        
+    public void onCreate() {
         super.onCreate();
         appInstance = this;
         HashMap<String, MortgageFactory> mortgage_factories_map = new HashMap<String, MortgageFactory>();
@@ -39,6 +40,9 @@ public class MortgageCMP extends Application {
         mortgage_factories_map.put(
         		MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL, 
         		new FixedRateFixedPrincipalMortgageFactory());
+        mortgage_factories_map.put(
+        		MortgageNameConstants.ADJUSTABLE_RATE_MORTGAGE,
+        		new AdjustableRateMortgageFactory());        
         universal_mortgage_factory = new UniversalMortgageFactory(mortgage_factories_map);
 		Storage storage = StorageFactory.create(
 				PreferenceManager.getDefaultSharedPreferences(

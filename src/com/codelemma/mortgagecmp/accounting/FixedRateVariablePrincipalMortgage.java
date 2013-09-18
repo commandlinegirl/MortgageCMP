@@ -8,15 +8,6 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 	private BigDecimal principal_plus_interest;
 	private BigDecimal principal_plus_interest_plus_extra_payment;
 
-	public static class Builder extends Mortgage.Builder {
-
-		public FixedRateVariablePrincipalMortgage build() {
-			if (this.getName() == null) {
-			}
-			return new FixedRateVariablePrincipalMortgage(this);
-		}
-	}
-
 	private FixedRateVariablePrincipalMortgage(Builder builder) {
 		super(builder);
 		monthly_payment_constant = calculateMonthlyPaymentConstant();
@@ -96,6 +87,21 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 
 	@Override
 	public void listMonthlyPayment(MonthlyPaymentListingVisitor mplv) {
-		mplv.listConstantPayment(this);		
+		mplv.listMonthlyPaymentBreakdown(this);		
+	}
+	
+	public static class Builder extends Mortgage.Builder<Builder> {
+
+		@Override
+		protected Builder getThis() {
+			return this;
+		}
+		
+		@Override
+		public FixedRateVariablePrincipalMortgage build() {
+			if (this.getName() == null) {
+			}
+			return new FixedRateVariablePrincipalMortgage(this);
+		}
 	}
 }

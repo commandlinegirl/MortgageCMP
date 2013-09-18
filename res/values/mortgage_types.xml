@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string-array name="mortgage_types_spinner">
-        <item>Constant loan payments</item>
-        <item>Constant principal payments</item>
+        <item>FRM Constant loan payments</item>
+        <item>FRM Constant principal payments</item>
+        <item>ARM Adjustable rate mortgage</item>
     </string-array>
 </resources>

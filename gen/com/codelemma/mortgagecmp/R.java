@@ -1019,146 +1019,157 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
-        public static final int add_mortgage_button=0x7f04005f;
-        public static final int additional_cost=0x7f0400aa;
-        public static final int advanced_extra_payments_input=0x7f040059;
-        public static final int advanced_extra_payments_input_text=0x7f040058;
-        public static final int advanced_input=0x7f040053;
-        public static final int advanced_input_text=0x7f040052;
-        public static final int chart_monthly_one_hr=0x7f040045;
-        public static final int chart_one_histogram=0x7f040048;
-        public static final int chart_one_piechart=0x7f04006b;
-        public static final int chart_outstanding_loan_interest=0x7f040035;
-        public static final int chart_outstanding_loan_principal=0x7f040034;
-        public static final int chart_rates=0x7f040039;
-        public static final int date=0x7f0400a7;
+        public static final int add_mortgage_button=0x7f04006a;
+        public static final int additional_cost=0x7f0400b5;
+        public static final int adjustment_period=0x7f040038;
+        public static final int advanced_extra_payments_input=0x7f040064;
+        public static final int advanced_extra_payments_input_text=0x7f040063;
+        public static final int advanced_input=0x7f04005e;
+        public static final int advanced_input_text=0x7f04005d;
+        public static final int arm31=0x7f040036;
+        public static final int arm51=0x7f040035;
+        public static final int arm71=0x7f040034;
+        public static final int arm_other=0x7f040037;
+        public static final int chart_monthly_one_hr=0x7f04004f;
+        public static final int chart_one_histogram=0x7f040052;
+        public static final int chart_one_piechart=0x7f040076;
+        public static final int chart_outstanding_loan_interest=0x7f04003e;
+        public static final int chart_outstanding_loan_principal=0x7f04003d;
+        public static final int chart_rates=0x7f040042;
+        public static final int date=0x7f0400b2;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040027;
-        public static final int exp_list=0x7f0400a5;
-        public static final int fees_breakdown=0x7f040074;
-        public static final int fees_breakdown_amount=0x7f040076;
-        public static final int fees_breakdown_name=0x7f040068;
-        public static final int fees_breakdown_percentage=0x7f040077;
-        public static final int fees_closing_fees_breakdown=0x7f040084;
-        public static final int fees_closing_fees_breakdown_amount=0x7f040086;
-        public static final int fees_closing_fees_breakdown_name=0x7f040085;
-        public static final int fees_closing_fees_breakdown_percentage=0x7f040087;
-        public static final int fees_home_insurance_breakdown=0x7f040078;
-        public static final int fees_home_insurance_breakdown_amount=0x7f04007a;
-        public static final int fees_home_insurance_breakdown_name=0x7f040079;
-        public static final int fees_home_insurance_breakdown_percentage=0x7f04007b;
-        public static final int fees_pie_legend=0x7f040075;
-        public static final int fees_pmi_breakdown=0x7f040080;
-        public static final int fees_pmi_breakdown_amount=0x7f040082;
-        public static final int fees_pmi_breakdown_name=0x7f040081;
-        public static final int fees_pmi_breakdown_percentage=0x7f040083;
-        public static final int fees_tax_breakdown=0x7f04007c;
-        public static final int fees_tax_breakdown_amount=0x7f04007e;
-        public static final int fees_tax_breakdown_name=0x7f04007d;
-        public static final int fees_tax_breakdown_percentage=0x7f04007f;
-        public static final int frg_chart_monthly_one=0x7f04003a;
-        public static final int frg_chart_multi_cumulative=0x7f040033;
-        public static final int frg_chart_multi_monthly=0x7f040038;
-        public static final int frg_chart_one=0x7f040036;
-        public static final int frg_input=0x7f04004a;
-        public static final int frg_loan_breakdown_multi=0x7f040061;
-        public static final int frg_loanbreakdown_one=0x7f04006a;
-        public static final int frg_summary_multi=0x7f04008d;
-        public static final int frg_summary_one=0x7f040097;
-        public static final int frg_table_one=0x7f0400a3;
-        public static final int header=0x7f0400a4;
-        public static final int histogram_multi_breakdown=0x7f040063;
+        public static final int exp_list=0x7f0400b0;
+        public static final int fees_breakdown=0x7f04007f;
+        public static final int fees_breakdown_amount=0x7f040081;
+        public static final int fees_breakdown_name=0x7f040073;
+        public static final int fees_breakdown_percentage=0x7f040082;
+        public static final int fees_closing_fees_breakdown=0x7f04008f;
+        public static final int fees_closing_fees_breakdown_amount=0x7f040091;
+        public static final int fees_closing_fees_breakdown_name=0x7f040090;
+        public static final int fees_closing_fees_breakdown_percentage=0x7f040092;
+        public static final int fees_home_insurance_breakdown=0x7f040083;
+        public static final int fees_home_insurance_breakdown_amount=0x7f040085;
+        public static final int fees_home_insurance_breakdown_name=0x7f040084;
+        public static final int fees_home_insurance_breakdown_percentage=0x7f040086;
+        public static final int fees_pie_legend=0x7f040080;
+        public static final int fees_pmi_breakdown=0x7f04008b;
+        public static final int fees_pmi_breakdown_amount=0x7f04008d;
+        public static final int fees_pmi_breakdown_name=0x7f04008c;
+        public static final int fees_pmi_breakdown_percentage=0x7f04008e;
+        public static final int fees_tax_breakdown=0x7f040087;
+        public static final int fees_tax_breakdown_amount=0x7f040089;
+        public static final int fees_tax_breakdown_name=0x7f040088;
+        public static final int fees_tax_breakdown_percentage=0x7f04008a;
+        public static final int frg_chart_monthly_one=0x7f040043;
+        public static final int frg_chart_multi_cumulative=0x7f04003c;
+        public static final int frg_chart_multi_monthly=0x7f040041;
+        public static final int frg_chart_one=0x7f04003f;
+        public static final int frg_input=0x7f040054;
+        public static final int frg_loan_breakdown_multi=0x7f04006c;
+        public static final int frg_loanbreakdown_one=0x7f040075;
+        public static final int frg_summary_multi=0x7f040098;
+        public static final int frg_summary_one=0x7f0400a2;
+        public static final int frg_table_one=0x7f0400ae;
+        public static final int header=0x7f0400af;
+        public static final int histogram_multi_breakdown=0x7f04006e;
         public static final int homeAsUp=0x7f040006;
-        public static final int interest_breakdown=0x7f040070;
-        public static final int interest_breakdown_amount=0x7f040072;
-        public static final int interest_breakdown_name=0x7f040067;
-        public static final int interest_breakdown_percentage=0x7f040073;
-        public static final int interest_pie_legend=0x7f040071;
-        public static final int interests_paid=0x7f0400a9;
+        public static final int interest_breakdown=0x7f04007b;
+        public static final int interest_breakdown_amount=0x7f04007d;
+        public static final int interest_breakdown_name=0x7f040072;
+        public static final int interest_breakdown_percentage=0x7f04007e;
+        public static final int interest_pie_legend=0x7f04007c;
+        public static final int interests_paid=0x7f0400b4;
         public static final int listMode=0x7f040002;
-        public static final int loanbreakdown_multi_mortgage_name=0x7f040065;
-        public static final int loanbreakdown_multi_table=0x7f040069;
-        public static final int loanbreakdown_total_multi_table=0x7f040062;
-        public static final int menu_about=0x7f0400b2;
-        public static final int menu_add=0x7f0400ae;
-        public static final int menu_default=0x7f0400b5;
-        public static final int menu_delete_all_mortgages=0x7f0400b0;
-        public static final int menu_delete_selected_mortgages=0x7f0400af;
-        public static final int menu_help=0x7f0400b1;
-        public static final int menu_list=0x7f0400b3;
-        public static final int menu_reset=0x7f0400b4;
-        public static final int monthly_total=0x7f0400ab;
-        public static final int mortgage_closing_fees=0x7f040057;
-        public static final int mortgage_downpayment=0x7f04004e;
-        public static final int mortgage_extra_payment=0x7f04005a;
-        public static final int mortgage_interest_rate=0x7f04004f;
-        public static final int mortgage_listing=0x7f040049;
-        public static final int mortgage_name=0x7f04004c;
-        public static final int mortgage_pmi=0x7f040056;
-        public static final int mortgage_property_insurance=0x7f040054;
-        public static final int mortgage_property_tax=0x7f040055;
-        public static final int mortgage_purchase_price=0x7f04004d;
-        public static final int mortgage_term_months=0x7f040051;
-        public static final int mortgage_term_years=0x7f040050;
-        public static final int mortgage_type=0x7f04004b;
+        public static final int loanbreakdown_multi_mortgage_name=0x7f040070;
+        public static final int loanbreakdown_multi_table=0x7f040074;
+        public static final int loanbreakdown_total_multi_table=0x7f04006d;
+        public static final int max_single_rate_adjustment=0x7f04003a;
+        public static final int menu_about=0x7f0400bd;
+        public static final int menu_add=0x7f0400b9;
+        public static final int menu_default=0x7f0400c0;
+        public static final int menu_delete_all_mortgages=0x7f0400bb;
+        public static final int menu_delete_selected_mortgages=0x7f0400ba;
+        public static final int menu_help=0x7f0400bc;
+        public static final int menu_list=0x7f0400be;
+        public static final int menu_reset=0x7f0400bf;
+        public static final int monthly_total=0x7f0400b6;
+        public static final int months_between_adjustments=0x7f040039;
+        public static final int mortgage_closing_fees=0x7f040062;
+        public static final int mortgage_downpayment=0x7f040058;
+        public static final int mortgage_extra_payment=0x7f040065;
+        public static final int mortgage_interest_rate=0x7f04005b;
+        public static final int mortgage_listing=0x7f040053;
+        public static final int mortgage_name=0x7f040056;
+        public static final int mortgage_pmi=0x7f040061;
+        public static final int mortgage_property_insurance=0x7f04005f;
+        public static final int mortgage_property_tax=0x7f040060;
+        public static final int mortgage_purchase_price=0x7f040057;
+        public static final int mortgage_term_months=0x7f04005a;
+        public static final int mortgage_term_years=0x7f040059;
+        public static final int mortgage_type=0x7f040055;
         public static final int normal=0x7f040001;
-        public static final int pager=0x7f04008c;
-        public static final int pred_chart=0x7f040037;
-        public static final int principal_breakdown=0x7f04006c;
-        public static final int principal_breakdown_amount=0x7f04006e;
-        public static final int principal_breakdown_name=0x7f040066;
-        public static final int principal_breakdown_percentage=0x7f04006f;
-        public static final int principal_paid=0x7f0400a8;
-        public static final int principal_pie_legend=0x7f04006d;
-        public static final int progressbar_horizontal=0x7f0400ad;
-        public static final int radioExtraPaymentFrequency=0x7f04005b;
-        public static final int radioMonthly=0x7f04005d;
-        public static final int radioYearly=0x7f04005c;
-        public static final int remaining_amount=0x7f0400ac;
-        public static final int s_mortgage_amount=0x7f04009c;
-        public static final int s_mortgage_downpayment=0x7f04009b;
-        public static final int s_mortgage_interest_rate=0x7f04009d;
-        public static final int s_mortgage_last_payment_date=0x7f04009f;
-        public static final int s_mortgage_monthly_insurance=0x7f040040;
-        public static final int s_mortgage_monthly_interest_layout=0x7f04003d;
-        public static final int s_mortgage_monthly_interest_max=0x7f04003f;
-        public static final int s_mortgage_monthly_interest_min=0x7f04003e;
-        public static final int s_mortgage_monthly_payment=0x7f04003c;
-        public static final int s_mortgage_monthly_payment_max_total=0x7f040044;
-        public static final int s_mortgage_monthly_payment_min_total=0x7f040043;
-        public static final int s_mortgage_monthly_payment_title=0x7f04003b;
-        public static final int s_mortgage_monthly_payment_total_title=0x7f040042;
-        public static final int s_mortgage_monthly_pmi=0x7f040047;
-        public static final int s_mortgage_monthly_pmi_title=0x7f040046;
-        public static final int s_mortgage_monthly_tax=0x7f040041;
-        public static final int s_mortgage_name=0x7f040098;
-        public static final int s_mortgage_purchase_price=0x7f04009a;
-        public static final int s_mortgage_term=0x7f04009e;
-        public static final int s_mortgage_term_reduction=0x7f040096;
-        public static final int s_mortgage_term_reduction_l=0x7f0400a2;
-        public static final int s_mortgage_total_extra_payment=0x7f0400a1;
-        public static final int s_mortgage_total_extra_payment_l=0x7f0400a0;
-        public static final int s_mortgage_type=0x7f040099;
-        public static final int s_multi_mortgage_extra_payments=0x7f040095;
-        public static final int s_multi_mortgage_last_payment_date=0x7f040094;
-        public static final int s_multi_mortgage_term=0x7f040093;
-        public static final int s_multi_mortgage_type=0x7f040090;
-        public static final int s_multi_summary=0x7f04008e;
-        public static final int save_as_new_info=0x7f040060;
+        public static final int pager=0x7f040097;
+        public static final int pred_chart=0x7f040040;
+        public static final int principal_breakdown=0x7f040077;
+        public static final int principal_breakdown_amount=0x7f040079;
+        public static final int principal_breakdown_name=0x7f040071;
+        public static final int principal_breakdown_percentage=0x7f04007a;
+        public static final int principal_interest=0x7f040046;
+        public static final int principal_paid=0x7f0400b3;
+        public static final int principal_pie_legend=0x7f040078;
+        public static final int progressbar_horizontal=0x7f0400b8;
+        public static final int radioARMtype=0x7f040033;
+        public static final int radioExtraPaymentFrequency=0x7f040066;
+        public static final int radioMonthly=0x7f040068;
+        public static final int radioYearly=0x7f040067;
+        public static final int remaining_amount=0x7f0400b7;
+        public static final int s_mortgage_amount=0x7f0400a7;
+        public static final int s_mortgage_downpayment=0x7f0400a6;
+        public static final int s_mortgage_interest_rate=0x7f0400a8;
+        public static final int s_mortgage_last_payment_date=0x7f0400aa;
+        public static final int s_mortgage_monthly_insurance=0x7f04004a;
+        public static final int s_mortgage_monthly_interest_layout=0x7f040047;
+        public static final int s_mortgage_monthly_interest_max=0x7f040049;
+        public static final int s_mortgage_monthly_interest_min=0x7f040048;
+        public static final int s_mortgage_monthly_payment=0x7f040045;
+        public static final int s_mortgage_monthly_payment_max_total=0x7f04004e;
+        public static final int s_mortgage_monthly_payment_min_total=0x7f04004d;
+        public static final int s_mortgage_monthly_payment_title=0x7f040044;
+        public static final int s_mortgage_monthly_payment_total_title=0x7f04004c;
+        public static final int s_mortgage_monthly_pmi=0x7f040051;
+        public static final int s_mortgage_monthly_pmi_title=0x7f040050;
+        public static final int s_mortgage_monthly_tax=0x7f04004b;
+        public static final int s_mortgage_name=0x7f0400a3;
+        public static final int s_mortgage_purchase_price=0x7f0400a5;
+        public static final int s_mortgage_term=0x7f0400a9;
+        public static final int s_mortgage_term_reduction=0x7f0400a1;
+        public static final int s_mortgage_term_reduction_l=0x7f0400ad;
+        public static final int s_mortgage_total_extra_payment=0x7f0400ac;
+        public static final int s_mortgage_total_extra_payment_l=0x7f0400ab;
+        public static final int s_mortgage_type=0x7f0400a4;
+        public static final int s_multi_mortgage_extra_payments=0x7f0400a0;
+        public static final int s_multi_mortgage_last_payment_date=0x7f04009f;
+        public static final int s_multi_mortgage_term=0x7f04009e;
+        public static final int s_multi_mortgage_type=0x7f04009b;
+        public static final int s_multi_summary=0x7f040099;
+        public static final int save_as_new_info=0x7f04006b;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int smulti_mortgage_interest=0x7f040092;
-        public static final int smulti_mortgage_loan_amount=0x7f040091;
-        public static final int smulti_mortgage_name=0x7f04008f;
-        public static final int sumbit_mortgage_buttons=0x7f04005e;
-        public static final int summary_text=0x7f040064;
+        public static final int smulti_mortgage_interest=0x7f04009d;
+        public static final int smulti_mortgage_loan_amount=0x7f04009c;
+        public static final int smulti_mortgage_name=0x7f04009a;
+        public static final int specific_mortgage_type_view=0x7f04005c;
+        public static final int sumbit_mortgage_buttons=0x7f040069;
+        public static final int summary_text=0x7f04006f;
         public static final int tabMode=0x7f040003;
-        public static final int total_breakdown=0x7f040088;
-        public static final int total_breakdown_amount=0x7f04008a;
-        public static final int total_breakdown_name=0x7f040089;
-        public static final int total_breakdown_percentage=0x7f04008b;
-        public static final int tvGroup=0x7f0400a6;
+        public static final int total_breakdown=0x7f040093;
+        public static final int total_breakdown_amount=0x7f040095;
+        public static final int total_breakdown_name=0x7f040094;
+        public static final int total_breakdown_percentage=0x7f040096;
+        public static final int total_interest_cap=0x7f04003b;
+        public static final int tvGroup=0x7f0400b1;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -1199,34 +1210,35 @@ containing a value of this type.
         public static final int abs__simple_dropdown_hint=0x7f030017;
         public static final int act_results_multi=0x7f030018;
         public static final int act_results_one=0x7f030019;
-        public static final int frg_chart_cumulative_multi=0x7f03001a;
-        public static final int frg_chart_cumulative_one=0x7f03001b;
-        public static final int frg_chart_monthly_multi=0x7f03001c;
-        public static final int frg_chart_monthly_one=0x7f03001d;
-        public static final int frg_input_multi=0x7f03001e;
-        public static final int frg_input_one=0x7f03001f;
-        public static final int frg_loan_breakdown_multi=0x7f030020;
-        public static final int frg_loan_breakdown_one=0x7f030021;
-        public static final int frg_pager_multi=0x7f030022;
-        public static final int frg_pager_one=0x7f030023;
-        public static final int frg_summary_multi=0x7f030024;
-        public static final int frg_summary_one=0x7f030025;
-        public static final int frg_table_one=0x7f030026;
-        public static final int help_general=0x7f030027;
-        public static final int help_mortgage_type_info=0x7f030028;
-        public static final int list_mortgage=0x7f030029;
-        public static final int progress_bar=0x7f03002a;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002b;
-        public static final int sherlock_spinner_item=0x7f03002c;
-        public static final int start_popup=0x7f03002d;
+        public static final int arm_layout=0x7f03001a;
+        public static final int frg_chart_cumulative_multi=0x7f03001b;
+        public static final int frg_chart_cumulative_one=0x7f03001c;
+        public static final int frg_chart_monthly_multi=0x7f03001d;
+        public static final int frg_chart_monthly_one=0x7f03001e;
+        public static final int frg_input_multi=0x7f03001f;
+        public static final int frg_input_one=0x7f030020;
+        public static final int frg_loan_breakdown_multi=0x7f030021;
+        public static final int frg_loan_breakdown_one=0x7f030022;
+        public static final int frg_pager_multi=0x7f030023;
+        public static final int frg_pager_one=0x7f030024;
+        public static final int frg_summary_multi=0x7f030025;
+        public static final int frg_summary_one=0x7f030026;
+        public static final int frg_table_one=0x7f030027;
+        public static final int help_general=0x7f030028;
+        public static final int help_mortgage_type_info=0x7f030029;
+        public static final int list_mortgage=0x7f03002a;
+        public static final int progress_bar=0x7f03002b;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
+        public static final int sherlock_spinner_item=0x7f03002d;
+        public static final int start_popup=0x7f03002e;
     }
     public static final class menu {
         public static final int results_multi=0x7f0c0000;
         public static final int results_one=0x7f0c0001;
     }
     public static final class string {
-        public static final int about=0x7f090065;
-        public static final int about_description=0x7f090081;
+        public static final int about=0x7f090071;
+        public static final int about_description=0x7f09008f;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abs__action_bar_home_description=0x7f090000;
@@ -1273,134 +1285,148 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090009;
         public static final int action_settings=0x7f090010;
-        public static final int advanced_extra_payments_input_invisible=0x7f090030;
-        public static final int advanced_extra_payments_input_visible=0x7f090031;
-        public static final int advanced_input_invisible=0x7f09002e;
-        public static final int advanced_input_visible=0x7f09002f;
+        public static final int adjustment_period_input=0x7f09001b;
+        public static final int adjustment_period_text=0x7f09001c;
+        public static final int advanced_extra_payments_input_invisible=0x7f090039;
+        public static final int advanced_extra_payments_input_visible=0x7f09003a;
+        public static final int advanced_input_invisible=0x7f090037;
+        public static final int advanced_input_visible=0x7f090038;
         public static final int app_name=0x7f09000f;
+        public static final int arm=0x7f090080;
+        public static final int arm_br=0x7f090081;
+        public static final int arm_max_payment=0x7f09004a;
+        public static final int arm_min_payment=0x7f09004b;
+        public static final int arm_until_adjustment=0x7f09004c;
         /**  General 
          */
-        public static final int calculate_mortgage=0x7f090057;
-        public static final int cancel=0x7f090066;
-        public static final int chart_title=0x7f09005b;
-        public static final int clone=0x7f09007f;
-        public static final int compare=0x7f090061;
-        public static final int delete_all=0x7f090078;
-        public static final int delete_question=0x7f090079;
-        public static final int frfp=0x7f090071;
-        public static final int frfp_br=0x7f090073;
-        public static final int frvp=0x7f090070;
-        public static final int frvp_br=0x7f090072;
-        public static final int help=0x7f090055;
-        public static final int help_general=0x7f090054;
+        public static final int calculate_mortgage=0x7f090063;
+        public static final int cancel=0x7f090072;
+        public static final int chart_title=0x7f090067;
+        public static final int clone=0x7f09008d;
+        public static final int compare=0x7f09006d;
+        public static final int delete_all=0x7f090086;
+        public static final int delete_question=0x7f090087;
+        public static final int frfp=0x7f09007d;
+        public static final int frfp_br=0x7f09007f;
+        public static final int frvp=0x7f09007c;
+        public static final int frvp_br=0x7f09007e;
+        public static final int help=0x7f090061;
+        public static final int help_general=0x7f090060;
         /**  Help 
          */
-        public static final int help_mortgage_type_info=0x7f090053;
-        public static final int icons=0x7f090056;
-        public static final int interest=0x7f090068;
-        public static final int interest_payment_title=0x7f09006e;
-        public static final int list_title=0x7f09005c;
-        public static final int menu_add=0x7f090063;
-        public static final int menu_default=0x7f090064;
-        public static final int menu_delete_all_mortgages=0x7f090074;
-        public static final int menu_delete_selected_mortgages=0x7f090075;
-        public static final int menu_list=0x7f090062;
-        public static final int modify=0x7f09007e;
-        public static final int monthly_payment_title=0x7f09006c;
-        public static final int mortgage_closing_fees_input=0x7f090028;
-        public static final int mortgage_closing_fees_text=0x7f090029;
-        public static final int mortgage_deleted_toast=0x7f090077;
+        public static final int help_mortgage_type_info=0x7f09005f;
+        public static final int icons=0x7f090062;
+        public static final int initial_interest_rate_input=0x7f09001d;
+        public static final int interest=0x7f090074;
+        public static final int interest_payment_title=0x7f09007a;
+        public static final int list_title=0x7f090068;
+        public static final int max_single_rate_adjustment_input=0x7f090020;
+        public static final int max_single_rate_adjustment_text=0x7f090021;
+        public static final int menu_add=0x7f09006f;
+        public static final int menu_default=0x7f090070;
+        public static final int menu_delete_all_mortgages=0x7f090082;
+        public static final int menu_delete_selected_mortgages=0x7f090083;
+        public static final int menu_list=0x7f09006e;
+        public static final int modify=0x7f09008c;
+        public static final int monthly_payment_title=0x7f090078;
+        public static final int months_between_adjustments_input=0x7f09001e;
+        public static final int months_between_adjustments_text=0x7f09001f;
+        public static final int mortgage_closing_fees_input=0x7f090031;
+        public static final int mortgage_closing_fees_text=0x7f090032;
+        public static final int mortgage_deleted_toast=0x7f090085;
         public static final int mortgage_downpayment_input=0x7f090017;
         public static final int mortgage_downpayment_text=0x7f090018;
-        public static final int mortgage_extra_payment_input=0x7f09002a;
-        public static final int mortgage_extra_payment_text=0x7f09002b;
+        public static final int mortgage_extra_payment_input=0x7f090033;
+        public static final int mortgage_extra_payment_text=0x7f090034;
         public static final int mortgage_interest_rate_input=0x7f090019;
         public static final int mortgage_interest_rate_text=0x7f09001a;
         public static final int mortgage_name_input=0x7f090012;
         public static final int mortgage_name_text=0x7f090013;
-        public static final int mortgage_pmi_input=0x7f090026;
-        public static final int mortgage_pmi_text=0x7f090027;
-        public static final int mortgage_property_insurance_input=0x7f090022;
-        public static final int mortgage_property_insurance_text=0x7f090023;
-        public static final int mortgage_property_tax_input=0x7f090024;
-        public static final int mortgage_property_tax_text=0x7f090025;
+        public static final int mortgage_pmi_input=0x7f09002f;
+        public static final int mortgage_pmi_text=0x7f090030;
+        public static final int mortgage_property_insurance_input=0x7f09002b;
+        public static final int mortgage_property_insurance_text=0x7f09002c;
+        public static final int mortgage_property_tax_input=0x7f09002d;
+        public static final int mortgage_property_tax_text=0x7f09002e;
         public static final int mortgage_purchase_price_input=0x7f090014;
         public static final int mortgage_purchase_price_input_br=0x7f090015;
         public static final int mortgage_purchase_price_text=0x7f090016;
-        public static final int mortgage_term_input=0x7f09001b;
-        public static final int mortgage_term_months_abbr=0x7f090020;
-        public static final int mortgage_term_months_input=0x7f090021;
-        public static final int mortgage_term_months_text=0x7f09001f;
-        public static final int mortgage_term_years_abbr=0x7f09001d;
-        public static final int mortgage_term_years_input=0x7f09001e;
-        public static final int mortgage_term_years_text=0x7f09001c;
-        public static final int mortgage_to_clone=0x7f09006a;
-        public static final int mortgage_to_modify=0x7f090069;
+        public static final int mortgage_term_input=0x7f090024;
+        public static final int mortgage_term_months_abbr=0x7f090029;
+        public static final int mortgage_term_months_input=0x7f09002a;
+        public static final int mortgage_term_months_text=0x7f090028;
+        public static final int mortgage_term_years_abbr=0x7f090026;
+        public static final int mortgage_term_years_input=0x7f090027;
+        public static final int mortgage_term_years_text=0x7f090025;
+        public static final int mortgage_to_clone=0x7f090076;
+        public static final int mortgage_to_modify=0x7f090075;
         /**  Input form 
          */
         public static final int mortgage_type_input=0x7f090011;
-        public static final int nothing_to_compare=0x7f09007a;
-        public static final int outstanding_loan=0x7f09003c;
-        public static final int percent=0x7f090059;
-        public static final int principal=0x7f090067;
-        public static final int principal_payment_title=0x7f09006d;
-        public static final int radio_monthly=0x7f09002d;
-        public static final int radio_yearly=0x7f09002c;
-        public static final int remove_all=0x7f09007c;
-        public static final int remove_selected=0x7f09007d;
-        public static final int reset=0x7f090058;
-        public static final int s_mortgage_amount_title=0x7f090033;
-        public static final int s_mortgage_amount_title_br=0x7f090034;
-        public static final int s_mortgage_closing_fees_title=0x7f090043;
-        public static final int s_mortgage_downpayment_title=0x7f090048;
-        public static final int s_mortgage_downpayment_title_br=0x7f090049;
-        public static final int s_mortgage_extra_payment_break_title=0x7f09004b;
-        public static final int s_mortgage_extra_payments_title=0x7f09004a;
-        public static final int s_mortgage_interest_title=0x7f090042;
-        public static final int s_mortgage_last_payment=0x7f090050;
-        public static final int s_mortgage_last_payment_date_title=0x7f090047;
-        public static final int s_mortgage_monthly_insurance_title=0x7f09003e;
-        public static final int s_mortgage_monthly_interest_title=0x7f09003a;
-        public static final int s_mortgage_monthly_payment_title=0x7f090039;
-        public static final int s_mortgage_monthly_payment_total_min_max_title=0x7f09004d;
-        public static final int s_mortgage_monthly_payment_total_title=0x7f09004c;
-        public static final int s_mortgage_monthly_payment_total_with_PMI_title=0x7f09004f;
-        public static final int s_mortgage_monthly_payment_total_wo_PMI_title=0x7f09004e;
-        public static final int s_mortgage_monthly_pmi_title=0x7f090040;
-        public static final int s_mortgage_monthly_tax_title=0x7f09003f;
+        public static final int nothing_to_compare=0x7f090088;
+        public static final int outstanding_loan=0x7f090045;
+        public static final int percent=0x7f090065;
+        public static final int principal=0x7f090073;
+        public static final int principal_payment_title=0x7f090079;
+        public static final int radio_monthly=0x7f090036;
+        public static final int radio_yearly=0x7f090035;
+        public static final int remove_all=0x7f09008a;
+        public static final int remove_selected=0x7f09008b;
+        public static final int reset=0x7f090064;
+        public static final int s_mortgage_amount_title=0x7f09003c;
+        public static final int s_mortgage_amount_title_br=0x7f09003d;
+        public static final int s_mortgage_closing_fees_title=0x7f09004f;
+        public static final int s_mortgage_downpayment_title=0x7f090054;
+        public static final int s_mortgage_downpayment_title_br=0x7f090055;
+        public static final int s_mortgage_extra_payment_break_title=0x7f090057;
+        public static final int s_mortgage_extra_payments_title=0x7f090056;
+        public static final int s_mortgage_interest_title=0x7f09004e;
+        public static final int s_mortgage_last_payment=0x7f09005c;
+        public static final int s_mortgage_last_payment_date_title=0x7f090053;
+        public static final int s_mortgage_monthly_insurance_title=0x7f090047;
+        public static final int s_mortgage_monthly_interest_title=0x7f090043;
+        public static final int s_mortgage_monthly_payment_title=0x7f090042;
+        public static final int s_mortgage_monthly_payment_total_min_max_title=0x7f090059;
+        public static final int s_mortgage_monthly_payment_total_title=0x7f090058;
+        public static final int s_mortgage_monthly_payment_total_with_PMI_title=0x7f09005b;
+        public static final int s_mortgage_monthly_payment_total_wo_PMI_title=0x7f09005a;
+        public static final int s_mortgage_monthly_pmi_title=0x7f090049;
+        public static final int s_mortgage_monthly_tax_title=0x7f090048;
         /**  Summary 
          */
-        public static final int s_mortgage_name_title=0x7f090032;
-        public static final int s_mortgage_tax_fees_ins_title=0x7f090044;
-        public static final int s_mortgage_tax_fees_insurance=0x7f090045;
-        public static final int s_mortgage_tax_plus_insurance_title=0x7f09003d;
-        public static final int s_mortgage_term_reduction_title=0x7f090051;
-        public static final int s_mortgage_term_title=0x7f090041;
-        public static final int s_mortgage_total_insurance_title=0x7f090036;
-        public static final int s_mortgage_total_payment_title=0x7f090035;
-        public static final int s_mortgage_total_pmi_title=0x7f090037;
-        public static final int s_mortgage_total_property_tax_title=0x7f090038;
-        public static final int s_mortgage_type_title=0x7f090046;
-        public static final int save_as_new=0x7f090080;
-        public static final int save_mortgage=0x7f090060;
-        public static final int start_popup_chart=0x7f090086;
-        public static final int start_popup_delete=0x7f090087;
-        public static final int start_popup_ending=0x7f090085;
-        public static final int start_popup_input=0x7f090083;
+        public static final int s_mortgage_name_title=0x7f09003b;
+        public static final int s_mortgage_tax_fees_ins_title=0x7f090050;
+        public static final int s_mortgage_tax_fees_insurance=0x7f090051;
+        public static final int s_mortgage_tax_plus_insurance_title=0x7f090046;
+        public static final int s_mortgage_term_reduction_title=0x7f09005d;
+        public static final int s_mortgage_term_title=0x7f09004d;
+        public static final int s_mortgage_total_insurance_title=0x7f09003f;
+        public static final int s_mortgage_total_payment_title=0x7f09003e;
+        public static final int s_mortgage_total_pmi_title=0x7f090040;
+        public static final int s_mortgage_total_property_tax_title=0x7f090041;
+        public static final int s_mortgage_type_title=0x7f090052;
+        public static final int save_as_new=0x7f09008e;
+        public static final int save_mortgage=0x7f09006c;
+        public static final int start_popup_chart=0x7f090094;
+        public static final int start_popup_delete=0x7f090095;
+        public static final int start_popup_ending=0x7f090093;
+        public static final int start_popup_input=0x7f090091;
         /**  At-startup-popup info 
          */
-        public static final int start_popup_intro=0x7f090082;
-        public static final int start_popup_list=0x7f090084;
-        public static final int summary_title=0x7f09005a;
-        public static final int time_to_pay_loan_chart_title=0x7f09006b;
-        public static final int title_activity_about=0x7f090076;
-        public static final int title_activity_mortgage_list=0x7f09005e;
-        public static final int title_activity_results_multi=0x7f09005d;
-        public static final int title_activity_results_one=0x7f09005f;
-        public static final int too_many_mortgages=0x7f09007b;
-        public static final int total=0x7f090052;
-        public static final int total_interest=0x7f09003b;
-        public static final int total_payment_breakdown=0x7f09006f;
+        public static final int start_popup_intro=0x7f090090;
+        public static final int start_popup_list=0x7f090092;
+        public static final int summary_title=0x7f090066;
+        public static final int time_to_pay_loan_chart_title=0x7f090077;
+        public static final int title_activity_about=0x7f090084;
+        public static final int title_activity_mortgage_list=0x7f09006a;
+        public static final int title_activity_results_multi=0x7f090069;
+        public static final int title_activity_results_one=0x7f09006b;
+        public static final int too_many_mortgages=0x7f090089;
+        public static final int total=0x7f09005e;
+        public static final int total_interest=0x7f090044;
+        public static final int total_interest_cap_input=0x7f090022;
+        public static final int total_interest_cap_text=0x7f090023;
+        public static final int total_payment_breakdown=0x7f09007b;
     }
     public static final class style {
         public static final int ActionBar_Solid_Mortgages=0x7f0a005d;
@@ -1603,7 +1629,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:background
+          @attr name com.codelemma.mortgagecmp:background
         */
         public static final int SherlockActionBar_background = 2;
         /**
@@ -1617,7 +1643,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:backgroundSplit
+          @attr name com.codelemma.mortgagecmp:backgroundSplit
         */
         public static final int SherlockActionBar_backgroundSplit = 3;
         /**
@@ -1631,7 +1657,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:backgroundStacked
+          @attr name com.codelemma.mortgagecmp:backgroundStacked
         */
         public static final int SherlockActionBar_backgroundStacked = 12;
         /**
@@ -1643,7 +1669,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:customNavigationLayout
+          @attr name com.codelemma.mortgagecmp:customNavigationLayout
         */
         public static final int SherlockActionBar_customNavigationLayout = 13;
         /**
@@ -1666,7 +1692,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>disableHome</code></td><td>0x20</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:displayOptions
+          @attr name com.codelemma.mortgagecmp:displayOptions
         */
         public static final int SherlockActionBar_displayOptions = 7;
         /**
@@ -1678,7 +1704,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:divider
+          @attr name com.codelemma.mortgagecmp:divider
         */
         public static final int SherlockActionBar_divider = 5;
         /**
@@ -1696,7 +1722,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:height
+          @attr name com.codelemma.mortgagecmp:height
         */
         public static final int SherlockActionBar_height = 4;
         /**
@@ -1708,7 +1734,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:homeLayout
+          @attr name com.codelemma.mortgagecmp:homeLayout
         */
         public static final int SherlockActionBar_homeLayout = 14;
         /**
@@ -1720,7 +1746,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:icon
+          @attr name com.codelemma.mortgagecmp:icon
         */
         public static final int SherlockActionBar_icon = 10;
         /**
@@ -1732,7 +1758,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:indeterminateProgressStyle
+          @attr name com.codelemma.mortgagecmp:indeterminateProgressStyle
         */
         public static final int SherlockActionBar_indeterminateProgressStyle = 16;
         /**
@@ -1751,7 +1777,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:itemPadding
+          @attr name com.codelemma.mortgagecmp:itemPadding
         */
         public static final int SherlockActionBar_itemPadding = 18;
         /**
@@ -1763,7 +1789,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:logo
+          @attr name com.codelemma.mortgagecmp:logo
         */
         public static final int SherlockActionBar_logo = 11;
         /**
@@ -1783,7 +1809,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <tr><td><code>tabMode</code></td><td>2</td><td> The action bar will use a series of horizontal tabs for navigation. </td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:navigationMode
+          @attr name com.codelemma.mortgagecmp:navigationMode
         */
         public static final int SherlockActionBar_navigationMode = 6;
         /**
@@ -1801,7 +1827,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:progressBarPadding
+          @attr name com.codelemma.mortgagecmp:progressBarPadding
         */
         public static final int SherlockActionBar_progressBarPadding = 17;
         /**
@@ -1813,7 +1839,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:progressBarStyle
+          @attr name com.codelemma.mortgagecmp:progressBarStyle
         */
         public static final int SherlockActionBar_progressBarStyle = 15;
         /**
@@ -1829,7 +1855,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:subtitle
+          @attr name com.codelemma.mortgagecmp:subtitle
         */
         public static final int SherlockActionBar_subtitle = 9;
         /**
@@ -1841,7 +1867,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:subtitleTextStyle
+          @attr name com.codelemma.mortgagecmp:subtitleTextStyle
         */
         public static final int SherlockActionBar_subtitleTextStyle = 1;
         /**
@@ -1857,7 +1883,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:title
+          @attr name com.codelemma.mortgagecmp:title
         */
         public static final int SherlockActionBar_title = 8;
         /**
@@ -1869,7 +1895,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:titleTextStyle
+          @attr name com.codelemma.mortgagecmp:titleTextStyle
         */
         public static final int SherlockActionBar_titleTextStyle = 0;
         /** Attributes that can be used with a SherlockActionMenuItemView.
@@ -1878,7 +1904,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockActionMenuItemView_android_minWidth com.codelemma.mortgagecmp:android_minWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockActionMenuItemView_android_minWidth android:minWidth}</code></td><td></td></tr>
            </table>
            @see #SherlockActionMenuItemView_android_minWidth
          */
@@ -1886,9 +1912,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x0101013f
         };
         /**
-          <p>This symbol is the offset where the {@link com.codelemma.mortgagecmp.R.attr#android_minWidth}
+          <p>This symbol is the offset where the {@link android.R.attr#minWidth}
           attribute's value can be found in the {@link #SherlockActionMenuItemView} array.
-          @attr name android:android_minWidth
+          @attr name android:minWidth
         */
         public static final int SherlockActionMenuItemView_android_minWidth = 0;
         /** Attributes that can be used with a SherlockActionMode.
@@ -1924,7 +1950,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:background
+          @attr name com.codelemma.mortgagecmp:background
         */
         public static final int SherlockActionMode_background = 2;
         /**
@@ -1938,7 +1964,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:backgroundSplit
+          @attr name com.codelemma.mortgagecmp:backgroundSplit
         */
         public static final int SherlockActionMode_backgroundSplit = 3;
         /**
@@ -1956,7 +1982,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:height
+          @attr name com.codelemma.mortgagecmp:height
         */
         public static final int SherlockActionMode_height = 4;
         /**
@@ -1968,7 +1994,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:subtitleTextStyle
+          @attr name com.codelemma.mortgagecmp:subtitleTextStyle
         */
         public static final int SherlockActionMode_subtitleTextStyle = 1;
         /**
@@ -1980,7 +2006,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:titleTextStyle
+          @attr name com.codelemma.mortgagecmp:titleTextStyle
         */
         public static final int SherlockActionMode_titleTextStyle = 0;
         /** Attributes that can be used with a SherlockActivityChooserView.
@@ -1989,7 +2015,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockActivityChooserView_android_background com.codelemma.mortgagecmp:android_background}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockActivityChooserView_android_background android:background}</code></td><td></td></tr>
            <tr><td><code>{@link #SherlockActivityChooserView_expandActivityOverflowButtonDrawable com.codelemma.mortgagecmp:expandActivityOverflowButtonDrawable}</code></td><td> The drawable to show in the button for expanding the activities overflow popup.</td></tr>
            <tr><td><code>{@link #SherlockActivityChooserView_initialActivityCount com.codelemma.mortgagecmp:initialActivityCount}</code></td><td> The maximal number of items initially shown in the activity list.</td></tr>
            </table>
@@ -2001,9 +2027,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x010100d4, 0x7f01005d, 0x7f01005e
         };
         /**
-          <p>This symbol is the offset where the {@link com.codelemma.mortgagecmp.R.attr#android_background}
+          <p>This symbol is the offset where the {@link android.R.attr#background}
           attribute's value can be found in the {@link #SherlockActivityChooserView} array.
-          @attr name android:android_background
+          @attr name android:background
         */
         public static final int SherlockActivityChooserView_android_background = 0;
         /**
@@ -2020,7 +2046,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:expandActivityOverflowButtonDrawable
+          @attr name com.codelemma.mortgagecmp:expandActivityOverflowButtonDrawable
         */
         public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable = 2;
         /**
@@ -2036,7 +2062,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:initialActivityCount
+          @attr name com.codelemma.mortgagecmp:initialActivityCount
         */
         public static final int SherlockActivityChooserView_initialActivityCount = 1;
         /**  Base attributes that are available to all groups. 
@@ -2045,12 +2071,12 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_checkableBehavior com.codelemma.mortgagecmp:android_checkableBehavior}</code></td><td> Whether the items are capable of displaying a check mark.</td></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_enabled com.codelemma.mortgagecmp:android_enabled}</code></td><td> Whether the items are enabled.</td></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_id com.codelemma.mortgagecmp:android_id}</code></td><td> The ID of the group.</td></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_menuCategory com.codelemma.mortgagecmp:android_menuCategory}</code></td><td> The category applied to all items within this group.</td></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_orderInCategory com.codelemma.mortgagecmp:android_orderInCategory}</code></td><td> The order within the category applied to all items within this group.</td></tr>
-           <tr><td><code>{@link #SherlockMenuGroup_android_visible com.codelemma.mortgagecmp:android_visible}</code></td><td> Whether the items are shown/visible.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_checkableBehavior android:checkableBehavior}</code></td><td> Whether the items are capable of displaying a check mark.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_enabled android:enabled}</code></td><td> Whether the items are enabled.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_id android:id}</code></td><td> The ID of the group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_menuCategory android:menuCategory}</code></td><td> The category applied to all items within this group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_orderInCategory android:orderInCategory}</code></td><td> The order within the category applied to all items within this group.</td></tr>
+           <tr><td><code>{@link #SherlockMenuGroup_android_visible android:visible}</code></td><td> Whether the items are shown/visible.</td></tr>
            </table>
            @see #SherlockMenuGroup_android_checkableBehavior
            @see #SherlockMenuGroup_android_enabled
@@ -2067,24 +2093,27 @@ containing a value of this type.
           <p>
           @attr description
            Whether the items are capable of displaying a check mark. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_checkableBehavior}.
-          @attr name android:android_checkableBehavior
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#checkableBehavior}.
+          @attr name android:checkableBehavior
         */
         public static final int SherlockMenuGroup_android_checkableBehavior = 5;
         /**
           <p>
           @attr description
            Whether the items are enabled. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_enabled}.
-          @attr name android:android_enabled
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#enabled}.
+          @attr name android:enabled
         */
         public static final int SherlockMenuGroup_android_enabled = 0;
         /**
           <p>
           @attr description
            The ID of the group. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_id}.
-          @attr name android:android_id
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#id}.
+          @attr name android:id
         */
         public static final int SherlockMenuGroup_android_id = 1;
         /**
@@ -2092,8 +2121,9 @@ containing a value of this type.
           @attr description
            The category applied to all items within this group.
              (This will be or'ed with the orderInCategory attribute.) 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_menuCategory}.
-          @attr name android:android_menuCategory
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#menuCategory}.
+          @attr name android:menuCategory
         */
         public static final int SherlockMenuGroup_android_menuCategory = 3;
         /**
@@ -2101,16 +2131,18 @@ containing a value of this type.
           @attr description
            The order within the category applied to all items within this group.
              (This will be or'ed with the category attribute.) 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_orderInCategory}.
-          @attr name android:android_orderInCategory
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#orderInCategory}.
+          @attr name android:orderInCategory
         */
         public static final int SherlockMenuGroup_android_orderInCategory = 4;
         /**
           <p>
           @attr description
            Whether the items are shown/visible. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_visible}.
-          @attr name android:android_visible
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#visible}.
+          @attr name android:visible
         */
         public static final int SherlockMenuGroup_android_visible = 2;
         /**  Base attributes that are available to all Item objects. 
@@ -2119,26 +2151,26 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_actionLayout com.codelemma.mortgagecmp:android_actionLayout}</code></td><td> An optional layout to be used as an action view.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_actionProviderClass com.codelemma.mortgagecmp:android_actionProviderClass}</code></td><td> The name of an optional ActionProvider class to instantiate an action view
+           <tr><td><code>{@link #SherlockMenuItem_android_actionLayout android:actionLayout}</code></td><td> An optional layout to be used as an action view.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_actionProviderClass android:actionProviderClass}</code></td><td> The name of an optional ActionProvider class to instantiate an action view
              and perform operations such as default action for that menu item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_actionViewClass com.codelemma.mortgagecmp:android_actionViewClass}</code></td><td> The name of an optional View class to instantiate and use as an
+           <tr><td><code>{@link #SherlockMenuItem_android_actionViewClass android:actionViewClass}</code></td><td> The name of an optional View class to instantiate and use as an
              action view.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_alphabeticShortcut com.codelemma.mortgagecmp:android_alphabeticShortcut}</code></td><td> The alphabetic shortcut key.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_checkable com.codelemma.mortgagecmp:android_checkable}</code></td><td> Whether the item is capable of displaying a check mark.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_checked com.codelemma.mortgagecmp:android_checked}</code></td><td> Whether the item is checked.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_enabled com.codelemma.mortgagecmp:android_enabled}</code></td><td> Whether the item is enabled.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_icon com.codelemma.mortgagecmp:android_icon}</code></td><td> The icon associated with this item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_id com.codelemma.mortgagecmp:android_id}</code></td><td> The ID of the item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_menuCategory com.codelemma.mortgagecmp:android_menuCategory}</code></td><td> The category applied to the item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_numericShortcut com.codelemma.mortgagecmp:android_numericShortcut}</code></td><td> The numeric shortcut key.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_onClick com.codelemma.mortgagecmp:android_onClick}</code></td><td> Name of a method on the Context used to inflate the menu that will be
+           <tr><td><code>{@link #SherlockMenuItem_android_alphabeticShortcut android:alphabeticShortcut}</code></td><td> The alphabetic shortcut key.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_checkable android:checkable}</code></td><td> Whether the item is capable of displaying a check mark.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_checked android:checked}</code></td><td> Whether the item is checked.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_enabled android:enabled}</code></td><td> Whether the item is enabled.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_icon android:icon}</code></td><td> The icon associated with this item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_id android:id}</code></td><td> The ID of the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_menuCategory android:menuCategory}</code></td><td> The category applied to the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_numericShortcut android:numericShortcut}</code></td><td> The numeric shortcut key.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_onClick android:onClick}</code></td><td> Name of a method on the Context used to inflate the menu that will be
              called when the item is clicked.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_orderInCategory com.codelemma.mortgagecmp:android_orderInCategory}</code></td><td> The order within the category applied to the item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_showAsAction com.codelemma.mortgagecmp:android_showAsAction}</code></td><td> How this item should display in the Action Bar, if present.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_title com.codelemma.mortgagecmp:android_title}</code></td><td> The title associated with the item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_titleCondensed com.codelemma.mortgagecmp:android_titleCondensed}</code></td><td> The condensed title associated with the item.</td></tr>
-           <tr><td><code>{@link #SherlockMenuItem_android_visible com.codelemma.mortgagecmp:android_visible}</code></td><td> Whether the item is shown/visible.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_orderInCategory android:orderInCategory}</code></td><td> The order within the category applied to the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_showAsAction android:showAsAction}</code></td><td> How this item should display in the Action Bar, if present.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_title android:title}</code></td><td> The title associated with the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_titleCondensed android:titleCondensed}</code></td><td> The condensed title associated with the item.</td></tr>
+           <tr><td><code>{@link #SherlockMenuItem_android_visible android:visible}</code></td><td> Whether the item is shown/visible.</td></tr>
            </table>
            @see #SherlockMenuItem_android_actionLayout
            @see #SherlockMenuItem_android_actionProviderClass
@@ -2171,8 +2203,9 @@ containing a value of this type.
            An optional layout to be used as an action view.
              See {@link android.view.MenuItem#setActionView(android.view.View)}
              for more info. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_actionLayout}.
-          @attr name android:android_actionLayout
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#actionLayout}.
+          @attr name android:actionLayout
         */
         public static final int SherlockMenuItem_android_actionLayout = 14;
         /**
@@ -2182,8 +2215,9 @@ containing a value of this type.
              and perform operations such as default action for that menu item.
              See {@link android.view.MenuItem#setActionProvider(android.view.ActionProvider)}
              for more info. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_actionProviderClass}.
-          @attr name android:android_actionProviderClass
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#actionProviderClass}.
+          @attr name android:actionProviderClass
         */
         public static final int SherlockMenuItem_android_actionProviderClass = 16;
         /**
@@ -2192,8 +2226,9 @@ containing a value of this type.
            The name of an optional View class to instantiate and use as an
              action view. See {@link android.view.MenuItem#setActionView(android.view.View)}
              for more info. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_actionViewClass}.
-          @attr name android:android_actionViewClass
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#actionViewClass}.
+          @attr name android:actionViewClass
         */
         public static final int SherlockMenuItem_android_actionViewClass = 15;
         /**
@@ -2201,16 +2236,18 @@ containing a value of this type.
           @attr description
            The alphabetic shortcut key.  This is the shortcut when using a keyboard
              with alphabetic keys. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_alphabeticShortcut}.
-          @attr name android:android_alphabeticShortcut
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#alphabeticShortcut}.
+          @attr name android:alphabeticShortcut
         */
         public static final int SherlockMenuItem_android_alphabeticShortcut = 9;
         /**
           <p>
           @attr description
            Whether the item is capable of displaying a check mark. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_checkable}.
-          @attr name android:android_checkable
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#checkable}.
+          @attr name android:checkable
         */
         public static final int SherlockMenuItem_android_checkable = 11;
         /**
@@ -2218,16 +2255,18 @@ containing a value of this type.
           @attr description
            Whether the item is checked.  Note that you must first have enabled checking with
              the checkable attribute or else the check mark will not appear. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_checked}.
-          @attr name android:android_checked
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#checked}.
+          @attr name android:checked
         */
         public static final int SherlockMenuItem_android_checked = 3;
         /**
           <p>
           @attr description
            Whether the item is enabled. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_enabled}.
-          @attr name android:android_enabled
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#enabled}.
+          @attr name android:enabled
         */
         public static final int SherlockMenuItem_android_enabled = 1;
         /**
@@ -2235,16 +2274,18 @@ containing a value of this type.
           @attr description
            The icon associated with this item.  This icon will not always be shown, so
              the title should be sufficient in describing this item. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_icon}.
-          @attr name android:android_icon
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#icon}.
+          @attr name android:icon
         */
         public static final int SherlockMenuItem_android_icon = 0;
         /**
           <p>
           @attr description
            The ID of the item. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_id}.
-          @attr name android:android_id
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#id}.
+          @attr name android:id
         */
         public static final int SherlockMenuItem_android_id = 2;
         /**
@@ -2252,8 +2293,9 @@ containing a value of this type.
           @attr description
            The category applied to the item.
              (This will be or'ed with the orderInCategory attribute.) 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_menuCategory}.
-          @attr name android:android_menuCategory
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#menuCategory}.
+          @attr name android:menuCategory
         */
         public static final int SherlockMenuItem_android_menuCategory = 5;
         /**
@@ -2261,8 +2303,9 @@ containing a value of this type.
           @attr description
            The numeric shortcut key.  This is the shortcut when using a numeric (e.g., 12-key)
              keyboard. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_numericShortcut}.
-          @attr name android:android_numericShortcut
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#numericShortcut}.
+          @attr name android:numericShortcut
         */
         public static final int SherlockMenuItem_android_numericShortcut = 10;
         /**
@@ -2270,8 +2313,9 @@ containing a value of this type.
           @attr description
            Name of a method on the Context used to inflate the menu that will be
              called when the item is clicked. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_onClick}.
-          @attr name android:android_onClick
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#onClick}.
+          @attr name android:onClick
         */
         public static final int SherlockMenuItem_android_onClick = 12;
         /**
@@ -2279,24 +2323,27 @@ containing a value of this type.
           @attr description
            The order within the category applied to the item.
              (This will be or'ed with the category attribute.) 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_orderInCategory}.
-          @attr name android:android_orderInCategory
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#orderInCategory}.
+          @attr name android:orderInCategory
         */
         public static final int SherlockMenuItem_android_orderInCategory = 6;
         /**
           <p>
           @attr description
            How this item should display in the Action Bar, if present. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_showAsAction}.
-          @attr name android:android_showAsAction
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#showAsAction}.
+          @attr name android:showAsAction
         */
         public static final int SherlockMenuItem_android_showAsAction = 13;
         /**
           <p>
           @attr description
            The title associated with the item. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_title}.
-          @attr name android:android_title
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#title}.
+          @attr name android:title
         */
         public static final int SherlockMenuItem_android_title = 7;
         /**
@@ -2304,16 +2351,18 @@ containing a value of this type.
           @attr description
            The condensed title associated with the item.  This is used in situations where the
              normal title may be too long to be displayed. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_titleCondensed}.
-          @attr name android:android_titleCondensed
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#titleCondensed}.
+          @attr name android:titleCondensed
         */
         public static final int SherlockMenuItem_android_titleCondensed = 8;
         /**
           <p>
           @attr description
            Whether the item is shown/visible. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_visible}.
-          @attr name android:android_visible
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#visible}.
+          @attr name android:visible
         */
         public static final int SherlockMenuItem_android_visible = 4;
         /** Attributes that can be used with a SherlockMenuView.
@@ -2355,7 +2404,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:headerBackground
+          @attr name com.codelemma.mortgagecmp:headerBackground
         */
         public static final int SherlockMenuView_headerBackground = 3;
         /**
@@ -2367,7 +2416,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:horizontalDivider
+          @attr name com.codelemma.mortgagecmp:horizontalDivider
         */
         public static final int SherlockMenuView_horizontalDivider = 1;
         /**
@@ -2381,7 +2430,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:itemBackground
+          @attr name com.codelemma.mortgagecmp:itemBackground
         */
         public static final int SherlockMenuView_itemBackground = 4;
         /**
@@ -2397,7 +2446,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:itemIconDisabledAlpha
+          @attr name com.codelemma.mortgagecmp:itemIconDisabledAlpha
         */
         public static final int SherlockMenuView_itemIconDisabledAlpha = 6;
         /**
@@ -2409,7 +2458,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:itemTextAppearance
+          @attr name com.codelemma.mortgagecmp:itemTextAppearance
         */
         public static final int SherlockMenuView_itemTextAppearance = 0;
         /**
@@ -2425,7 +2474,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:preserveIconSpacing
+          @attr name com.codelemma.mortgagecmp:preserveIconSpacing
         */
         public static final int SherlockMenuView_preserveIconSpacing = 7;
         /**
@@ -2437,7 +2486,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:verticalDivider
+          @attr name com.codelemma.mortgagecmp:verticalDivider
         */
         public static final int SherlockMenuView_verticalDivider = 2;
         /**
@@ -2449,7 +2498,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:windowAnimationStyle
+          @attr name com.codelemma.mortgagecmp:windowAnimationStyle
         */
         public static final int SherlockMenuView_windowAnimationStyle = 5;
         /** Attributes that can be used with a SherlockSearchView.
@@ -2458,9 +2507,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockSearchView_android_imeOptions com.codelemma.mortgagecmp:android_imeOptions}</code></td><td> The IME options to set on the query text field.</td></tr>
-           <tr><td><code>{@link #SherlockSearchView_android_inputType com.codelemma.mortgagecmp:android_inputType}</code></td><td> The input type to set on the query text field.</td></tr>
-           <tr><td><code>{@link #SherlockSearchView_android_maxWidth com.codelemma.mortgagecmp:android_maxWidth}</code></td><td> An optional maximum width of the SearchView.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_imeOptions android:imeOptions}</code></td><td> The IME options to set on the query text field.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_inputType android:inputType}</code></td><td> The input type to set on the query text field.</td></tr>
+           <tr><td><code>{@link #SherlockSearchView_android_maxWidth android:maxWidth}</code></td><td> An optional maximum width of the SearchView.</td></tr>
            <tr><td><code>{@link #SherlockSearchView_iconifiedByDefault com.codelemma.mortgagecmp:iconifiedByDefault}</code></td><td> The default state of the SearchView.</td></tr>
            <tr><td><code>{@link #SherlockSearchView_queryHint com.codelemma.mortgagecmp:queryHint}</code></td><td> An optional query hint string to be displayed in the empty query field.</td></tr>
            </table>
@@ -2478,24 +2527,27 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>
           @attr description
            The IME options to set on the query text field. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_imeOptions}.
-          @attr name android:android_imeOptions
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#imeOptions}.
+          @attr name android:imeOptions
         */
         public static final int SherlockSearchView_android_imeOptions = 2;
         /**
           <p>
           @attr description
            The input type to set on the query text field. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_inputType}.
-          @attr name android:android_inputType
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#inputType}.
+          @attr name android:inputType
         */
         public static final int SherlockSearchView_android_inputType = 1;
         /**
           <p>
           @attr description
            An optional maximum width of the SearchView. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_maxWidth}.
-          @attr name android:android_maxWidth
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#maxWidth}.
+          @attr name android:maxWidth
         */
         public static final int SherlockSearchView_android_maxWidth = 0;
         /**
@@ -2512,7 +2564,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:iconifiedByDefault
+          @attr name com.codelemma.mortgagecmp:iconifiedByDefault
         */
         public static final int SherlockSearchView_iconifiedByDefault = 3;
         /**
@@ -2528,7 +2580,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:queryHint
+          @attr name com.codelemma.mortgagecmp:queryHint
         */
         public static final int SherlockSearchView_queryHint = 4;
         /** Attributes that can be used with a SherlockSpinner.
@@ -2537,17 +2589,17 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_dropDownHorizontalOffset com.codelemma.mortgagecmp:android_dropDownHorizontalOffset}</code></td><td> Horizontal offset from the spinner widget for positioning the dropdown
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownHorizontalOffset android:dropDownHorizontalOffset}</code></td><td> Horizontal offset from the spinner widget for positioning the dropdown
              in spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_dropDownSelector com.codelemma.mortgagecmp:android_dropDownSelector}</code></td><td> List selector to use for spinnerMode="dropdown" display.</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_dropDownVerticalOffset com.codelemma.mortgagecmp:android_dropDownVerticalOffset}</code></td><td> Vertical offset from the spinner widget for positioning the dropdown in
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownSelector android:dropDownSelector}</code></td><td> List selector to use for spinnerMode="dropdown" display.</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownVerticalOffset android:dropDownVerticalOffset}</code></td><td> Vertical offset from the spinner widget for positioning the dropdown in
              spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_dropDownWidth com.codelemma.mortgagecmp:android_dropDownWidth}</code></td><td> Width of the dropdown in spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_gravity com.codelemma.mortgagecmp:android_gravity}</code></td><td> Gravity setting for positioning the currently selected item.</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_popupBackground com.codelemma.mortgagecmp:android_popupBackground}</code></td><td> Background drawable to use for the dropdown in spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_popupPromptView com.codelemma.mortgagecmp:android_popupPromptView}</code></td><td> Reference to a layout to use for displaying a prompt in the dropdown for
+           <tr><td><code>{@link #SherlockSpinner_android_dropDownWidth android:dropDownWidth}</code></td><td> Width of the dropdown in spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_gravity android:gravity}</code></td><td> Gravity setting for positioning the currently selected item.</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_popupBackground android:popupBackground}</code></td><td> Background drawable to use for the dropdown in spinnerMode="dropdown".</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_popupPromptView android:popupPromptView}</code></td><td> Reference to a layout to use for displaying a prompt in the dropdown for
              spinnerMode="dropdown".</td></tr>
-           <tr><td><code>{@link #SherlockSpinner_android_prompt com.codelemma.mortgagecmp:android_prompt}</code></td><td> The prompt to display when the spinner's dialog is shown.</td></tr>
+           <tr><td><code>{@link #SherlockSpinner_android_prompt android:prompt}</code></td><td> The prompt to display when the spinner's dialog is shown.</td></tr>
            </table>
            @see #SherlockSpinner_android_dropDownHorizontalOffset
            @see #SherlockSpinner_android_dropDownSelector
@@ -2567,16 +2619,18 @@ containing a value of this type.
           @attr description
            Horizontal offset from the spinner widget for positioning the dropdown
              in spinnerMode="dropdown". 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_dropDownHorizontalOffset}.
-          @attr name android:android_dropDownHorizontalOffset
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#dropDownHorizontalOffset}.
+          @attr name android:dropDownHorizontalOffset
         */
         public static final int SherlockSpinner_android_dropDownHorizontalOffset = 5;
         /**
           <p>
           @attr description
            List selector to use for spinnerMode="dropdown" display. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_dropDownSelector}.
-          @attr name android:android_dropDownSelector
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#dropDownSelector}.
+          @attr name android:dropDownSelector
         */
         public static final int SherlockSpinner_android_dropDownSelector = 1;
         /**
@@ -2584,32 +2638,36 @@ containing a value of this type.
           @attr description
            Vertical offset from the spinner widget for positioning the dropdown in
              spinnerMode="dropdown". 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_dropDownVerticalOffset}.
-          @attr name android:android_dropDownVerticalOffset
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#dropDownVerticalOffset}.
+          @attr name android:dropDownVerticalOffset
         */
         public static final int SherlockSpinner_android_dropDownVerticalOffset = 6;
         /**
           <p>
           @attr description
            Width of the dropdown in spinnerMode="dropdown". 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_dropDownWidth}.
-          @attr name android:android_dropDownWidth
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#dropDownWidth}.
+          @attr name android:dropDownWidth
         */
         public static final int SherlockSpinner_android_dropDownWidth = 4;
         /**
           <p>
           @attr description
            Gravity setting for positioning the currently selected item. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_gravity}.
-          @attr name android:android_gravity
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#gravity}.
+          @attr name android:gravity
         */
         public static final int SherlockSpinner_android_gravity = 0;
         /**
           <p>
           @attr description
            Background drawable to use for the dropdown in spinnerMode="dropdown". 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_popupBackground}.
-          @attr name android:android_popupBackground
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#popupBackground}.
+          @attr name android:popupBackground
         */
         public static final int SherlockSpinner_android_popupBackground = 2;
         /**
@@ -2619,15 +2677,16 @@ containing a value of this type.
              spinnerMode="dropdown". This layout must contain a TextView with the id
              @android:id/text1 to be populated with the prompt text. 
           <p>This is a private symbol.
-          @attr name android:android_popupPromptView
+          @attr name android:popupPromptView
         */
         public static final int SherlockSpinner_android_popupPromptView = 7;
         /**
           <p>
           @attr description
            The prompt to display when the spinner's dialog is shown. 
-          <p>This corresponds to the global attribute          resource symbol {@link com.codelemma.mortgagecmp.R.attr#android_prompt}.
-          @attr name android:android_prompt
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#prompt}.
+          @attr name android:prompt
         */
         public static final int SherlockSpinner_android_prompt = 3;
         /** Attributes that can be used with a SherlockTheme.
@@ -2663,7 +2722,7 @@ containing a value of this type.
            <tr><td><code>{@link #SherlockTheme_actionSpinnerItemStyle com.codelemma.mortgagecmp:actionSpinnerItemStyle}</code></td><td></td></tr>
            <tr><td><code>{@link #SherlockTheme_activatedBackgroundIndicator com.codelemma.mortgagecmp:activatedBackgroundIndicator}</code></td><td> Drawable used as a background for activated items.</td></tr>
            <tr><td><code>{@link #SherlockTheme_activityChooserViewStyle com.codelemma.mortgagecmp:activityChooserViewStyle}</code></td><td> Default ActivityChooserView style.</td></tr>
-           <tr><td><code>{@link #SherlockTheme_android_windowIsFloating com.codelemma.mortgagecmp:android_windowIsFloating}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_android_windowIsFloating android:windowIsFloating}</code></td><td></td></tr>
            <tr><td><code>{@link #SherlockTheme_buttonStyleSmall com.codelemma.mortgagecmp:buttonStyleSmall}</code></td><td> Small Button style.</td></tr>
            <tr><td><code>{@link #SherlockTheme_dividerVertical com.codelemma.mortgagecmp:dividerVertical}</code></td><td> Drawable to use for generic vertical dividers.</td></tr>
            <tr><td><code>{@link #SherlockTheme_dropDownListViewStyle com.codelemma.mortgagecmp:dropDownListViewStyle}</code></td><td></td></tr>
@@ -2804,7 +2863,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarDivider
+          @attr name com.codelemma.mortgagecmp:actionBarDivider
         */
         public static final int SherlockTheme_actionBarDivider = 9;
         /**
@@ -2816,7 +2875,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarItemBackground
+          @attr name com.codelemma.mortgagecmp:actionBarItemBackground
         */
         public static final int SherlockTheme_actionBarItemBackground = 10;
         /**
@@ -2843,7 +2902,7 @@ containing a value of this type.
 <tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
 </table>
           <p>This is a private symbol.
-          @attr name android:actionBarSize
+          @attr name com.codelemma.mortgagecmp:actionBarSize
         */
         public static final int SherlockTheme_actionBarSize = 8;
         /**
@@ -2858,7 +2917,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarSplitStyle
+          @attr name com.codelemma.mortgagecmp:actionBarSplitStyle
         */
         public static final int SherlockTheme_actionBarSplitStyle = 6;
         /**
@@ -2870,7 +2929,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarStyle
+          @attr name com.codelemma.mortgagecmp:actionBarStyle
         */
         public static final int SherlockTheme_actionBarStyle = 5;
         /**
@@ -2880,7 +2939,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionBarTabBarStyle
+          @attr name com.codelemma.mortgagecmp:actionBarTabBarStyle
         */
         public static final int SherlockTheme_actionBarTabBarStyle = 2;
         /**
@@ -2892,7 +2951,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarTabStyle
+          @attr name com.codelemma.mortgagecmp:actionBarTabStyle
         */
         public static final int SherlockTheme_actionBarTabStyle = 1;
         /**
@@ -2902,7 +2961,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionBarTabTextStyle
+          @attr name com.codelemma.mortgagecmp:actionBarTabTextStyle
         */
         public static final int SherlockTheme_actionBarTabTextStyle = 3;
         /**
@@ -2920,7 +2979,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionBarWidgetTheme
+          @attr name com.codelemma.mortgagecmp:actionBarWidgetTheme
         */
         public static final int SherlockTheme_actionBarWidgetTheme = 7;
         /**
@@ -2930,7 +2989,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionButtonStyle
+          @attr name com.codelemma.mortgagecmp:actionButtonStyle
         */
         public static final int SherlockTheme_actionButtonStyle = 53;
         /**
@@ -2940,7 +2999,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionDropDownStyle
+          @attr name com.codelemma.mortgagecmp:actionDropDownStyle
         */
         public static final int SherlockTheme_actionDropDownStyle = 52;
         /**
@@ -2953,7 +3012,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionMenuTextAppearance
+          @attr name com.codelemma.mortgagecmp:actionMenuTextAppearance
         */
         public static final int SherlockTheme_actionMenuTextAppearance = 11;
         /**
@@ -2967,7 +3026,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionMenuTextColor
+          @attr name com.codelemma.mortgagecmp:actionMenuTextColor
         */
         public static final int SherlockTheme_actionMenuTextColor = 12;
         /**
@@ -2979,7 +3038,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionModeBackground
+          @attr name com.codelemma.mortgagecmp:actionModeBackground
         */
         public static final int SherlockTheme_actionModeBackground = 15;
         /**
@@ -2989,7 +3048,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionModeCloseButtonStyle
+          @attr name com.codelemma.mortgagecmp:actionModeCloseButtonStyle
         */
         public static final int SherlockTheme_actionModeCloseButtonStyle = 14;
         /**
@@ -3001,7 +3060,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionModeCloseDrawable
+          @attr name com.codelemma.mortgagecmp:actionModeCloseDrawable
         */
         public static final int SherlockTheme_actionModeCloseDrawable = 17;
         /**
@@ -3013,7 +3072,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionModePopupWindowStyle
+          @attr name com.codelemma.mortgagecmp:actionModePopupWindowStyle
         */
         public static final int SherlockTheme_actionModePopupWindowStyle = 19;
         /**
@@ -3025,7 +3084,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionModeShareDrawable
+          @attr name com.codelemma.mortgagecmp:actionModeShareDrawable
         */
         public static final int SherlockTheme_actionModeShareDrawable = 18;
         /**
@@ -3037,7 +3096,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:actionModeSplitBackground
+          @attr name com.codelemma.mortgagecmp:actionModeSplitBackground
         */
         public static final int SherlockTheme_actionModeSplitBackground = 16;
         /**
@@ -3047,7 +3106,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionModeStyle
+          @attr name com.codelemma.mortgagecmp:actionModeStyle
         */
         public static final int SherlockTheme_actionModeStyle = 13;
         /**
@@ -3057,7 +3116,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionOverflowButtonStyle
+          @attr name com.codelemma.mortgagecmp:actionOverflowButtonStyle
         */
         public static final int SherlockTheme_actionOverflowButtonStyle = 4;
         /**
@@ -3067,7 +3126,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:actionSpinnerItemStyle
+          @attr name com.codelemma.mortgagecmp:actionSpinnerItemStyle
         */
         public static final int SherlockTheme_actionSpinnerItemStyle = 58;
         /**
@@ -3079,7 +3138,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:activatedBackgroundIndicator
+          @attr name com.codelemma.mortgagecmp:activatedBackgroundIndicator
         */
         public static final int SherlockTheme_activatedBackgroundIndicator = 66;
         /**
@@ -3091,13 +3150,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:activityChooserViewStyle
+          @attr name com.codelemma.mortgagecmp:activityChooserViewStyle
         */
         public static final int SherlockTheme_activityChooserViewStyle = 65;
         /**
-          <p>This symbol is the offset where the {@link com.codelemma.mortgagecmp.R.attr#android_windowIsFloating}
+          <p>This symbol is the offset where the {@link android.R.attr#windowIsFloating}
           attribute's value can be found in the {@link #SherlockTheme} array.
-          @attr name android:android_windowIsFloating
+          @attr name android:windowIsFloating
         */
         public static final int SherlockTheme_android_windowIsFloating = 0;
         /**
@@ -3109,7 +3168,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:buttonStyleSmall
+          @attr name com.codelemma.mortgagecmp:buttonStyleSmall
         */
         public static final int SherlockTheme_buttonStyleSmall = 20;
         /**
@@ -3121,7 +3180,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:dividerVertical
+          @attr name com.codelemma.mortgagecmp:dividerVertical
         */
         public static final int SherlockTheme_dividerVertical = 51;
         /**
@@ -3131,7 +3190,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:dropDownListViewStyle
+          @attr name com.codelemma.mortgagecmp:dropDownListViewStyle
         */
         public static final int SherlockTheme_dropDownListViewStyle = 55;
         /**
@@ -3147,7 +3206,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:dropdownListPreferredItemHeight
+          @attr name com.codelemma.mortgagecmp:dropdownListPreferredItemHeight
         */
         public static final int SherlockTheme_dropdownListPreferredItemHeight = 57;
         /**
@@ -3157,7 +3216,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:homeAsUpIndicator
+          @attr name com.codelemma.mortgagecmp:homeAsUpIndicator
         */
         public static final int SherlockTheme_homeAsUpIndicator = 54;
         /**
@@ -3167,7 +3226,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:listPopupWindowStyle
+          @attr name com.codelemma.mortgagecmp:listPopupWindowStyle
         */
         public static final int SherlockTheme_listPopupWindowStyle = 64;
         /**
@@ -3185,7 +3244,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:listPreferredItemHeightSmall
+          @attr name com.codelemma.mortgagecmp:listPreferredItemHeightSmall
         */
         public static final int SherlockTheme_listPreferredItemHeightSmall = 45;
         /**
@@ -3203,7 +3262,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:listPreferredItemPaddingLeft
+          @attr name com.codelemma.mortgagecmp:listPreferredItemPaddingLeft
         */
         public static final int SherlockTheme_listPreferredItemPaddingLeft = 46;
         /**
@@ -3221,7 +3280,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:listPreferredItemPaddingRight
+          @attr name com.codelemma.mortgagecmp:listPreferredItemPaddingRight
         */
         public static final int SherlockTheme_listPreferredItemPaddingRight = 47;
         /**
@@ -3231,7 +3290,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:popupMenuStyle
+          @attr name com.codelemma.mortgagecmp:popupMenuStyle
         */
         public static final int SherlockTheme_popupMenuStyle = 56;
         /**
@@ -3243,7 +3302,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchAutoCompleteTextView
+          @attr name com.codelemma.mortgagecmp:searchAutoCompleteTextView
         */
         public static final int SherlockTheme_searchAutoCompleteTextView = 31;
         /**
@@ -3255,7 +3314,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchDropdownBackground
+          @attr name com.codelemma.mortgagecmp:searchDropdownBackground
         */
         public static final int SherlockTheme_searchDropdownBackground = 32;
         /**
@@ -3273,7 +3332,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:searchResultListItemHeight
+          @attr name com.codelemma.mortgagecmp:searchResultListItemHeight
         */
         public static final int SherlockTheme_searchResultListItemHeight = 42;
         /**
@@ -3285,7 +3344,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewCloseIcon
+          @attr name com.codelemma.mortgagecmp:searchViewCloseIcon
         */
         public static final int SherlockTheme_searchViewCloseIcon = 33;
         /**
@@ -3297,7 +3356,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewEditQuery
+          @attr name com.codelemma.mortgagecmp:searchViewEditQuery
         */
         public static final int SherlockTheme_searchViewEditQuery = 37;
         /**
@@ -3309,7 +3368,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewEditQueryBackground
+          @attr name com.codelemma.mortgagecmp:searchViewEditQueryBackground
         */
         public static final int SherlockTheme_searchViewEditQueryBackground = 38;
         /**
@@ -3321,7 +3380,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewGoIcon
+          @attr name com.codelemma.mortgagecmp:searchViewGoIcon
         */
         public static final int SherlockTheme_searchViewGoIcon = 34;
         /**
@@ -3333,7 +3392,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewSearchIcon
+          @attr name com.codelemma.mortgagecmp:searchViewSearchIcon
         */
         public static final int SherlockTheme_searchViewSearchIcon = 35;
         /**
@@ -3345,7 +3404,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewTextField
+          @attr name com.codelemma.mortgagecmp:searchViewTextField
         */
         public static final int SherlockTheme_searchViewTextField = 39;
         /**
@@ -3357,7 +3416,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewTextFieldRight
+          @attr name com.codelemma.mortgagecmp:searchViewTextFieldRight
         */
         public static final int SherlockTheme_searchViewTextFieldRight = 40;
         /**
@@ -3369,7 +3428,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:searchViewVoiceIcon
+          @attr name com.codelemma.mortgagecmp:searchViewVoiceIcon
         */
         public static final int SherlockTheme_searchViewVoiceIcon = 36;
         /**
@@ -3381,7 +3440,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:selectableItemBackground
+          @attr name com.codelemma.mortgagecmp:selectableItemBackground
         */
         public static final int SherlockTheme_selectableItemBackground = 21;
         /**
@@ -3391,7 +3450,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:spinnerDropDownItemStyle
+          @attr name com.codelemma.mortgagecmp:spinnerDropDownItemStyle
         */
         public static final int SherlockTheme_spinnerDropDownItemStyle = 30;
         /**
@@ -3401,7 +3460,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:spinnerItemStyle
+          @attr name com.codelemma.mortgagecmp:spinnerItemStyle
         */
         public static final int SherlockTheme_spinnerItemStyle = 29;
         /**
@@ -3413,7 +3472,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceLargePopupMenu
+          @attr name com.codelemma.mortgagecmp:textAppearanceLargePopupMenu
         */
         public static final int SherlockTheme_textAppearanceLargePopupMenu = 23;
         /**
@@ -3425,7 +3484,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceListItemSmall
+          @attr name com.codelemma.mortgagecmp:textAppearanceListItemSmall
         */
         public static final int SherlockTheme_textAppearanceListItemSmall = 48;
         /**
@@ -3437,7 +3496,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceSearchResultSubtitle
+          @attr name com.codelemma.mortgagecmp:textAppearanceSearchResultSubtitle
         */
         public static final int SherlockTheme_textAppearanceSearchResultSubtitle = 44;
         /**
@@ -3449,7 +3508,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceSearchResultTitle
+          @attr name com.codelemma.mortgagecmp:textAppearanceSearchResultTitle
         */
         public static final int SherlockTheme_textAppearanceSearchResultTitle = 43;
         /**
@@ -3461,7 +3520,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceSmall
+          @attr name com.codelemma.mortgagecmp:textAppearanceSmall
         */
         public static final int SherlockTheme_textAppearanceSmall = 25;
         /**
@@ -3473,7 +3532,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:textAppearanceSmallPopupMenu
+          @attr name com.codelemma.mortgagecmp:textAppearanceSmallPopupMenu
         */
         public static final int SherlockTheme_textAppearanceSmallPopupMenu = 24;
         /**
@@ -3488,7 +3547,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:textColorPrimary
+          @attr name com.codelemma.mortgagecmp:textColorPrimary
         */
         public static final int SherlockTheme_textColorPrimary = 26;
         /**
@@ -3503,7 +3562,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:textColorPrimaryDisableOnly
+          @attr name com.codelemma.mortgagecmp:textColorPrimaryDisableOnly
         */
         public static final int SherlockTheme_textColorPrimaryDisableOnly = 27;
         /**
@@ -3518,7 +3577,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:textColorPrimaryInverse
+          @attr name com.codelemma.mortgagecmp:textColorPrimaryInverse
         */
         public static final int SherlockTheme_textColorPrimaryInverse = 28;
         /**
@@ -3532,7 +3591,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           <p>This is a private symbol.
-          @attr name android:textColorSearchUrl
+          @attr name com.codelemma.mortgagecmp:textColorSearchUrl
         */
         public static final int SherlockTheme_textColorSearchUrl = 41;
         /**
@@ -3546,7 +3605,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionBar
+          @attr name com.codelemma.mortgagecmp:windowActionBar
         */
         public static final int SherlockTheme_windowActionBar = 60;
         /**
@@ -3560,7 +3619,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionBarOverlay
+          @attr name com.codelemma.mortgagecmp:windowActionBarOverlay
         */
         public static final int SherlockTheme_windowActionBarOverlay = 61;
         /**
@@ -3574,7 +3633,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowActionModeOverlay
+          @attr name com.codelemma.mortgagecmp:windowActionModeOverlay
         */
         public static final int SherlockTheme_windowActionModeOverlay = 62;
         /**
@@ -3587,7 +3646,7 @@ containing a value of this type.
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
           <p>This is a private symbol.
-          @attr name android:windowContentOverlay
+          @attr name com.codelemma.mortgagecmp:windowContentOverlay
         */
         public static final int SherlockTheme_windowContentOverlay = 22;
         /**
@@ -3603,7 +3662,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowMinWidthMajor
+          @attr name com.codelemma.mortgagecmp:windowMinWidthMajor
         */
         public static final int SherlockTheme_windowMinWidthMajor = 49;
         /**
@@ -3619,7 +3678,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowMinWidthMinor
+          @attr name com.codelemma.mortgagecmp:windowMinWidthMinor
         */
         public static final int SherlockTheme_windowMinWidthMinor = 50;
         /**
@@ -3633,7 +3692,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowNoTitle
+          @attr name com.codelemma.mortgagecmp:windowNoTitle
         */
         public static final int SherlockTheme_windowNoTitle = 59;
         /**
@@ -3647,7 +3706,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:windowSplitActionBar
+          @attr name com.codelemma.mortgagecmp:windowSplitActionBar
         */
         public static final int SherlockTheme_windowSplitActionBar = 63;
         /** Attributes that can be used with a SherlockView.
@@ -3656,7 +3715,7 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SherlockView_android_focusable com.codelemma.mortgagecmp:android_focusable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockView_android_focusable android:focusable}</code></td><td></td></tr>
            </table>
            @see #SherlockView_android_focusable
          */
@@ -3664,9 +3723,9 @@ containing a value of this type.
             0x010100da
         };
         /**
-          <p>This symbol is the offset where the {@link com.codelemma.mortgagecmp.R.attr#android_focusable}
+          <p>This symbol is the offset where the {@link android.R.attr#focusable}
           attribute's value can be found in the {@link #SherlockView} array.
-          @attr name android:android_focusable
+          @attr name android:focusable
         */
         public static final int SherlockView_android_focusable = 0;
     };

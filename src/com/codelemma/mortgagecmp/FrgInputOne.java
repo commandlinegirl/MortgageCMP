@@ -3,13 +3,16 @@ package com.codelemma.mortgagecmp;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,11 +46,26 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     }
 	
 	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {}
+	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		// here change view (different for ARM)
+		Log.d("onItemSelected", String.valueOf(pos));
+
+		if (pos < 2) {
+		    LinearLayout specific_mortgage_input = (LinearLayout) getActivity().findViewById(R.id.specific_mortgage_type_view);
+            specific_mortgage_input.removeAllViews();
+		} else {
+		    LinearLayout specific_mortgage_input = (LinearLayout) getActivity().findViewById(R.id.specific_mortgage_type_view);
+            specific_mortgage_input.removeAllViews();
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View v = inflater.inflate(R.layout.arm_layout, null);
+            specific_mortgage_input.addView(v); 
+        }
+	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		parent.setSelection(0);
+		Log.d("onNothingSelected", "onNothingSelected");
 	}
 	
     @Override
@@ -56,23 +74,37 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.frg_input_one, container, false);
     }
-    
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
-		
+
 	    Spinner spinner = (Spinner) getActivity().findViewById(R.id.mortgage_type);
 	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
 	         R.array.mortgage_types_spinner, android.R.layout.simple_spinner_item);
 	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    spinner.setAdapter(adapter);
 	    spinner.setOnItemSelectedListener(this);
-	    
-    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
 
+    	Mortgage mortgage = MortgageCMP.getInstance().getAccount().getCurrentMortgage();
+    	
     	if (mortgage != null) {
     		// set modify and clone buttons
     		mCallback.replaceButtons(mortgage);
+
+    		spinner.setSelection(MortgageNameConstants.getTypeInteger(mortgage.getType()));
+    		
+    		//TODO: chenge code here!
+    		if (MortgageNameConstants.getTypeInteger(mortgage.getType()) < 2) {
+    		    LinearLayout specific_mortgage_input = (LinearLayout) getActivity().findViewById(R.id.specific_mortgage_type_view);
+                specific_mortgage_input.removeAllViews();
+    		} else {
+    		    LinearLayout specific_mortgage_input = (LinearLayout) getActivity().findViewById(R.id.specific_mortgage_type_view);
+                specific_mortgage_input.removeAllViews();
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = inflater.inflate(R.layout.arm_layout, null);
+                specific_mortgage_input.addView(v); 
+            }
     		
     		EditText name = (EditText) getView().findViewById(R.id.mortgage_name);
     		name.setText(mortgage.getName(), TextView.BufferType.EDITABLE);
@@ -83,12 +115,9 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     		EditText downpayment = (EditText) getSherlockActivity().findViewById(R.id.mortgage_downpayment);
     		downpayment.setText(mortgage.getDownpayment().toString(), TextView.BufferType.EDITABLE);
 
-    		EditText interest = (EditText) getSherlockActivity().findViewById(R.id.mortgage_interest_rate);
-    		interest.setText(mortgage.getInterestRate().toString(), TextView.BufferType.EDITABLE);
-
     		EditText termy = (EditText) getSherlockActivity().findViewById(R.id.mortgage_term_years);
     		termy.setText(String.valueOf(mortgage.getTermYears()), TextView.BufferType.EDITABLE);
-
+    		
     		EditText termm = (EditText) getSherlockActivity().findViewById(R.id.mortgage_term_months);
     		termm.setText(String.valueOf(mortgage.getTermMonths()), TextView.BufferType.EDITABLE);
 
@@ -107,6 +136,13 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     		EditText extra_payment = (EditText) getSherlockActivity().findViewById(R.id.mortgage_extra_payment);
     		extra_payment.setText(mortgage.getExtraPayment().toString(), TextView.BufferType.EDITABLE);
 
+    		EditText interest = (EditText) getSherlockActivity().findViewById(R.id.mortgage_interest_rate);
+    		Log.d("mortgage", mortgage.toString());
+    		Log.d("mortgagege.getInterestRate()", mortgage.getInterestRate().toString());
+    		Log.d("interest", interest.toString());
+    		
+    		interest.setText(mortgage.getInterestRate().toString(), TextView.BufferType.EDITABLE);
+    		
     		int extra_payment_frequency = mortgage.getExtraPaymentFrequency();
 
     		if (extra_payment_frequency == 1) {
@@ -117,8 +153,8 @@ public class FrgInputOne extends SherlockFragment implements OnItemSelectedListe
     			RadioButton rb = (RadioButton) getActivity().findViewById(R.id.radioYearly);
     			rb.setChecked(true);
     		}
-
-    		spinner.setSelection(MortgageNameConstants.getTypeInteger(mortgage.getType()));
+    		
+  		
     	}
     }
 }

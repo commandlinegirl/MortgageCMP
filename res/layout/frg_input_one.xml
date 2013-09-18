@@ -132,33 +132,6 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">    
-    
-    <TextView
-        android:text="@string/mortgage_interest_rate_input"                        
-        android:layout_weight="@integer/form_text_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="3dip" />        
-    
-    <EditText
-        android:id="@+id/mortgage_interest_rate"   
-        android:layout_weight="@integer/form_edit_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/mortgage_interest_rate_text"
-        android:inputType="numberDecimal" />
-
-    <TextView
-        android:text="@string/percent"                        
-        android:layout_weight="@integer/form_suffix_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>             
-</LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <TextView
@@ -196,6 +169,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>    
     </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">    
+    
+    <TextView
+        android:text="@string/mortgage_interest_rate_input"                        
+        android:layout_weight="@integer/form_text_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dip" />        
+    
+    <EditText
+        android:id="@+id/mortgage_interest_rate"   
+        android:layout_weight="@integer/form_edit_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/mortgage_interest_rate_text"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:text="@string/percent"                        
+        android:layout_weight="@integer/form_suffix_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>             
+    </LinearLayout>
+
+    <!-- Layout specific to mortgage -->
+
+<LinearLayout
+    android:id="@+id/specific_mortgage_type_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">    
+    
+</LinearLayout>
 
     <!-- Advanced (tax, fees, insurance) -->
 
@@ -250,9 +260,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
     
-</LinearLayout>   
-  
-  
+</LinearLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

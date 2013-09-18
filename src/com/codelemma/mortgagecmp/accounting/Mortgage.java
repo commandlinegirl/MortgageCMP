@@ -18,7 +18,7 @@ public abstract class Mortgage {
 	private final int extra_payment_frequency;
 
 	private final BigDecimal loan_amount;
-	private final BigDecimal interest_rate_decimal_monthly;
+	private BigDecimal interest_rate_decimal_monthly;
 	private final Integer total_term_months; // in months
 	private final BigDecimal monthly_extra_payment;	
 	private final BigDecimal monthly_property_insurance;
@@ -52,7 +52,7 @@ public abstract class Mortgage {
 	
 	private HistoryMortgage history;
 
-	protected Mortgage(Builder builder) {
+	protected Mortgage(Builder<?> builder) {
 		next_id++;
 		name = builder.name;
 		purchase_price = builder.purchase_price;
@@ -102,7 +102,7 @@ public abstract class Mortgage {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -293,6 +293,10 @@ public abstract class Mortgage {
 		}
 	}
 	
+	public void setInterestRateDecimalMonthly(
+			BigDecimal current_interest_rate_decimal_monthly) {
+		interest_rate_decimal_monthly = current_interest_rate_decimal_monthly;
+	}
 	
 	/* Insurance */
 
@@ -416,7 +420,7 @@ public abstract class Mortgage {
 		}
 	}
 	
-	public static abstract class Builder {
+	public static abstract class Builder<T extends Builder<T>> {
 		
 		private String name;
 		private BigDecimal purchase_price;
@@ -430,6 +434,8 @@ public abstract class Mortgage {
 		private BigDecimal closing_fees;
 		private BigDecimal extra_payment;
 		private Integer extra_payment_frequency;
+		
+		protected abstract T getThis();
 		
 		public String getName() {
 			return name;
@@ -471,67 +477,67 @@ public abstract class Mortgage {
 			return closing_fees;
 		}
 		
-		
-		public Builder name(String name) {
+		public T name(String name) {
 			this.name = name; 
-			return this;
+			return getThis();
 		}
 
-		public Builder purchase_price(BigDecimal purchase_price) {
+		public T purchase_price(BigDecimal purchase_price) {
 			this.purchase_price = purchase_price; 
-			return this;
+			return getThis();
 		}
 
-		public Builder downpayment(BigDecimal downpayment) {
+		public T downpayment(BigDecimal downpayment) {
 			this.downpayment = downpayment; 
-			return this;
+			return getThis();
 		}
 
-		public Builder interest_rate(BigDecimal interest_rate) {
+		public T interest_rate(BigDecimal interest_rate) {
 			this.interest_rate = interest_rate; 
-			return this;
+			return getThis();
 		}
 
-		public Builder term_years(Integer term_years) {
+		public T term_years(Integer term_years) {
 			this.term_years = term_years; 
-			return this;
+			return getThis();
 		}
 
-		public Builder term_months(Integer term_months) {
+		public T term_months(Integer term_months) {
 			this.term_months = term_months; 
-			return this;
+			return getThis();
 		}
 
-		public Builder property_insurance(BigDecimal property_insurance) {
+		public T property_insurance(BigDecimal property_insurance) {
 			this.property_insurance = property_insurance; 
-			return this;
+			return getThis();
 		}
 
-		public Builder property_tax(BigDecimal property_tax) {
+		public T property_tax(BigDecimal property_tax) {
 			this.property_tax = property_tax; 
-			return this;
+			return getThis();
 		}
 
-		public Builder pmi_rate(BigDecimal pmi_rate) {
+		public T pmi_rate(BigDecimal pmi_rate) {
 			this.pmi_rate = pmi_rate; 
-			return this;
+			return getThis();
 		}
 
-		public Builder closing_fees(BigDecimal closing_fees) {
+		public T closing_fees(BigDecimal closing_fees) {
 			this.closing_fees = closing_fees; 
-			return this;
+			return getThis();
 		}
 
-		public Builder extra_payment(BigDecimal extra_payment) {
+		public T extra_payment(BigDecimal extra_payment) {
 			this.extra_payment = extra_payment; 
-			return this;
+			return getThis();
 		}
 
-		public Builder extra_payment_frequency(Integer extra_payment_frequency) {
+		public T extra_payment_frequency(Integer extra_payment_frequency) {
 			this.extra_payment_frequency = extra_payment_frequency; 
-			return this;
+			return getThis();
 		}
 		
 		public abstract Mortgage build();
+
 	}
 }

@@ -2,8 +2,6 @@ package com.codelemma.mortgagecmp.accounting;
 
 import java.math.BigDecimal;
 
-import android.util.Log;
-
 public class AdjustableRateMortgage extends Mortgage {
 
 	private int adjustment_period;
@@ -92,6 +90,7 @@ public class AdjustableRateMortgage extends Mortgage {
 
 	@Override
 	protected void advance(int year, int month) {
+
 		if (((this.getMonthCounter()-1) >= adjustment_period) && ((this.getMonthCounter()-1) % months_between_adjustments) == 0) {			
 			
 			BigDecimal next_interest_rate = current_interest_rate_decimal_monthly.add(max_single_rate_adjustment_decimal_monthly);
@@ -103,6 +102,7 @@ public class AdjustableRateMortgage extends Mortgage {
 					current_interest_rate_decimal_monthly,
 					this.getOutstandingLoan());
 			principal_plus_interest_plus_extra_payment = principal_plus_interest.add(this.getMonthlyExtraPayment());
+			
 		}
 		// perform normal calculations
 
@@ -138,6 +138,7 @@ public class AdjustableRateMortgage extends Mortgage {
 				min_monthly_payment_constant = principal_plus_interest_plus_extra_payment;
 				min_monthly_payment_constant_month = this.getMonthCounter();
 			}
+			
 		} else {
 			this.setValuesAfterCalculation();
 		}
@@ -166,6 +167,16 @@ public class AdjustableRateMortgage extends Mortgage {
 		mplv.listMonthlyPaymentBreakdown(this);
 	}
 
+	@Override
+	public void fillInput(FillInputVisitor fiv) {
+		fiv.fillInput(this);
+	}
+	
+	@Override
+	public void writeSummary(SummaryVisitor sv) {
+		sv.writeSummary(this);
+	}
+	
 	public void setCurrentInterestRateDecimalMonthly(BigDecimal interest_rate) {
 		current_interest_rate_decimal_monthly = interest_rate;
 	}
@@ -187,7 +198,7 @@ public class AdjustableRateMortgage extends Mortgage {
 	}
 	
 	public int getAdjustmentPeriod() {
-		return Math.max(adjustment_period-2, 0);
+		return adjustment_period;
 	}
 
 	public int getMonthsBetweenAdjustments() {
@@ -243,7 +254,6 @@ public class AdjustableRateMortgage extends Mortgage {
 				
 		public Builder months_between_adjustments(int months_between_adjustments) {
 			this.months_between_adjustments = months_between_adjustments; 
-			Log.d("months between adjustments", String.valueOf(months_between_adjustments));
 			return this;
 		}
 		

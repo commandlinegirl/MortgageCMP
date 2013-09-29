@@ -13,39 +13,64 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:onClick="toggleVisibilityBasicData"
+        android:background="#FFe9e9e9"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:id="@+id/basic_section_input_text"                        
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/basic_section_input_visible">
+        </TextView>
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/basic_section_input"
+    android:orientation="vertical">        
+    
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_gravity="center_horizontal">    
-        
-    <TextView
-        android:text="@string/mortgage_type_input"
-        android:layout_weight="@integer/form_text_weight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="3dip" />
       
     <Spinner android:id="@+id/mortgage_type"
         android:layout_height="wrap_content"
-        android:layout_weight="@integer/form_edit_weight"
-        android:layout_width="0dp" /> 
+        android:layout_weight="15"
+        android:layout_width="0dp" 
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/> 
 
     <TextView
-        android:text="  \?  "
-        android:textStyle="bold"
-        android:textColor="#ff888888"
+        android:text=""                        
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"/>    
+    
+    <TextView
+        android:id="@+id/mortgage_type_info"
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
         android:gravity="center"
         android:clickable="true"
+        android:background="@drawable/question_mark"        
         android:onClick="showMortgageTypeMoreInfo"/>    
     
 </LinearLayout>            
         
         
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">    
@@ -70,9 +95,20 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
-      
-</LinearLayout>        
 
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showMortgageNameInfo"/>       
+    
+</LinearLayout>        
+    
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -83,7 +119,10 @@
         android:layout_weight="@integer/form_text_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="3dip" />        
+        android:padding="3dip"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showPurchasePriceInfo" />        
     
     <EditText
         android:id="@+id/mortgage_purchase_price"   
@@ -98,6 +137,17 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
+    
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showPurchasePriceInfo"/>    
     
     </LinearLayout>        
 
@@ -127,6 +177,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
     
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showDownPaymentInfo"/>    
+    
     </LinearLayout>        
 
 <LinearLayout
@@ -151,7 +212,7 @@
 
     <TextView
         android:text="@string/mortgage_term_years_abbr"                        
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>
     
@@ -165,9 +226,17 @@
 
     <TextView
         android:text="@string/mortgage_term_months_abbr"                        
-        android:layout_weight="2"
+        android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>    
+        
+    <TextView
+        android:text="  "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"/>       
     </LinearLayout>
 
     <LinearLayout
@@ -195,16 +264,27 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>             
-    </LinearLayout>
 
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showInterestRateInfo"/>    
+    </LinearLayout>
+</LinearLayout>
+    
     <!-- Layout specific to mortgage -->
 
 <LinearLayout
     android:id="@+id/specific_mortgage_type_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">    
-    
+    android:orientation="vertical">
 </LinearLayout>
 
     <!-- Advanced (tax, fees, insurance) -->
@@ -259,7 +339,17 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
-    
+ 
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showHomeInsuranceInfo"/>   
 </LinearLayout>
 
 <LinearLayout
@@ -287,7 +377,19 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
-    
+
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showPropertyTaxInfo"/>       
 </LinearLayout> 
 <LinearLayout
     android:layout_width="match_parent"
@@ -314,8 +416,18 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>             
-    </LinearLayout> 
-    
+
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showPMIInfo"/> 
+    </LinearLayout>          
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -341,7 +453,17 @@
         android:layout_weight="@integer/form_suffix_weight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
-    
+ 
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showClosingFeesInfo"/>      
 </LinearLayout> 
 
    </LinearLayout>
@@ -400,7 +522,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>       
     
-    
+    <TextView
+        android:text=" ? "
+        android:textStyle="bold"
+        android:textColor="#ff888888"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@drawable/question_mark"        
+        android:onClick="showExtraPaymentInfo"/>     
 </LinearLayout>
 
 <LinearLayout

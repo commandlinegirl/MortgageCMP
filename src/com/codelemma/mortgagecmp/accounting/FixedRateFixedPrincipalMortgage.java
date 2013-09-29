@@ -90,10 +90,21 @@ public class FixedRateFixedPrincipalMortgage extends Mortgage {
 		return MortgageNameConstants.FIXED_RATE_FIXED_PRINCIPAL;
 	}
 
+    @Override
 	public void listMonthlyPayment(MonthlyPaymentListingVisitor mplv) {
 		mplv.listMonthlyPaymentBreakdown(this);
 	}
 
+	@Override
+	public void fillInput(FillInputVisitor fiv) {
+		fiv.fillInput(this);
+	}
+	
+	@Override
+	public void writeSummary(SummaryVisitor sv) {
+		sv.writeSummary(this);
+	}
+	
 	public BigDecimal getMinMonthlyInterest() {
 		if (this.getNumberOfPayments() < 1) {
 			return BigDecimal.ZERO;

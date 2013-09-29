@@ -22,7 +22,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -39,9 +38,11 @@ public class ResultsOne extends SherlockFragmentActivity
 	static final int NUM_ITEMS = 6; // number of slides
     private final int MAX_MORTGAGE_NUMBER = 30;	
     private int extraPaymentFrequency = 12; // 12 means yearly
-    private int adjustment_period;
-    private int months_between_adjustments;
-    private int arm_type = 71;
+    private int arm_type = 0;
+    private boolean basic_data_visibility = true;
+    private boolean adjustment_strategy_visibility = false;
+    private boolean fees_visibility = false;
+    private boolean extra_payment_visibility = false;
 
     MyAdapter mAdapter;
     ViewPager mPager;
@@ -129,7 +130,7 @@ public class ResultsOne extends SherlockFragmentActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
             case 0:
-                return "INPUT";            
+                return "INPUT";
             case 1:
                 return "SUMMARY";
             case 2:
@@ -162,6 +163,10 @@ public class ResultsOne extends SherlockFragmentActivity
 	    	MortgageCMP.getInstance().getAccount().setCurrentMortgage(null);
 	    	mPager.setAdapter(mAdapter);
 		    mPager.setCurrentItem(0, true);
+		    basic_data_visibility = true;
+		    adjustment_strategy_visibility = false;
+		    fees_visibility = false;
+		    extra_payment_visibility = false;
 		    return true;		    
 	    case R.id.menu_reset:
 	    	resetForm();
@@ -203,39 +208,6 @@ public class ResultsOne extends SherlockFragmentActivity
 		} catch (IndexOutOfBoundsException ioobe) {
 			return;
 		}
-		
-		if (sp.getSelectedItemPosition() == 2) {
-
-		    input.put("arm_type", String.valueOf(arm_type));
-			
-		    EditText adjustment_period = (EditText) findViewById(R.id.adjustment_period);
-		    String adjustment_periodData = adjustment_period.getText().toString();
-		    if (Utils.alertIfEmpty(this, adjustment_periodData, getResources().getString(R.string.adjustment_period_input))) {
-		    	return;
-		    }
-		    input.put("adjustment_period", adjustment_periodData);
-		    
-		    EditText months_between_adjustments = (EditText) findViewById(R.id.months_between_adjustments);
-		    String months_between_adjustmentsData = months_between_adjustments.getText().toString();
-		    if (Utils.alertIfEmpty(this, months_between_adjustmentsData, getResources().getString(R.string.months_between_adjustments_input))) {
-		    	return;
-		    }
-		    input.put("months_between_adjustments", months_between_adjustmentsData);
-		    
-		    EditText max_single_rate_adjustment = (EditText) findViewById(R.id.max_single_rate_adjustment);
-		    String max_single_rate_adjustmentData = max_single_rate_adjustment.getText().toString();
-		    if (Utils.alertIfEmpty(this, max_single_rate_adjustmentData, getResources().getString(R.string.max_single_rate_adjustment_input))) {
-		    	return;
-		    }
-		    input.put("max_single_rate_adjustment", max_single_rate_adjustmentData);
-		    
-		    EditText total_interest_cap = (EditText) findViewById(R.id.total_interest_cap);
-		    String total_interest_capData = total_interest_cap.getText().toString();
-		    if (Utils.alertIfEmpty(this, total_interest_capData, getResources().getString(R.string.total_interest_cap_input))) {
-		    	return;
-		    }
-		    input.put("total_interest_cap", total_interest_capData);
-		}
 	    
 	    EditText debtName = (EditText) findViewById(R.id.mortgage_name);
 	    String debtNameData = debtName.getText().toString();
@@ -273,7 +245,7 @@ public class ResultsOne extends SherlockFragmentActivity
 	    if (Utils.alertIfEmpty(this, termYearsData, getResources().getString(R.string.mortgage_term_years_input))) {
 	    	return;	    	
 	    }
-	    if (Utils.alertIfIntNotInBounds(this, termYearsData, 0, 100, getResources().getString(R.string.mortgage_term_years_input))) {
+	    if (Utils.alertIfIntNotInBounds(this, termYearsData, 0, 80, getResources().getString(R.string.mortgage_term_years_input))) {
 	    	return;
 	    }
 	    input.put("term_years", termYearsData);   
@@ -282,9 +254,6 @@ public class ResultsOne extends SherlockFragmentActivity
 	    String termMonthsData = term_months.getText().toString();
 	    if (termMonthsData.trim().length() == 0) { // fill default if not provided
 	    	termMonthsData = "0";
-	    }
-	    if (Utils.alertIfIntNotInBounds(this, termMonthsData, 0, 1000, getResources().getString(R.string.mortgage_term_months_input))) {
-	    	return;
 	    }
 	    input.put("term_months", termMonthsData);   
         
@@ -328,8 +297,62 @@ public class ResultsOne extends SherlockFragmentActivity
 	    	extraPaymentData = "0";
 	    }
 	    input.put("extra_payment", extraPaymentData);
-
 	    input.put("extra_payment_frequency", String.valueOf(extraPaymentFrequency));
+
+	    int total_months_term = Integer.parseInt(termYearsData) * 12 + Integer.parseInt(termMonthsData);
+	    // Check if the mortgage term is at least 1 month
+	    if (Utils.alertIfIntNotInBoundsExplanation(this, String.valueOf(total_months_term), 1, 960, 
+	    		getResources().getString(R.string.mortgage_term_input),
+	    		"Please, fill in Mortgage term with a value such that the term is at least 1 month.",
+	    		"Please, fill in Mortgage term with a value such that the term is not higher that 960 months.")) {
+	    	return;
+	    }
+
+	    if (sp.getSelectedItemPosition() == 2) {
+
+		    input.put("arm_type", String.valueOf(arm_type));
+			
+		    
+		    EditText adjustment_period = (EditText) findViewById(R.id.adjustment_period);
+		    String adjustment_periodData = adjustment_period.getText().toString();
+		    if (Utils.alertIfEmpty(this, adjustment_periodData, getResources().getString(R.string.adjustment_period_input))) {
+		    	return;
+		    }
+		    if (Utils.alertIfIntNotInBounds(this, adjustment_periodData, 0, total_months_term, getResources().getString(R.string.adjustment_period_input))) {
+		    	return;
+		    }
+		    input.put("adjustment_period", adjustment_periodData);
+		    
+		    EditText months_between_adjustments = (EditText) findViewById(R.id.months_between_adjustments);
+		    String months_between_adjustmentsData = months_between_adjustments.getText().toString();
+		    if (Utils.alertIfEmpty(this, months_between_adjustmentsData, getResources().getString(R.string.months_between_adjustments_input))) {
+		    	return;
+		    }
+		    if (Utils.alertIfIntNotInBounds(this, months_between_adjustmentsData, 0, total_months_term, getResources().getString(R.string.months_between_adjustments_input))) {
+		    	return;
+		    }
+		    input.put("months_between_adjustments", months_between_adjustmentsData);
+		    
+		    EditText max_single_rate_adjustment = (EditText) findViewById(R.id.max_single_rate_adjustment);
+		    String max_single_rate_adjustmentData = max_single_rate_adjustment.getText().toString();
+		    if (Utils.alertIfEmpty(this, max_single_rate_adjustmentData, getResources().getString(R.string.max_single_rate_adjustment_input))) {
+		    	return;
+		    }
+		    if (Utils.alertIfNotInBounds(this, max_single_rate_adjustmentData, 0, 100, getResources().getString(R.string.max_single_rate_adjustment_input))) {
+		    	return;
+		    }
+		    input.put("max_single_rate_adjustment", max_single_rate_adjustmentData);
+		    
+		    EditText total_interest_cap = (EditText) findViewById(R.id.total_interest_cap);
+		    String total_interest_capData = total_interest_cap.getText().toString();
+		    if (Utils.alertIfEmpty(this, total_interest_capData, getResources().getString(R.string.total_interest_cap_input))) {
+		    	return;
+		    }
+		    if (Utils.alertIfNotInBounds(this, total_interest_capData, 0, 100, getResources().getString(R.string.total_interest_cap_input))) {
+		    	return;
+		    }
+		    input.put("interest_rate_cap", total_interest_capData);
+		}	    
 	    
 	    if (MortgageCMP.getInstance().getAccount().getMortgagesSize() >= MAX_MORTGAGE_NUMBER) {
 			new AlertDialog.Builder(this)
@@ -397,6 +420,62 @@ public class ResultsOne extends SherlockFragmentActivity
 
 	public void showMortgageTypeMoreInfo(View view) {
 		showInfoDialog(R.layout.help_mortgage_type_info);
+	}
+
+	public void showMortgageNameInfo(View view) {
+		showInfoDialog(R.layout.help_mortgage_name_info);
+	}
+	
+	public void showPurchasePriceInfo(View view) {
+		showInfoDialog(R.layout.help_purchase_price_info);
+	}
+
+	public void showDownPaymentInfo(View view) {
+		showInfoDialog(R.layout.help_down_payment_info);
+	}
+
+	public void showInterestRateInfo(View view) {
+		showInfoDialog(R.layout.help_interest_rate_info);
+	}
+
+	public void showHomeInsuranceInfo(View view) {
+		showInfoDialog(R.layout.help_home_insurance_info);
+	}
+
+	public void showPropertyTaxInfo(View view) {
+		showInfoDialog(R.layout.help_property_tax_info);
+	}
+
+	public void showPMIInfo(View view) {
+		showInfoDialog(R.layout.help_pmi_info);
+	}
+
+	public void showClosingFeesInfo(View view) {
+		showInfoDialog(R.layout.help_closing_fees_info);
+	}
+
+	public void showExtraPaymentInfo(View view) {
+		showInfoDialog(R.layout.help_extra_payment_info);
+	}
+
+	public void showAdjustmentRadioButtonsInfo(View view) {
+		showInfoDialog(R.layout.help_adjustment_radio_buttons_info);
+	}
+
+	public void showAdjustmentPeriodInfo(View view) {
+		showInfoDialog(R.layout.help_adjustment_period_info);
+	}
+
+	public void showMonthsBetweenAdjustmentsInfo(View view) {
+		showInfoDialog(R.layout.help_months_between_adjustments_info);
+	}
+
+	public void showMaxSingleRateAdjustmentInfo(View view) {
+		showInfoDialog(R.layout.help_max_single_rate_adjustment_info);
+	}
+
+	public void showTotalInterestCapInfo(View view) {
+		showInfoDialog(R.layout.help_total_interest_cap_info);
 	}
 
 	public void showInfoDialog(int r_id) {
@@ -468,24 +547,6 @@ public class ResultsOne extends SherlockFragmentActivity
 	            break;
 	    }
 	}
-
-	public void setRadioButtonClicked(int id) {
-	    // Check which radio button was clicked
-	    switch(id) {
-	        case 1:
-	            RadioButton rbm = (RadioButton) findViewById(R.id.radioMonthly);
-	            rbm.setChecked(true);
-	            break;
-	        case 12:
-	        	RadioButton rby = (RadioButton) findViewById(R.id.radioYearly);
-	            rby.setChecked(true);
-	            break;
-	        default:
-	        	rby = (RadioButton) findViewById(R.id.radioYearly);
-	            rby.setChecked(true);
-	            break;	        	
-	    }
-	}
 	
 	public void onARMTypeRadioButtonClicked(View view) {
 	    // Is the button now checked?
@@ -532,35 +593,16 @@ public class ResultsOne extends SherlockFragmentActivity
         edit_text.setEnabled(false);
 	}
 
-	public void setARMTypeRadioButtonClicked(int id) {
-	    switch(id) {
-        case 71:
-            RadioButton rb71 = (RadioButton) findViewById(R.id.arm71);
-            rb71.setChecked(true);
-            break;
-        case 51:
-        	RadioButton rb51 = (RadioButton) findViewById(R.id.arm51);
-        	rb51.setChecked(true);
-            break;
-        case 31:
-        	RadioButton rb31 = (RadioButton) findViewById(R.id.arm31);
-        	rb31.setChecked(true);
-            break;
-        default:
-        	RadioButton rb_other = (RadioButton) findViewById(R.id.arm_other);
-        	rb_other.setChecked(true);
-            break;
-	    }
-	}
-
 	public void toggleVisibilityFees(View view) {
 		LinearLayout v = (LinearLayout) findViewById(R.id.advanced_input);
 	    TextView tv = (TextView) findViewById(R.id.advanced_input_text);
 		if (v.getVisibility() == View.GONE) {
 		    v.setVisibility(View.VISIBLE);
+		    fees_visibility = true;
 		    tv.setText(R.string.advanced_input_visible);
 		} else {
 			v.setVisibility(View.GONE);
+		    fees_visibility = false;
 		    tv.setText(R.string.advanced_input_invisible);
 		}
 	}
@@ -570,12 +612,42 @@ public class ResultsOne extends SherlockFragmentActivity
 	    TextView tv = (TextView) findViewById(R.id.advanced_extra_payments_input_text);
 		if (v.getVisibility() == View.GONE) {
 		    v.setVisibility(View.VISIBLE);
+		    extra_payment_visibility = true;
 		    tv.setText(R.string.advanced_extra_payments_input_visible);
 		} else {
 			v.setVisibility(View.GONE);
+		    extra_payment_visibility = false;			
 		    tv.setText(R.string.advanced_extra_payments_input_invisible);
 		}
 	}
+
+	public void toggleVisibilityAdjustmentStrategy(View view) {
+		LinearLayout v = (LinearLayout) findViewById(R.id.arm_section_input);
+	    TextView tv = (TextView) findViewById(R.id.arm_section_input_text);
+		if (v.getVisibility() == View.GONE) {
+		    v.setVisibility(View.VISIBLE);
+		    adjustment_strategy_visibility = true;
+		    tv.setText(R.string.arm_section_input_visible);
+		} else {
+			v.setVisibility(View.GONE);
+			adjustment_strategy_visibility = false;
+		    tv.setText(R.string.arm_section_input_invisible);
+		}
+	}
+
+	public void toggleVisibilityBasicData(View view) {
+		LinearLayout v = (LinearLayout) findViewById(R.id.basic_section_input);
+	    TextView tv = (TextView) findViewById(R.id.basic_section_input_text);
+		if (v.getVisibility() == View.GONE) {
+		    v.setVisibility(View.VISIBLE);
+		    basic_data_visibility = true; 
+		    tv.setText(R.string.basic_section_input_visible);
+		} else {
+			v.setVisibility(View.GONE);
+			basic_data_visibility = false;
+		    tv.setText(R.string.basic_section_input_invisible);
+		}
+	}	
 
     private void showStartPopup() {   
         if (MortgageCMP.getInstance().showStartupWindow() == 1) {
@@ -613,5 +685,18 @@ public class ResultsOne extends SherlockFragmentActivity
 		((EditText) findViewById(R.id.mortgage_pmi)).setText("0");
 		((EditText) findViewById(R.id.mortgage_closing_fees)).setText("0");
 		((EditText) findViewById(R.id.mortgage_extra_payment)).setText("0");
+	}
+
+	public boolean getExtraPaymentVisibility() {
+		return extra_payment_visibility;
+	}
+	public boolean getBasicDataVisibility() {
+		return basic_data_visibility;
+	}
+	public boolean getAdjustmentStrategyVisibility() {
+		return adjustment_strategy_visibility;
+	}
+	public boolean getFeesVisibility() {
+		return fees_visibility;
 	}
 }

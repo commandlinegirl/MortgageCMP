@@ -162,7 +162,7 @@ public class MonthlyPaymentListingMaker implements MonthlyPaymentListingVisitor 
     	params.weight = 0.3f;
     	principal_interest_tv0b.setLayoutParams(params);
     	principal_interest_tv0b.setGravity(Gravity.RIGHT);
-    	principal_interest_tv0b.setText(dates[mortgage.getAdjustmentPeriod()]);
+    	principal_interest_tv0b.setText(dates[Math.max(mortgage.getTotalTermMonths()-1, Math.max(mortgage.getAdjustmentPeriod()-1, 0))]);
 
     	TextView principal_interest_tv0c = new TextView(frgActivity);
     	params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 
@@ -175,8 +175,6 @@ public class MonthlyPaymentListingMaker implements MonthlyPaymentListingVisitor 
     	principal_interest_inner0.addView(principal_interest_tv0a);
     	principal_interest_inner0.addView(principal_interest_tv0b);  	
     	principal_interest_inner0.addView(principal_interest_tv0c);
-    	
-    	
     	
     	LinearLayout principal_interest_inner1 = new LinearLayout(frgActivity);
     	principal_interest_inner1.setPadding(16, 0, 16, 0);

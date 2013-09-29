@@ -90,6 +90,16 @@ public class FixedRateVariablePrincipalMortgage extends Mortgage {
 		mplv.listMonthlyPaymentBreakdown(this);		
 	}
 	
+	@Override
+	public void fillInput(FillInputVisitor fiv) {
+		fiv.fillInput(this);
+	}
+	
+	@Override
+	public void writeSummary(SummaryVisitor sv) {
+		sv.writeSummary(this);
+	}
+	
 	public static class Builder extends Mortgage.Builder<Builder> {
 
 		@Override

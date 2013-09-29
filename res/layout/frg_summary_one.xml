@@ -100,9 +100,7 @@
         android:layout_height="wrap_content"
         android:gravity="right"/>  
       </LinearLayout>
-      
 
-    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -115,6 +113,7 @@
         android:padding="10dp">
 
       <TextView
+        android:id="@+id/s_interest_rate_title"
         android:text="@string/mortgage_interest_rate_input"               
         android:layout_weight="@integer/summary_left_weight"
         android:layout_width="0dp"
@@ -129,6 +128,7 @@
     </LinearLayout>
     
 
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -154,7 +154,7 @@
         android:gravity="right"/>
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>
@@ -179,7 +179,8 @@
         android:gravity="right"/>
     </LinearLayout>    
         
-    <LinearLayout
+    <TextView
+        android:id="@+id/s_hrline1"        
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>
@@ -205,7 +206,8 @@
         android:gravity="right"/>
     </LinearLayout>    
     
-    <LinearLayout
+    <TextView
+        android:id="@+id/s_hrline2"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#FFCCCCCC"/>
@@ -230,9 +232,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="right"/>
-    </LinearLayout>        
-      
+    </LinearLayout>            
     
+      <TextView 
+          android:text="@string/swipe_for_more_info"
+          android:textColor="#FFCCCCCC"
+          android:textSize="10sp"
+          android:gravity="center_horizontal"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:layout_marginBottom="16dp"          
+          />    
     
   </LinearLayout>
 </ScrollView>

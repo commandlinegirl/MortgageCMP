@@ -87,5 +87,34 @@ public class Utils {
         .setMessage(message_text)
         .setNeutralButton("OK", null)
         .show();
-    }   
+    }
+ 	
+    static public boolean alertIfIntNotInBoundsExplanation(
+            Context context,
+            String fieldData,
+            int min,
+            int max,
+            String fieldName,
+            String min_text,
+            String max_text) {
+        int value;
+        try {
+            value = Integer.parseInt(fieldData);
+        } catch (NumberFormatException nfe) {
+            showDialog(context, 
+                    "Value incorrect", 
+                    "Please, fill in "+ fieldName +" with a whole number."); //TODO: better mesg, please!
+            return true;
+        }   
+    
+        if (value < min) {
+            showDialog(context, "Value too low", min_text);
+            return true;
+        } else if(value > max) {
+            showDialog(context, "Value too high", max_text);
+            return true;
+        }   
+        return false;
+    }  
+	
 }

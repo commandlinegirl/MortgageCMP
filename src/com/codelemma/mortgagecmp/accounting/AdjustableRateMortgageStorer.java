@@ -25,6 +25,7 @@ public class AdjustableRateMortgageStorer implements MortgageStorer<AdjustableRa
 	private static final String CLOSING_FEES = "cf";
 	private static final String EXTRA_PAYMENT = "ep";
 	private static final String EXTRA_PAYMENT_FREQUENCY = "epf";
+	private static final String ARM_TYPE = "at";
 
 	private Storage storage;
 	
@@ -45,7 +46,7 @@ public class AdjustableRateMortgageStorer implements MortgageStorer<AdjustableRa
 	public Mortgage load(int id) throws StorageException {
 		String prefix = Integer.toString(id);
 		HashMap<String, String> mortgage_data = new HashMap<String, String>();
-		FixedRateFixedPrincipalMortgageFactory mfactory = new FixedRateFixedPrincipalMortgageFactory();
+		AdjustableRateMortgageFactory mfactory = new AdjustableRateMortgageFactory();
 		mortgage_data.put("name", storage.getString(prefix, NAME));
 		mortgage_data.put("purchase_price", storage.getBigDecimal(prefix, PURCHASE_PRICE).toString());
 		mortgage_data.put("downpayment", storage.getBigDecimal(prefix, DOWNPAYMENT).toString());
@@ -62,6 +63,7 @@ public class AdjustableRateMortgageStorer implements MortgageStorer<AdjustableRa
 		mortgage_data.put("closing_fees", storage.getBigDecimal(prefix, CLOSING_FEES).toString());
 		mortgage_data.put("extra_payment", storage.getBigDecimal(prefix, EXTRA_PAYMENT).toString());
 		mortgage_data.put("extra_payment_frequency", String.valueOf(storage.getInt(prefix, EXTRA_PAYMENT_FREQUENCY)));
+		mortgage_data.put("arm_type", String.valueOf(storage.getInt(prefix, ARM_TYPE)));		
 		Mortgage mortgage =  mfactory.createMortgage(mortgage_data);
 		mortgage.setPreviousId(storage.getInt(prefix, MORTGAGE_ID));
 		return mortgage;
@@ -90,7 +92,8 @@ public class AdjustableRateMortgageStorer implements MortgageStorer<AdjustableRa
 		storage.putBigDecimal(prefix, PMI_RATE, mortgage.getPMI());
 		storage.putBigDecimal(prefix, CLOSING_FEES, mortgage.getClosingFees());
 		storage.putBigDecimal(prefix, EXTRA_PAYMENT, mortgage.getExtraPayment());
-		storage.putInt(prefix, EXTRA_PAYMENT_FREQUENCY, mortgage.getExtraPaymentFrequency());	
+		storage.putInt(prefix, EXTRA_PAYMENT_FREQUENCY, mortgage.getExtraPaymentFrequency());
+		storage.putInt(prefix, ARM_TYPE, mortgage.getARMType());	
 	}
 
 	/**
@@ -116,7 +119,8 @@ public class AdjustableRateMortgageStorer implements MortgageStorer<AdjustableRa
 		storage.remove(prefix, PMI_RATE);
 		storage.remove(prefix, CLOSING_FEES);
 		storage.remove(prefix, EXTRA_PAYMENT);
-		storage.remove(prefix, EXTRA_PAYMENT_FREQUENCY);			
+		storage.remove(prefix, EXTRA_PAYMENT_FREQUENCY);
+		storage.remove(prefix, ARM_TYPE);					
 	}
 	
 }

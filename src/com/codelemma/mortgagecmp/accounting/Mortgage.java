@@ -69,7 +69,7 @@ public abstract class Mortgage {
 
 		loan_amount = Money.scale(purchase_price.subtract(downpayment));
 		outstanding_loan = loan_amount;
-		
+				
 		monthly_extra_payment = extra_payment.divide(
 				new BigDecimal(extra_payment_frequency), Money.DECIMALS, Money.ROUNDING_MODE);
 
@@ -98,6 +98,8 @@ public abstract class Mortgage {
 	public abstract BigDecimal getMonthlyTotalPaymentNonPMI(); // principal+interest+extra+insurance+tax
 	public abstract String getType();
 	public abstract void listMonthlyPayment(MonthlyPaymentListingVisitor mplv);
+	public abstract void fillInput(FillInputVisitor fiv);
+	public abstract void writeSummary(SummaryVisitor sv);
 	
 	public int getId() {
 		return id;
@@ -134,6 +136,7 @@ public abstract class Mortgage {
 		total_extra_payment = BigDecimal.ZERO;
 		total_interests = BigDecimal.ZERO;
 		total_principal = BigDecimal.ZERO;
+		
 		history.initialize();
 	}
 
@@ -419,7 +422,8 @@ public abstract class Mortgage {
 			return BigDecimal.ZERO;
 		}
 	}
-	
+
+
 	public static abstract class Builder<T extends Builder<T>> {
 		
 		private String name;

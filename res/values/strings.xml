@@ -6,7 +6,7 @@
 
     <!-- Input form -->
 
-    <string name="mortgage_type_input">Amortization type</string>
+    <string name="mortgage_type_input">Type</string>
     <string name="mortgage_name_input">Name</string>
     <string name="mortgage_name_text">Mortgage 1</string>
     <string name="mortgage_purchase_price_input">Purchase price</string>
@@ -19,9 +19,9 @@
     <string name="adjustment_period_input">Adjustment period</string>
     <string name="adjustment_period_text">84</string>
     <string name="initial_interest_rate_input">Initial interest rate</string>
-    <string name="months_between_adjustments_input">Months between adjustments</string>
+    <string name="months_between_adjustments_input">Between adjustments</string>
     <string name="months_between_adjustments_text">12</string>
-    <string name="max_single_rate_adjustment_input">Max single rate adjustment</string>
+    <string name="max_single_rate_adjustment_input">Single adjustment</string>
     <string name="max_single_rate_adjustment_text">0.25</string>
     <string name="total_interest_cap_input">Total interest cap</string>
     <string name="total_interest_cap_text">12</string>
@@ -30,7 +30,7 @@
     <string name="mortgage_term_years_abbr">yrs</string>
     <string name="mortgage_term_years_input">years</string>
     <string name="mortgage_term_months_text">0</string>
-    <string name="mortgage_term_months_abbr">mts</string>
+    <string name="mortgage_term_months_abbr">ms</string>
     <string name="mortgage_term_months_input">months</string>
     <string name="mortgage_property_insurance_input">Home insurance</string>
     <string name="mortgage_property_insurance_text"></string>
@@ -44,6 +44,11 @@
     <string name="mortgage_extra_payment_text"></string>
     <string name="radio_yearly">yearly</string>
     <string name="radio_monthly">monthly</string>
+    
+    <string name="basic_section_input_invisible">+ Basic data</string>
+    <string name="basic_section_input_visible">- Basic data </string>       
+    <string name="arm_section_input_invisible">+ Adjustment strategy</string>
+    <string name="arm_section_input_visible">- Adjustment strategy</string>    
     <string name="advanced_input_invisible">+ Tax, fees, insurance (optional)</string>
     <string name="advanced_input_visible">- Tax, fees, insurance (optional)</string>
     <string name="advanced_extra_payments_input_invisible">+ Extra payments (optional)</string>
@@ -89,31 +94,94 @@
     <string name="s_mortgage_monthly_payment_total_with_PMI_title">Total with PMI</string>
     <string name="s_mortgage_last_payment">Last payment</string>
     <string name="s_mortgage_term_reduction_title">Term reduction</string>
+    <string name="s_max_interest_rate_title">Max interest rate</string>
+
     <string name="total">Total</string>
 
     <!-- Help -->
 
-    <string name="help_mortgage_type_info"><b><i>Constant loan payments</i></b>
-        \nMost popular amortization schedule (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
-        \n\n<b><i>Constant principal payments</i></b>
-        \nThe principal paid, not the total monthly payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. 
-        Interest rate is fixed. Amortization schedule popular in Europe.</string>
+    <string name="help_mortgage_type_info"><b><i>Select mortgage type</i></b>
+        \n\n<b><i>FRM Constant loan payments</i></b>
+        \nFixed rate mortgage, in which the monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed. Most popular amortization schedule.
+        \n\n<b><i>FRM Constant principal payments</i></b>
+        \nFixed rate mortgage, in which the principal paid, not the total monthly payment, remains constant. Total monthly payments
+        decrease due to decreasing monthly interest. Interest rate is fixed. The first monthly payments are higher than in the case of a constant loan payments 
+        loan, but the total payment is lower (less total interest needs to be paid).
+        \n\n<b><i>ARM Adjustable Rate Mortgage</i></b>
+        \nA mortgage loan in which the interest rate paid on the outstanding balance is periodically adjusted according to a specific index. The initial interest rate is usually
+         fixed for a period of time (adjustment period) after which it is reset every few months.
+        </string>
+
+    <string name="help_mortgage_name_info"><b><i>Mortgage name</i></b>
+        \nYour chosen name that identifies a specific mortgage.
+        </string>
+
+    <string name="help_purchase_price_info"><b><i>Purchase price</i></b>
+        \nPrice of the purchased property.
+        </string>
+
+    <string name="help_down_payment_info" formatted="false"><b><i>Down payment</i></b>
+        \nAmount that you will pay in cash at the onset of the loan. Many banks require that it amounts to 20% of the purchase price.
+        </string>
     
-    <string name="help_general">\n<b>Amortization type</b>
-        \n<i>Constant loan payments</i>
-        \nMost popular amortization schedule (fixed rate mortgage). Monthly payment (interest plus principal) is constant over the loan term. Interest rate is fixed.
-        \n<i>Constant principal payments</i>
-        \nThe principal paid, not the total monthly payment, remains constant, while total monthly payments decrease due to decreasing monthly interest. Interest rate is fixed. Amortization schedule popular in Europe.
-        \n\n<b>Purchase price</b>\nPurchased property price.
-        \n\n<b>Down payment</b>\nAmount paid in cash at the onset of the loan.
+    <string name="help_mortgage_term_info"><b><i>Mortgage term</i></b>
+        \nThe length of time the mortgage terms and conditions (including interest rate) are in effect.
+        </string>
+    
+    <string name="help_interest_rate_info"><b><i>Interest rate</i></b>
+        \nAnnual interest rate (nominal) on the mortgage.
+        </string>
+    
+    <string name="help_home_insurance_info"><b><i>Home insurance</i></b>
+        \nAnnual insurance against risks to the property (hazard insurance, homeowner\'s insurance).
+        </string>
+    
+    <string name="help_property_tax_info"><b><i>Property tax</i></b>
+        \nAnnual tax on the bought property.
+        </string>
+
+    <string name="help_pmi_info"><b><i>PMI</i></b>
+        \nAnnual Private Mortgage Insurance, paid to the lender if the down payment is lower than 20\u0025 of the purchased property price or when the loan-to-value ratio is lower than 80\u0025. Loan-to-value ratio is a ratio of the loan to the value of an asset purchased. It is an annual percentage of loan amount.
+        </string>
+
+    <string name="help_closing_fees_info"><b><i>Closing fees</i></b>
+        \nThe total of one-time fees (attorney, survey, application fees, etc.).
+        </string>
+
+    <string name="help_extra_payment_info"><b><i>Extra payment</i></b>
+        \nMonthly or yearly additional principal payment that reduces the costs and term of the loan. Yearly amount will be divided by 12 months and added
+        to the monthly principal payment.
+        </string>
+
+    <string name="help_adjustment_radio_buttons_info"><b><i>Adjustment strategy for ARM</i></b>
+        \n\n<b>7\//1</b> Fixed for 84 months, adjusts annually for the remaining part of the loan.
+        \n\n<b>5\//1</b> Fixed for 60 months, adjusts annually for the remaining part of the loan.
+        \n\n<b>3\//1</b> Fixed for 36 months, adjusts annually for the remaining part of the loan.
+        \n\n<b>other</b> You can specify how many months the initial interest rate is fixed (<i>Adjustment period</i>) and how often the interest rate will be 
+        adjusted after this period (<i>Between adjustments</i>).
+        </string>
+    
+    <string name="help_adjustment_period_info"><b><i>Adjustment period</i></b>
+        \nThe number of months during which the initial interest rate is not changed. After this period the periodic adjustments will begin.
+        This number cannot be higher than the total number of payment months.
+        </string>
+
+    <string name="help_months_between_adjustments_info"><b><i>Months between adjustments</i></b>
+        \nThe number of months (payments) between the adjustments. 12 means the adjustment is annual.
+        </string>
+
+    <string name="help_max_single_rate_adjustment_info" formatted="false"><b><i>Single adjustment rate</i></b>
+        \nThe expected rate by which the interest rate will change periodically. This amount will be added to the previous interest rate.
+        Eg. if the initial interest rate is 5% and a single adjustment is 0.25%, the rate after the 1st adjustment will be 5.25%, the next one will be 5.50%, and so on. 
+        </string>
+        
+    <string name="help_total_interest_cap_info"><b><i>Total interest cap</i></b>
+        \nA maximum interest rate that will not be exceeded. Once the rate is adjusted to the cap, it remains at this level until the loan is paid off.
+
+        </string>
+            
+    <string name="help_general">
         \n\n<b>Loan amount</b>\nValue of the loan (purchase price - downpayment)
-        \n\n<b>Interest rate</b>\nAnnual interest rate (nominal).
-        \n\n<b>Mortgage term</b>\nThe length of time the mortgage terms and conditions (including interest rate) are in effect.
-        \n\n<b>Home insurance</b>\nAnnual insurance against risks to the property.
-        \n\n<b>Property tax</b>\nAnnual property (or millage) tax.
-        \n\n<b>Closing fees</b>\nThe total of one-time fees (attorney, survey, application fees, etc.).
-        \n\n<b>PMI</b>\nPrivate Mortgage Insurance, paid to the lender if the down payment is lower than 20\u0025 of the purchased property price or when the loan-to-value ratio is lower than 80\u0025. Loan-to-value ratio is a ratio of the loan to the value of an asset purchased.
-        \n\n<b>Extra payment</b>\nMonthly or yearly additional payment that reduces the costs and term of the loan.
         \n\n<b># of payments</b>\nThe total number of payments to pay off the loan amount.
         \n\nCompounding is monthly.
         \nMax number of mortgages stored is 30.
@@ -183,10 +251,13 @@
 
     <string name="start_popup_intro"><b>Mortgage calculator CMP</b> calculates and compares your mortgage options.\n</string>
     <string name="start_popup_input">add new mortgage</string>
-    <string name="start_popup_list">compare mortgages</string>
+    <string name="start_popup_list">list and compare mortgages</string>
     <string name="start_popup_ending">\nPlease, rate the app in Google Play.</string>
 
     <string name="start_popup_chart">view or modify a mortgage</string>
     <string name="start_popup_delete">delete a mortgage</string>
-       
+
+    <string name="swipe_here"><i> &lt; swipe here &gt; </i></string>    
+    <string name="swipe_for_more_info"><i> &lt; swipe for more info &gt; </i></string>    
+    
 </resources>
